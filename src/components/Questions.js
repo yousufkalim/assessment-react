@@ -7,13 +7,7 @@ import { Store } from "../StoreContext";
 
 const Questions = ({ setStep }) => {
   const { questions, answers } = Store();
-  console.log("questions from context", questions);
-  console.log("answers from context", answers);
-  let question = [
-    "what is your destination",
-    "what is your destination2",
-    "what is your destination3",
-  ];
+
   const [qIs, setQis] = useState(0);
   const useStyles = makeStyles((theme) => ({
     root: {

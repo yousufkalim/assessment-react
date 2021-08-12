@@ -173,7 +173,6 @@ const UserForm = ({ setStep }) => {
         questions: res?.data?.questions,
         answers: res?.data?.answers,
       });
-      console.log("response is", res.data);
       setStep(2);
     }
   };
