@@ -21,6 +21,7 @@ export function StoreProvider({ children }) {
     user: {},
     questions: [],
     answers: [],
+    schools: [],
   });
 
   const updateStore = (data) => {
