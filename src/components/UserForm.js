@@ -48,20 +48,20 @@ const UserForm = ({ setStep }) => {
       updateStore({ schools: res?.data?.schools });
     }
   };
-  // UserForm State
+  // initialize States
   const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
-    date_of_birth: "",
+    first_name: "ali",
+    last_name: "hassan",
+    date_of_birth: "02/02/2020",
     school: "",
     address: "",
-    education_level: "",
-    phone: "",
-    email: "",
+    education_level: "a",
+    phone: "1",
+    email: "ali@gmail.com",
     newsletter: false,
     contact_me: false,
   });
-  // addressValue State
+
   const [addressValue, setAddressValue] = useState({
     lat: "",
     lng: "",
@@ -69,6 +69,7 @@ const UserForm = ({ setStep }) => {
     postal_code: "",
     label: "",
   });
+  const [loading, setLoading] = useState(false);
 
   // Destructuring of UserForm State
   const {
@@ -164,6 +165,7 @@ const UserForm = ({ setStep }) => {
   // handleSubmit Function
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     let res = await api("post", "/users/create", {
       ...formData,
       address: addressValue,
@@ -172,23 +174,16 @@ const UserForm = ({ setStep }) => {
       updateStore({
         questions: res?.data?.questions,
         answers: res?.data?.answers,
+        user: res?.data?.user,
       });
       setStep(2);
     }
+    setLoading(false);
   };
   return (
     <div className={classes.main}>
       <h1>Profile form</h1>
       <form className={classes.root} autoComplete="off" onSubmit={handleSubmit}>
-        <Autocomplete
-          options={schools}
-          getOptionLabel={(option) => option.name}
-          onChange={handleChangeSchool}
-          style={{ width: "50%", margin: "auto" }}
-          renderInput={(params) => (
-            <TextField {...params} label="Schools" variant="outlined" />
-          )}
-        />
         <TextField
           label="First_name"
           variant="outlined"
@@ -247,6 +242,15 @@ const UserForm = ({ setStep }) => {
           required
         />
         <Autocomplete
+          options={schools}
+          getOptionLabel={(option) => option.name}
+          onChange={handleChangeSchool}
+          style={{ width: "50%", margin: "auto", marginBottom: "10px" }}
+          renderInput={(params) => (
+            <TextField {...params} label="Schools" variant="outlined" />
+          )}
+        />
+        <Autocomplete
           options={values}
           getOptionLabel={(option) => option.label}
           onChange={SetAddress}
@@ -285,7 +289,7 @@ const UserForm = ({ setStep }) => {
 
         <br />
         <Button variant="contained" color="primary" size="large" type="submit">
-          Submit
+          {loading ? "Loading..." : "Submit"}
         </Button>
       </form>
     </div>
