@@ -50,14 +50,14 @@ const UserForm = ({ setStep }) => {
   };
   // initialize States
   const [formData, setFormData] = useState({
-    first_name: "ali",
-    last_name: "hassan",
-    date_of_birth: "02/02/2020",
+    first_name: "",
+    last_name: "",
+    date_of_birth: "",
     school: "",
     address: "",
-    education_level: "a",
-    phone: "1",
-    email: "ali@gmail.com",
+    education_level: "",
+    phone: "",
+    email: "",
     newsletter: false,
     contact_me: false,
   });
