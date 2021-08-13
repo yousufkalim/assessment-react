@@ -22,6 +22,9 @@ export function StoreProvider({ children }) {
     questions: [],
     answers: [],
     schools: [],
+    history: [],
+    disc_ans_id: [],
+    result: {},
   });
 
   const updateStore = (data) => {
