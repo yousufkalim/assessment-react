@@ -18,6 +18,7 @@ function App() {
   let checkLogin = async (data) => {
     let res = await api("get", `/auth/check-auth`);
     if (res?.data?.success) {
+      console.log("app.js");
       updateStore({ login: res?.data });
     }
   };

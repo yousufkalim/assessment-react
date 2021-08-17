@@ -1,17 +1,17 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { Store, UpdateStore } from "../../StoreContext";
+import api from "../../api";
 
 const Header = () => {
   const updateStore = UpdateStore();
   const { login } = Store();
-  const logout = () => {
-    updateStore({ login: null });
+  const logout = async () => {
+    let res = await api("get", `/auth/logout`);
+    if (res) {
+      window.location = "/login";
+    }
   };
-  // Redirect if logged out
-  if (!login) {
-    return <Redirect to="/login" />;
-  }
   return (
     <div className="headera">
       <label for="check">

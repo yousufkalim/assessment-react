@@ -35,16 +35,14 @@ const Login = ({ setStep }) => {
   }));
   const classes = useStyles();
   //
-  // Redirect if logged in
-  if (login) {
-    return <Redirect to="/dashboard" />;
-  }
+
   // login function api call
   let getLogin = async (data) => {
     setLoading(true);
     let res = await api("post", `/auth/login`, data);
     if (res?.data?.success) {
-      updateStore({ login: res?.data });
+      window.location = "/dashboard";
+      // updateStore({ login: res?.data });
     }
     setLoading(false);
   };

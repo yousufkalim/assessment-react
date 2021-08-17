@@ -2,15 +2,24 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const api = async (method = "get", uri, body) => {
-  axios.defaults.baseURL = "http://192.168.0.117:5000/api";
-  // axios.defaults.withCredentials = true;
+  if (window.location.hostname !== "localhost") {
+    axios.defaults.baseURL = "https://orientator.falconconsulting.fr/api";
+    axios.defaults.withCredentials = true;
+  }
+
   // ("https://orientator.falconconsulting.fr/api");
   // process.env.REACT_APP_baseURL;
   return axios[method](uri, body)
     .then((res) => res)
-    .catch((err) =>
-      toast.error(err?.response?.data ? err.response.data : err?.message)
-    );
+    .catch((err) => {
+      if (err.status === 403) {
+        window.location = "/login";
+      }
+      console.log("API Error --------> ", err.response.status);
+      return toast.error(
+        err?.response?.data ? err.response.data : err?.message
+      );
+    });
 };
 
 export default api;

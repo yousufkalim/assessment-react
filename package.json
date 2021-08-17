@@ -2,6 +2,7 @@
   "name": "orientator-react",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://192.168.0.117:5000/api",
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@material-ui/data-grid": "^4.0.0-alpha.37",
