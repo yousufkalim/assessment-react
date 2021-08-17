@@ -221,7 +221,6 @@ const UserForm = ({ setStep }) => {
           onChange={onChange}
           required
         />
-
         <TextField
           label="Email"
           type="email"
@@ -243,11 +242,19 @@ const UserForm = ({ setStep }) => {
         />
         <Autocomplete
           options={schools}
+          freeSolo
           getOptionLabel={(option) => option.name}
           onChange={handleChangeSchool}
           style={{ width: "50%", margin: "auto", marginBottom: "10px" }}
           renderInput={(params) => (
-            <TextField {...params} label="Schools" variant="outlined" />
+            <TextField
+              {...params}
+              label="Schools"
+              variant="outlined"
+              value={school}
+              name="school"
+              onChange={onChange}
+            />
           )}
         />
         <Autocomplete
@@ -286,7 +293,6 @@ const UserForm = ({ setStep }) => {
           />
           NewSletter
         </div>
-
         <br />
         <Button variant="contained" color="primary" size="large" type="submit">
           {loading ? "Loading..." : "Submit"}

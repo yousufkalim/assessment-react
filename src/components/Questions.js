@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Radio from "@material-ui/core/Radio";
-import api from "../api";
 import { Store, UpdateStore } from "../StoreContext";
 
 const Questions = ({ setStep }) => {
@@ -75,7 +73,6 @@ const Questions = ({ setStep }) => {
     updateStore({ history: [...history, ans] });
     setprevQuestion([]);
     setCurrentAnswer(null);
-    console.log("selected answer is", ans);
   };
 
   // when Click on Previou Button it get previous question
@@ -84,15 +81,9 @@ const Questions = ({ setStep }) => {
   // it set next question id that is basically previous one which will show
   // create previous q array to get seleceted
   const handlePrev = () => {
-    console.log("prev is ");
     const getprev = history?.find(
       (his) => his?.next_question === getQuestion()?._id
     );
-    console.log("history", history);
-
-    console.log("get q is", getQuestion()?._id);
-
-    console.log("prev is ", getprev);
     if (getprev) {
       if (getprev?.question?.questionType === "discriminating") {
         const disans = [...disc_ans_id];
@@ -104,7 +95,6 @@ const Questions = ({ setStep }) => {
       updateStore({
         history: history.slice(0, history.length - 1),
       });
-      console.log("prev is ", getprev);
       setNextQuestionId(getprev?.question?._id);
       setprevQuestion([...prevQuestion, getprev]);
     }
@@ -114,19 +104,13 @@ const Questions = ({ setStep }) => {
     let currentans = prevQuestion?.find(
       (q) => q.question?._id === getQuestion()?._id
     );
-    console.log("current si s", currentans);
     if (currentans !== undefined) {
-      console.log("lklk");
       setCurrentAnswer(currentans);
     }
   };
   // if show the questions by filteron the base of nextquestionId
   const getQuestion = () => {
     if (nextQuestionId == null) {
-      let lastAnswerId = history.find((his) => his.next_question === null);
-      // console.log(" disc_ans_id", disc_ans_id);
-      // console.log("lastAnswerId", lastAnswerId?._id);
-      // console.log("userid", user?._id);
       setStep(3);
       return;
     }
@@ -143,14 +127,6 @@ const Questions = ({ setStep }) => {
     });
     return options;
   };
-
-  console.log("prevQuestion", prevQuestion);
-  console.log(
-    "currentAnswer",
-    currentAnswer?.answer ? currentAnswer?.answer : null
-  );
-
-  // console.log("history", history);
 
   return (
     <div className={classes.main}>

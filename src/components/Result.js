@@ -3,25 +3,22 @@ import { Store, UpdateStore } from "../StoreContext";
 import api from "../api";
 
 const Result = () => {
+  // init
   const updateStore = UpdateStore();
-  const { questions, answers, history, user, disc_ans_id, result } = Store();
+  const { history, user, disc_ans_id, result } = Store();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     getResult();
   }, []);
+  // get Result from api
   let getResult = async () => {
     setLoading(true);
     let lastAnswerId = history?.find((his) => his.next_question === null);
-    // console.log(" result disc_ans_id", disc_ans_id);
-    // console.log("result lastAnswerId", lastAnswerId?._id);
-    // console.log("result userid", user?._id);
     const userData = {
       disc_answers: disc_ans_id,
       user_id: user?._id,
       last_answer: lastAnswerId?._id,
     };
-    // console.log("result userData", userData);
-
     let res = await api("post", "/results", userData);
     if (res) {
       updateStore({ result: res?.data?.result });
@@ -56,14 +53,12 @@ const Result = () => {
                         "%"
                       : "N/a"}
                   </p>
-
                   <p>
                     Sub Domain :{" "}
                     {course?.courseId?.sub_domains
                       ? course?.courseId?.sub_domains[0]
                       : "N/a"}{" "}
                   </p>
-
                   <p>
                     Course Name :{" "}
                     {course?.courseId?.course_name
@@ -77,8 +72,6 @@ const Result = () => {
               <h1>No Course Available</h1>
             )}
           </p>
-          {/* <p>{result?.}</p> */}
-          {console.log("result is ", result)}
         </div>
       )}
     </div>
