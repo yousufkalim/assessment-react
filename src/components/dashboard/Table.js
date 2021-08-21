@@ -9,6 +9,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 
+import DialogBox from "./Dialog";
+
 const useStyles = makeStyles({
   root: {
     width: "100%",
@@ -20,10 +22,19 @@ const useStyles = makeStyles({
 
 const AdminTable = ({ Heading, Users, page, setPage, rowsPerPage }) => {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const [singleRow, setSingleRow] = useState(null);
+
   const handleChangePage = (event, newPage) => {
     console.log("page", newPage);
     setPage(newPage);
   };
+  const handleRow = (row) => {
+    console.log("row is ", row);
+    setSingleRow(row);
+    setOpen(true);
+  };
+  console.log("length is  ", Users?.length);
   return (
     <div class="content">
       <Paper className={classes.root}>
@@ -43,39 +54,48 @@ const AdminTable = ({ Heading, Users, page, setPage, rowsPerPage }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {Users
-                // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => {
-                  return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.code}
-                    >
-                      {Heading.map((column) => {
-                        const value = row[column.id];
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            {value}
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  );
-                })}
+              {Users?.slice(
+                page * rowsPerPage,
+                page * rowsPerPage + rowsPerPage
+              ).map((row) => {
+                return (
+                  <TableRow
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={row.code}
+                    onClick={() => handleRow(row)}
+                  >
+                    {Heading.map((column) => {
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          {value}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })}
             </TableBody>
           </Table>
         </TableContainer>
         <TablePagination
           rowsPerPageOptions={[10]}
           component="div"
-          count={20}
+          count={Users?.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
         />
       </Paper>
+      <DialogBox
+        setSingleRow={setSingleRow}
+        singleRow={singleRow}
+        open={open}
+        setOpen={setOpen}
+        Heading={Heading}
+      />
     </div>
   );
 };

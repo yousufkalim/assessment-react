@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Store, UpdateStore } from "../StoreContext";
 import api from "../api";
 import Table from "../components/dashboard/Table";
+import Dialog from "../components/dashboard/Dialog";
 
 const Heading = [
   { id: "email", label: "Email", minWidth: 170 },
@@ -31,6 +32,7 @@ const Users = () => {
   const { Users } = Store();
 
   const [page, setPage] = React.useState(0);
+
   const [rowsPerPage, setRowsPerPage] = React.useState(7);
   // Get dashboard data from API
   useEffect(() => {
@@ -39,19 +41,21 @@ const Users = () => {
   let getAllUsers = async () => {
     let res = await api("get", `/users/all-users?${page + 1}&${rowsPerPage}`);
     if (res) {
-      console.log("user response");
+      console.log("user response", res?.data?.users);
       updateStore({ Users: res?.data?.users });
     }
   };
 
   return (
-    <Table
-      Heading={Heading}
-      Users={Users}
-      page={page}
-      setPage={setPage}
-      rowsPerPage={rowsPerPage}
-    />
+    <>
+      <Table
+        Heading={Heading}
+        Users={Users}
+        page={page}
+        setPage={setPage}
+        rowsPerPage={rowsPerPage}
+      />
+    </>
   );
 };
 
