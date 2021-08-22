@@ -18,6 +18,9 @@ export function UpdateStore() {
 export function StoreProvider({ children }) {
   // Initializing State
   let [store, setStore] = useState({
+    login: null,
+    Users: [],
+    results: [],
     user: {},
     questions: [],
     answers: [],
