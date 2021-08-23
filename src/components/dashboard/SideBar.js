@@ -10,10 +10,10 @@ const SideBar = ({ step, setStep }) => {
         <h4>Orientatr</h4>
       </div>
       <div className="options">
-        <Link to="/dashboard">
+        {/* <Link to="/dashboard">
           <i class="fas fa-desktop"></i>
           <span>Dashboard</span>
-        </Link>
+        </Link> */}
         <Link to="/users">
           <i class="fas fa-desktop option"></i>
           <span>All Users</span>
