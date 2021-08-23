@@ -114,7 +114,10 @@ const UserForm = ({ setStep }) => {
     let res = await axios.get(
       "https://api-adresse.data.gouv.fr/search/?q=" +
         e.target.value +
-        "&type=street&autocomplete=1&limit=15"
+        "&type=street&autocomplete=1&limit=15",
+      {
+        withCredentials: false,
+      }
     );
     var addressToSet = []; // //debugger;
     for (var i = 0; i < res?.data?.features?.length; i++) {
@@ -309,5 +312,4 @@ const UserForm = ({ setStep }) => {
     </div>
   );
 };
-
 export default UserForm;
