@@ -9,6 +9,7 @@ const Result = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     getResult();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // get Result from api
   let getResult = async () => {

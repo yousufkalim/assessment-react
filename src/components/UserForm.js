@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 import { TextField, Button, Checkbox } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { makeStyles } from "@material-ui/core/styles";
@@ -9,7 +10,7 @@ import api from "../api";
 const UserForm = ({ setStep }) => {
   // initialize ContextStore
   const updateStore = UpdateStore();
-  const { schools, questions } = Store();
+  const { schools } = Store();
 
   // Styles
   const useStyles = makeStyles((theme) => ({
@@ -41,6 +42,7 @@ const UserForm = ({ setStep }) => {
   // Get schools data from API
   useEffect(() => {
     getSchoolData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   let getSchoolData = async () => {
     let res = await api("get", "/schools");
@@ -165,6 +167,12 @@ const UserForm = ({ setStep }) => {
   // handleSubmit Function
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (school == "") {
+      return toast.error("Please Enter Your school");
+    }
+    if (addressValue?.city == "") {
+      return toast.error("Please Enter Your Address");
+    }
     setLoading(true);
     let res = await api("post", "/users/create", {
       ...formData,
@@ -269,7 +277,7 @@ const UserForm = ({ setStep }) => {
               variant="outlined"
               onChange={getAllAdress}
               value={address}
-              name="address"
+              // name="address"
             />
           )}
         />

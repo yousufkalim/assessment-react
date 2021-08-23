@@ -1,10 +1,10 @@
 // Init
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import { ToastContainer, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Index from "./routes/index";
-import { Store, UpdateStore } from "./StoreContext";
+import { UpdateStore } from "./StoreContext";
 import api from "./api";
 
 // Component
@@ -13,12 +13,13 @@ function App() {
 
   useEffect(() => {
     checkLogin();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   // login function api call
   let checkLogin = async (data) => {
-    let res = await api("get", `/auth/check-auth`);
+    let res = await api("get", `admin/auth/check-auth`);
     if (res?.data?.success) {
-      console.log("app.js");
       updateStore({ login: res?.data });
     }
   };

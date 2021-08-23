@@ -19,8 +19,8 @@ export function StoreProvider({ children }) {
   // Initializing State
   let [store, setStore] = useState({
     login: null,
-    Users: [],
-    results: [],
+    Users: null,
+    results: null,
     user: {},
     questions: [],
     answers: [],

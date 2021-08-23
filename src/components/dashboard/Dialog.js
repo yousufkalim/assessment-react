@@ -1,10 +1,8 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
-import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
@@ -21,7 +19,6 @@ const styles = (theme) => ({
     color: theme.palette.grey[500],
   },
 });
-const a = [{ label: "a" }, { label: "a" }, { label: "a" }];
 
 const DialogBox = ({ open, setOpen, singleRow, setSingleRow, Heading }) => {
   const DialogTitle = withStyles(styles)((props) => {
@@ -41,17 +38,13 @@ const DialogBox = ({ open, setOpen, singleRow, setSingleRow, Heading }) => {
       </MuiDialogTitle>
     );
   });
-  console.log("SingleRow", singleRow);
-  console.log("heading in dialog", Heading);
+
   const DialogContent = withStyles((theme) => ({
     root: {
       padding: theme.spacing(2),
     },
   }))(MuiDialogContent);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
   const handleClose = () => {
     setSingleRow(null);
     setOpen(false);
@@ -71,39 +64,37 @@ const DialogBox = ({ open, setOpen, singleRow, setSingleRow, Heading }) => {
           {Heading && (
             <table
               style={{
-                border: "1px solid black",
                 padding: "10px",
                 margin: "10px",
               }}
             >
-              <tr>
-                {Heading.map((head) => (
-                  <td
-                    style={{
-                      padding: "10px",
-                      margin: "10px",
-                    }}
-                  >
-                    {head.label}
-                  </td>
-                ))}
-              </tr>
-              <tr style={{ border: "5px solid black" }}>
-                {singleRow &&
-                  Heading.map((column) => (
-                    <>
+              {singleRow &&
+                Heading.map((column) => (
+                  <>
+                    <tr style={{}}>
                       <td
                         style={{
-                          borderRight: "1px solid black",
-                          padding: "10px",
+                          borderBottom: "1px solid black",
+                          paddingRight: "20px",
                           margin: "10px",
                         }}
                       >
-                        {singleRow[column?.id]}
+                        {column.label}:
                       </td>
-                    </>
-                  ))}
-              </tr>
+                      <td
+                        style={{
+                          borderBottom: "1px solid black",
+                          padding: "20px",
+                          margin: "10px",
+                        }}
+                      >
+                        {column.id === "user"
+                          ? `${singleRow?.user?.first_name} ${singleRow?.user?.last_name}`
+                          : singleRow[column?.id]}
+                      </td>
+                    </tr>
+                  </>
+                ))}
             </table>
           )}
         </DialogContent>

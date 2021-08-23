@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Store, UpdateStore } from "../StoreContext";
+import axios from "axios";
 import api from "../api";
 import Table from "../components/dashboard/Table";
-import Dialog from "../components/dashboard/Dialog";
 
 const Heading = [
   { id: "email", label: "Email", minWidth: 170 },
@@ -30,19 +30,44 @@ const Heading = [
 const Users = () => {
   const updateStore = UpdateStore();
   const { Users } = Store();
-
   const [page, setPage] = React.useState(0);
+  const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const [rowsPerPage, setRowsPerPage] = React.useState(7);
+  useEffect(() => {
+    console.log("check login");
+    // checkLogin();
+  }, []);
+  // login function api call
+  let checkLogin = async () => {
+    try {
+      let res = await axios.get(
+        `${process.env.REACT_APP_baseURL}/admin/auth/check-auth`
+      );
+      console.log("res is ", res);
+      if (res?.data?.success) {
+        updateStore({ login: res?.data });
+      }
+    } catch (err) {
+      window.location = "/dashboard";
+    }
+  };
   // Get dashboard data from API
   useEffect(() => {
     getAllUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
   let getAllUsers = async () => {
-    let res = await api("get", `/users/all-users?${page + 1}&${rowsPerPage}`);
+    setLoading(true);
+    let res = await api(
+      "get",
+      `admin/users/all-users?pageNumber=${page}&pageSize=${10}`
+    );
     if (res) {
-      console.log("user response", res?.data?.users);
       updateStore({ Users: res?.data?.users });
+      setCount(res?.data?.totalUsers);
+      setLoading(false);
     }
   };
 
@@ -54,6 +79,8 @@ const Users = () => {
         page={page}
         setPage={setPage}
         rowsPerPage={rowsPerPage}
+        count={count}
+        loading={loading}
       />
     </>
   );
