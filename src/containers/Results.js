@@ -6,10 +6,13 @@ import api from "../api";
 const Results = () => {
   const updateStore = UpdateStore();
   const { results } = Store();
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [page, setPage] = useState(0);
+  const [count, setCount] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(20);
+  const [loading, setLoading] = useState(false);
+
   const Heading = [
-    { id: "user", label: "User_id", minWidth: 170 },
+    { id: "user", label: "User", minWidth: 170 },
 
     {
       id: "domain",
@@ -23,31 +26,42 @@ const Results = () => {
       minWidth: 170,
       align: "right",
     },
-    {
-      id: "last_answer",
-      label: "Last Answer",
-      minWidth: 170,
-      align: "right",
-    },
+    // {
+    //   id: "last_answer",
+    //   label: "Last Answer",
+    //   minWidth: 170,
+    //   align: "right",
+    // },
   ];
   useEffect(() => {
     getAllResults();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page]);
   let getAllResults = async () => {
-    let res = await api("get", `/admins/get-results?${1}&${12}`);
+    setLoading(true);
+    let res = await api(
+      "get",
+      `admin/results/get-results?pageNumber=${page}&pageSize=${rowsPerPage}`
+    );
+
     if (res) {
-      console.log("res i s ", res?.data?.results);
       updateStore({ results: res?.data?.results });
+      setCount(res?.data?.totalResults);
+      setLoading(false);
     }
   };
   return (
-    <Table
-      Heading={Heading}
-      Users={results}
-      page={page}
-      setPage={setPage}
-      rowsPerPage={rowsPerPage}
-    />
+    <>
+      <Table
+        Heading={Heading}
+        Users={results}
+        page={page}
+        setPage={setPage}
+        rowsPerPage={rowsPerPage}
+        count={count}
+        loading={loading}
+      />
+    </>
   );
 };
 

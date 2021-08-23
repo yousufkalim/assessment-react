@@ -6,7 +6,7 @@ import { Store, UpdateStore } from "../StoreContext";
 const Questions = ({ setStep }) => {
   // init context
   const updateStore = UpdateStore();
-  const { questions, answers, history, user, disc_ans_id } = Store();
+  const { questions, answers, history, disc_ans_id } = Store();
   // state init
   const [nextQuestionId, setNextQuestionId] = useState("first");
   const [prevQuestion, setprevQuestion] = useState([]);
@@ -14,6 +14,7 @@ const Questions = ({ setStep }) => {
 
   useEffect(() => {
     currentans();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prevQuestion]);
   // stlyes
   const useStyles = makeStyles((theme) => ({
@@ -55,7 +56,6 @@ const Questions = ({ setStep }) => {
       padding: "15px",
       border: "2px solid gray",
       background: "#7d787c",
-      color: "white",
       borderRadius: "15px",
       "&:hover": {
         background: "#eae7e7",

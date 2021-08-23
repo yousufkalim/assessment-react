@@ -1,14 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Store, UpdateStore } from "../StoreContext";
-import { Link, Redirect } from "react-router-dom";
 import api from "../api";
 
-const Login = ({ setStep }) => {
-  // initialize ContextStore
-  const updateStore = UpdateStore();
-  const { login } = Store();
+const Login = () => {
   // initialize States
   const [formData, setFormData] = useState({
     email: "",
@@ -39,7 +34,7 @@ const Login = ({ setStep }) => {
   // login function api call
   let getLogin = async (data) => {
     setLoading(true);
-    let res = await api("post", `/auth/login`, data);
+    let res = await api("post", `admin/auth/login`, data);
     if (res?.data?.success) {
       window.location = "/dashboard";
       // updateStore({ login: res?.data });

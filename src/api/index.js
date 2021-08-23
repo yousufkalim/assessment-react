@@ -6,19 +6,27 @@ const api = async (method = "get", uri, body) => {
     axios.defaults.baseURL = "https://orientator.falconconsulting.fr/api";
     axios.defaults.withCredentials = true;
   }
+  // axios.defaults.baseURL = "http://192.168.0.117:5000/api/";
+  // axios.defaults.withCredentials = true;
 
-  // ("https://orientator.falconconsulting.fr/api");
-  // process.env.REACT_APP_baseURL;
   return axios[method](uri, body)
     .then((res) => res)
     .catch((err) => {
-      if (err.status === 403) {
-        window.location = "/login";
+      if (err.response.status === 403) {
+        // console.log("summar", window.location.pathname === "/login");
+        if (
+          window.location.pathname === "/users" ||
+          window.location.pathname === "/dashboard" ||
+          window.location.pathname === "/results"
+        ) {
+          window.location = "/login";
+        }
+      } else {
+        console.log("API Error --------> ", err.response.status);
+        return toast.error(
+          err?.response?.data ? err.response.data : err?.message
+        );
       }
-      console.log("API Error --------> ", err.response.status);
-      return toast.error(
-        err?.response?.data ? err.response.data : err?.message
-      );
     });
 };
 
