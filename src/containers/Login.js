@@ -36,7 +36,7 @@ const Login = () => {
     setLoading(true);
     let res = await api("post", `admin/auth/login`, data);
     if (res?.data?.success) {
-      window.location = "/dashboard";
+      window.location = "/users";
       // updateStore({ login: res?.data });
     }
     setLoading(false);

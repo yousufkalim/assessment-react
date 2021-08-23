@@ -7,7 +7,7 @@ const SideBar = ({ step, setStep }) => {
     <div class="sidebar">
       <div class="profile_info">
         <img src={Logo} style={{ width: "25%", margin: "10px" }} alt="" />
-        <h4>Orientatr</h4>
+        <h4>Orientator</h4>
       </div>
       <div className="options">
         {/* <Link to="/dashboard">
