@@ -51,7 +51,7 @@ const AdminTable = ({
                   <TableCell
                     key={column.id}
                     align={column.align}
-                    style={{ minWidth: column.minWidth }}
+                    style={{ minWidth: column.minWidth, textAlign: "center" }}
                   >
                     {column.label}
                   </TableCell>
@@ -84,7 +84,11 @@ const AdminTable = ({
                           }
 
                           return (
-                            <TableCell key={column.id} align={column.align}>
+                            <TableCell
+                              key={column.id}
+                              align={column.align}
+                              style={{ textAlign: "center" }}
+                            >
                               {value}
                             </TableCell>
                           );
