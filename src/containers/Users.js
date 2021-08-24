@@ -36,16 +36,14 @@ const Users = () => {
 
   const [rowsPerPage, setRowsPerPage] = React.useState(7);
   useEffect(() => {
-    console.log("check login");
     // checkLogin();
   }, []);
-  // login function api call
+  // Login function api call
   let checkLogin = async () => {
     try {
       let res = await axios.get(
         `${process.env.REACT_APP_baseURL}/admin/auth/check-auth`
       );
-      console.log("res is ", res);
       if (res?.data?.success) {
         updateStore({ login: res?.data });
       }

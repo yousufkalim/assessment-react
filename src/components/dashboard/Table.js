@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -38,7 +39,7 @@ const AdminTable = ({
   };
   const handleRow = (row) => {
     setSingleRow(row);
-    setOpen(true);
+    // setOpen(true);
   };
   return (
     <div class="content">
@@ -56,6 +57,8 @@ const AdminTable = ({
                     {column.label}
                   </TableCell>
                 ))}
+
+                <TableCell style={{ textAlign: "center" }}>Action</TableCell>
               </TableRow>
             </TableHead>
             {loading ? (
@@ -92,7 +95,22 @@ const AdminTable = ({
                               {value}
                             </TableCell>
                           );
-                        })}
+                        })}{" "}
+                        {window.location.pathname === "/users" ? (
+                          <TableCell style={{ textAlign: "center" }}>
+                            <Link to={`users/${row?._id}`}>
+                              {" "}
+                              <button>View</button>
+                            </Link>
+                          </TableCell>
+                        ) : (
+                          <TableCell style={{ textAlign: "center" }}>
+                            <Link to={`singleresult/${row?._id}`}>
+                              {" "}
+                              <button>View Result</button>
+                            </Link>
+                          </TableCell>
+                        )}
                       </TableRow>
                     );
                   })}

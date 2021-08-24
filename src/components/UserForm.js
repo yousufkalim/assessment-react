@@ -173,9 +173,9 @@ const UserForm = ({ setStep }) => {
     if (school == "") {
       return toast.error("Please Enter Your school");
     }
-    // if (addressValue?.city == "") {
-    //   return toast.error("Please Enter Your Address");
-    // }
+    if (addressValue?.city == "") {
+      return toast.error("Please Enter Your Address");
+    }
     setLoading(true);
     let res = await api("post", "/users/create", {
       ...formData,

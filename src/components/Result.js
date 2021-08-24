@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Store, UpdateStore } from "../StoreContext";
 import api from "../api";
+import Card from "../components/dashboard/Card";
 
 const Result = () => {
   // init
@@ -28,54 +29,92 @@ const Result = () => {
   };
 
   return (
-    <div>
-      {loading ? (
-        <h2> Result Loading...</h2>
-      ) : (
-        <div>
-          <h1>Result</h1>
-          <hr />
-          <p>
-            <p>
-              example of job:{" "}
-              {result?.example_of_job ? result?.example_of_job : "N/A"}
-            </p>
-            <p>Domain: {result?.domain ? result?.domain : "N/A"}</p>
-            <hr />
+    <>
+      {" "}
+      <div
+        style={{
+          textAlign: "center",
+        }}
+      >
+        <h2>Domain : {result?.domain}</h2>
+        <h3>Job-Exapmle : {result?.example_of_job}</h3>
+      </div>
+      <div>
+        {!loading ? (
+          <div>
             {result?.courses && result?.courses.length >= 1 ? (
-              result?.courses?.map((course) => (
-                <div>
-                  <p>
-                    Type of Course :{" "}
-                    {course?.courseId?.type_of_course
-                      ? course?.courseId?.type_of_course +
-                        " " +
-                        course?.percentage +
-                        "%"
-                      : "N/a"}
-                  </p>
-                  <p>
-                    Sub Domain :{" "}
-                    {course?.courseId?.sub_domains
-                      ? course?.courseId?.sub_domains[0]
-                      : "N/a"}{" "}
-                  </p>
-                  <p>
-                    Course Name :{" "}
-                    {course?.courseId?.course_name
-                      ? course?.courseId?.course_name
-                      : "N/a"}{" "}
-                  </p>
-                  <hr />
-                </div>
-              ))
+              <div
+                className="cardflex"
+                style={{ margin: "0px", textAlign: "center" }}
+              >
+                {" "}
+                {result?.courses.map((course) => (
+                  <Card course={course} />
+                ))}
+              </div>
             ) : (
-              <h1>No Course Available</h1>
+              <div className="cardflex" style={{ margin: "0px" }}>
+                {" "}
+                <h1>No Course Available</h1>
+              </div>
             )}
-          </p>
-        </div>
-      )}
-    </div>
+          </div>
+        ) : (
+          <div className="cardflex" style={{ margin: "0px" }}>
+            {" "}
+            <h1>Loading...</h1>
+          </div>
+        )}
+      </div>
+    </>
+    // <div>
+    //   {loading ? (
+    //     <h2> Result Loading...</h2>
+    //   ) : (
+    //     <div>
+    //       <h1>Result</h1>
+    //       <hr />
+    //       <p>
+    //         <p>
+    //           example of job:{" "}
+    //           {result?.example_of_job ? result?.example_of_job : "N/A"}
+    //         </p>
+    //         <p>Domain: {result?.domain ? result?.domain : "N/A"}</p>
+    //         <hr />
+    //         {result?.courses && result?.courses.length >= 1 ? (
+    //           result?.courses?.map((course) => (
+    //             <div>
+    //               <p>
+    //                 Type of Course :{" "}
+    //                 {course?.courseId?.type_of_course
+    //                   ? course?.courseId?.type_of_course +
+    //                     " " +
+    //                     course?.percentage +
+    //                     "%"
+    //                   : "N/a"}
+    //               </p>
+    //               <p>
+    //                 Sub Domain :{" "}
+    //                 {course?.courseId?.sub_domains
+    //                   ? course?.courseId?.sub_domains[0]
+    //                   : "N/a"}{" "}
+    //               </p>
+    //               <p>
+    //                 Course Name :{" "}
+    //                 {course?.courseId?.course_name
+    //                   ? course?.courseId?.course_name
+    //                   : "N/a"}{" "}
+    //               </p>
+    //               <hr />
+    //             </div>
+    //           ))
+    //         ) : (
+    //           <h1>No Course Available</h1>
+    //         )}
+    //       </p>
+    //     </div>
+    //   )}
+    // </div>
   );
 };
 

@@ -20,6 +20,8 @@ export function StoreProvider({ children }) {
   let [store, setStore] = useState({
     login: null,
     Users: null,
+    singleUserResults: null,
+    singleUserResult: null,
     results: null,
     user: {},
     questions: [],
