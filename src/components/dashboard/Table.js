@@ -39,7 +39,7 @@ const AdminTable = ({
   };
   const handleRow = (row) => {
     setSingleRow(row);
-    setOpen(true);
+    // setOpen(true);
   };
   return (
     <div class="content">
@@ -57,6 +57,7 @@ const AdminTable = ({
                     {column.label}
                   </TableCell>
                 ))}
+
                 <TableCell style={{ textAlign: "center" }}>Action</TableCell>
               </TableRow>
             </TableHead>
@@ -94,14 +95,22 @@ const AdminTable = ({
                               {value}
                             </TableCell>
                           );
-                        })}
-                        <TableCell style={{ textAlign: "center" }}>
-                          {" "}
-                          <Link to={`users/${row?._id}`}>
-                            {" "}
-                            <button>View</button>
-                          </Link>
-                        </TableCell>
+                        })}{" "}
+                        {window.location.pathname === "/users" ? (
+                          <TableCell style={{ textAlign: "center" }}>
+                            <Link to={`users/${row?._id}`}>
+                              {" "}
+                              <button>View</button>
+                            </Link>
+                          </TableCell>
+                        ) : (
+                          <TableCell style={{ textAlign: "center" }}>
+                            <Link to={`singleresult/${row?._id}`}>
+                              {" "}
+                              <button>View Result</button>
+                            </Link>
+                          </TableCell>
+                        )}
                       </TableRow>
                     );
                   })}

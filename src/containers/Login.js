@@ -31,7 +31,7 @@ const Login = () => {
   const classes = useStyles();
   //
 
-  // login function api call
+  // Login Function api call
   let getLogin = async (data) => {
     setLoading(true);
     let res = await api("post", `admin/auth/login`, data);

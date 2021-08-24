@@ -1,0 +1,38 @@
+/* 
+    Cards Style
+*/
+
+.cards-container {
+  width: 100%;
+  padding: 70px 17px;
+}
+
+.card {
+  width: 350px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  font-family: "ubuntu", sans-serif;
+  display: inline-block;
+  margin: 20px 20px;
+}
+.cardflex {
+  width: (100% - 250px);
+  margin-top: 60px;
+  margin-left: 250px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.card:hover {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 5px 13px;
+}
+
+.card p {
+  padding: 0 13px 5px 13px;
+}

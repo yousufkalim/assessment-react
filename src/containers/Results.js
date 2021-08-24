@@ -11,6 +11,7 @@ const Results = () => {
   const [rowsPerPage, setRowsPerPage] = useState(20);
   const [loading, setLoading] = useState(false);
 
+  //  All Results of All Users Table Headings
   const Heading = [
     { id: "user", label: "User", minWidth: 170 },
 
@@ -33,6 +34,8 @@ const Results = () => {
     //   align: "right",
     // },
   ];
+
+  // Get All Results of All Users
   useEffect(() => {
     getAllResults();
     // eslint-disable-next-line react-hooks/exhaustive-deps

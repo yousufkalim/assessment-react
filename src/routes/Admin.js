@@ -6,6 +6,7 @@ import SideBar from "../components/dashboard/SideBar";
 import Users from "../containers/Users";
 import Results from "../containers/Results";
 import SingleUserResult from "../containers/SingleUserResult";
+import Result from "../containers/Result";
 import { Route, Switch } from "react-router-dom";
 import "../css/admin.css";
 
@@ -16,6 +17,7 @@ const Admin = () => {
       <SideBar />
       <Switch>
         <Route exact path="/users/:id" component={SingleUserResult} />
+        <Route exact path="/singleresult/:id" component={Result} />
         <Route exact path="/users" component={Users} />
         <Route exact path="/results" component={Results} />
       </Switch>
