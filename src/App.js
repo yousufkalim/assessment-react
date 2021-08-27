@@ -11,18 +11,6 @@ import api from "./api";
 function App() {
   const updateStore = UpdateStore();
 
-  useEffect(() => {
-    checkLogin();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // login function api call
-  let checkLogin = async (data) => {
-    let res = await api("get", `admin/auth/check-auth`);
-    if (res?.data?.success) {
-      updateStore({ login: res?.data });
-    }
-  };
   return (
     <div className="App">
       {/* tostify Container for Notification */}

@@ -35,7 +35,8 @@ const Login = () => {
   let getLogin = async (data) => {
     setLoading(true);
     let res = await api("post", `admin/auth/login`, data);
-    if (res?.data?.success) {
+
+    if (res?.statusText === "OK") {
       window.location = "/users";
       // updateStore({ login: res?.data });
     }

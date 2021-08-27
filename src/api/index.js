@@ -6,23 +6,19 @@ const api = async (method = "get", uri, body) => {
     axios.defaults.baseURL = "https://orientator.falconconsulting.fr/api";
     axios.defaults.withCredentials = true;
   }
-  // axios.defaults.baseURL = "http://192.168.0.117:5000/api/";
-  axios.defaults.baseURL = "https://orientator.falconconsulting.fr/api";
+  axios.defaults.baseURL = "http://localhost:5000/api/";
+  // axios.defaults.baseURL = "https://orientator.falconconsulting.fr/api";
   axios.defaults.withCredentials = true;
 
   return axios[method](uri, body)
     .then((res) => res)
     .catch((err) => {
-      if (err?.response?.status === 403) {
-        if (
-          window.location.pathname === "/users" ||
-          window.location.pathname === "/dashboard" ||
-          window.location.pathname === "/results"
-        ) {
+      {
+        console.log("API Error ---1-----> ", err.response);
+        if (err.response?.statusText === "Unauthorized") {
           window.location = "/login";
+          // updateStore({ login: res?.data });
         }
-      } else {
-        console.log("API Error --------> ", err.response.status);
         return toast.error(
           err?.response?.data ? err.response.data : err?.message
         );
