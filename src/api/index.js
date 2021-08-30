@@ -6,9 +6,6 @@ const api = async (method = "get", uri, body) => {
     axios.defaults.baseURL = "https://orientator.falconconsulting.fr/api";
     axios.defaults.withCredentials = true;
   }
-  // axios.defaults.baseURL = "http://192.168.0.117:5000/api/";
-  axios.defaults.baseURL = "https://orientator.falconconsulting.fr/api";
-  axios.defaults.withCredentials = true;
 
   return axios[method](uri, body)
     .then((res) => res)
