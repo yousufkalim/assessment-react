@@ -2,10 +2,8 @@ import React from "react";
 import api from "../../api";
 const Header = () => {
   const logout = async () => {
-    let res = await api("get", `admin/auth/logout`);
-    if (res) {
-      window.location = "/login";
-    }
+    localStorage.removeItem("token");
+    window.location = "/login";
   };
   return (
     <div className="headera">

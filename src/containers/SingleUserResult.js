@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Card from "../components/dashboard/Card";
 import SingleUserTable from "../components/dashboard/SingleUserTable";
 import api from "../api";
 import { useParams } from "react-router-dom";

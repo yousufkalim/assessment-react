@@ -2,7 +2,7 @@ import React from "react";
 import Logo from "../../assets/img/f.jpeg";
 import { Link } from "react-router-dom";
 
-const SideBar = ({ step, setStep }) => {
+const SideBar = () => {
   return (
     <div class="sidebar">
       <div class="profile_info">
@@ -10,10 +10,6 @@ const SideBar = ({ step, setStep }) => {
         <h4>Orientator</h4>
       </div>
       <div className="options">
-        {/* <Link to="/dashboard">
-          <i class="fas fa-desktop"></i>
-          <span>Dashboard</span>
-        </Link> */}
         <Link to="/users">
           <i class="fas fa-desktop option"></i>
           <span>All Users</span>
