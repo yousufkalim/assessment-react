@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import api from "../api";
 
 const Login = () => {
+  useEffect(() => {
+    if (localStorage.token) {
+      window.location = "/users";
+    }
+  }, []);
   // initialize States
   const [formData, setFormData] = useState({
     email: "",
@@ -35,11 +40,11 @@ const Login = () => {
   let getLogin = async (data) => {
     setLoading(true);
     let res = await api("post", `admin/auth/login`, data);
-    if (res?.data?.success) {
+
+    if (res?.status === 200) {
+      localStorage.setItem("token", res?.data?.token);
       window.location = "/users";
-      // updateStore({ login: res?.data });
     }
-    setLoading(false);
   };
 
   // onChange Function for Input Field

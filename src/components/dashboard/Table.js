@@ -10,8 +10,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 
-import DialogBox from "./Dialog";
-
 const useStyles = makeStyles({
   root: {
     width: "100%",
@@ -31,16 +29,13 @@ const AdminTable = ({
   loading,
 }) => {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-  const [singleRow, setSingleRow] = useState(null);
 
+  // change page newpage is in second parameter
   const handleChangePage = (event, newPage) => {
+    console.log("new page ", newPage);
     setPage(newPage);
   };
-  const handleRow = (row) => {
-    setSingleRow(row);
-    // setOpen(true);
-  };
+
   return (
     <div class="content">
       <Paper className={classes.root}>
@@ -57,7 +52,6 @@ const AdminTable = ({
                     {column.label}
                   </TableCell>
                 ))}
-
                 <TableCell style={{ textAlign: "center" }}>Action</TableCell>
               </TableRow>
             </TableHead>
@@ -76,7 +70,6 @@ const AdminTable = ({
                         role="checkbox"
                         tabIndex={-1}
                         key={row.code}
-                        onClick={() => handleRow(row)}
                       >
                         {Heading.map((column) => {
                           let value;
@@ -128,14 +121,6 @@ const AdminTable = ({
           onPageChange={handleChangePage}
         />
       </Paper>
-
-      <DialogBox
-        setSingleRow={setSingleRow}
-        singleRow={singleRow}
-        open={open}
-        setOpen={setOpen}
-        Heading={Heading}
-      />
     </div>
   );
 };

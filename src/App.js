@@ -4,25 +4,14 @@ import React, { useEffect } from "react";
 import { ToastContainer, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Index from "./routes/index";
-import { UpdateStore } from "./StoreContext";
-import api from "./api";
+
+import SetAuthToken from "./utils/SetAuthToken";
 
 // Component
 function App() {
-  const updateStore = UpdateStore();
-
-  useEffect(() => {
-    checkLogin();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // login function api call
-  let checkLogin = async (data) => {
-    let res = await api("get", `admin/auth/check-auth`);
-    if (res?.data?.success) {
-      updateStore({ login: res?.data });
-    }
-  };
+  if (localStorage.token) {
+    SetAuthToken(localStorage.token);
+  }
   return (
     <div className="App">
       {/* tostify Container for Notification */}

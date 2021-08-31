@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Store, UpdateStore } from "../StoreContext";
-import axios from "axios";
 import api from "../api";
 import Table from "../components/dashboard/Table";
+import axios from "axios";
 
 const Heading = [
   { id: "email", label: "Email", minWidth: 170 },
@@ -34,23 +34,8 @@ const Users = () => {
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  const [rowsPerPage, setRowsPerPage] = React.useState(7);
-  useEffect(() => {
-    // checkLogin();
-  }, []);
-  // Login function api call
-  let checkLogin = async () => {
-    try {
-      let res = await axios.get(
-        `${process.env.REACT_APP_baseURL}/admin/auth/check-auth`
-      );
-      if (res?.data?.success) {
-        updateStore({ login: res?.data });
-      }
-    } catch (err) {
-      window.location = "/dashboard";
-    }
-  };
+  const [rowsPerPage, setRowsPerPage] = React.useState(20);
+
   // Get dashboard data from API
   useEffect(() => {
     getAllUsers();

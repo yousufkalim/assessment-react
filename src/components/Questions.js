@@ -75,7 +75,7 @@ const Questions = ({ setStep }) => {
     setCurrentAnswer(null);
   };
 
-  // when Click on Previou Button it get previous question
+  // when Click on Previous Button it get previous question
   // by match nextquestion from history saved with current question and remove from history
   // if Q is discriminating it pop from disc_ans_id
   // it set next question id that is basically previous one which will show
