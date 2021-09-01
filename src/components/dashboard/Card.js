@@ -3,19 +3,30 @@ import React from "react";
 import "../../css/card.css";
 
 //Component
-function Cards({ course }) {
+function Cards({ courses }) {
   return (
-    <div className="">
+    <>
       <div className="card">
-        <h2>Type of Course: {course?.courseId?.type_of_course}</h2>
-        <p>
-          <b>Sub-Domain : </b> {course?.courseId?.sub_domains}
-        </p>
-        <p>
-          <b>Name of Course : </b> {course?.courseId?.course_name}
-        </p>
+        {courses.length >= 1 ? (
+          courses?.map((course) => (
+            <>
+              <p>
+                <b>Sub-Domain : </b> {course?.courseId?.sub_domains}
+              </p>
+              <p>
+                <b>Name of Course : </b> {course?.courseId?.course_name}
+              </p>
+              <hr />
+            </>
+          ))
+        ) : (
+          <>
+            <h4>No Course Available for</h4>
+            <h4>this type of Course</h4>
+          </>
+        )}
       </div>
-    </div>
+    </>
   );
 }
 

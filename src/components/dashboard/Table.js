@@ -35,7 +35,6 @@ const AdminTable = ({
     console.log("new page ", newPage);
     setPage(newPage);
   };
-
   return (
     <div class="content">
       <Paper className={classes.root}>
@@ -78,7 +77,6 @@ const AdminTable = ({
                           } else {
                             value = row[column.id];
                           }
-
                           return (
                             <TableCell
                               key={column.id}

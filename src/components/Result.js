@@ -4,6 +4,7 @@ import api from "../api";
 import Card from "../components/dashboard/Card";
 
 const Result = () => {
+  let typeOfCourses = ["BTS", "BUT", "CPGE", "Ecole Post-Bac", "Licence"];
   // init
   const updateStore = UpdateStore();
   const { history, user, disc_ans_id, result } = Store();
@@ -27,10 +28,13 @@ const Result = () => {
     }
     setLoading(false);
   };
-
+  // get courses arrays base on there types
+  const getSingleTypeofCourse = (type) =>
+    result.courses.filter(
+      (course) => type === course?.courseId?.type_of_course
+    );
   return (
     <>
-      {" "}
       <div
         style={{
           textAlign: "center",
@@ -47,21 +51,21 @@ const Result = () => {
                 className="cardflex"
                 style={{ margin: "0px", textAlign: "center" }}
               >
-                {" "}
-                {result?.courses.map((course) => (
-                  <Card course={course} />
+                {typeOfCourses.map((type) => (
+                  <div>
+                    <h3>Type of Course : {type}</h3>
+                    <Card courses={getSingleTypeofCourse(type)} />
+                  </div>
                 ))}
               </div>
             ) : (
               <div className="cardflex" style={{ margin: "0px" }}>
-                {" "}
                 <h1>No Course Available</h1>
               </div>
             )}
           </div>
         ) : (
           <div className="cardflex" style={{ margin: "0px" }}>
-            {" "}
             <h1>Loading...</h1>
           </div>
         )}
