@@ -1,5 +1,4 @@
 import React from "react";
-import api from "../../api";
 const Header = () => {
   const logout = async () => {
     localStorage.removeItem("token");

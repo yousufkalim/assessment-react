@@ -61,7 +61,7 @@ const UserForm = ({ setStep }) => {
     phone: "",
     email: "",
     newsletter: false,
-    contact_me: false,
+    accept_condition: false,
   });
 
   const [addressValue, setAddressValue] = useState({
@@ -84,12 +84,15 @@ const UserForm = ({ setStep }) => {
     phone,
     email,
     newsletter,
-    contact_me,
+    accept_condition,
   } = formData;
 
   // onChange Function for Input Field
   const onChange = (e) => {
-    if (e.target.name === "newsletter" || e.target.name === "contact_me") {
+    if (
+      e.target.name === "newsletter" ||
+      e.target.name === "accept_condition"
+    ) {
       setFormData({ ...formData, [e.target.name]: e.target.checked });
     } else {
       setFormData({
@@ -114,7 +117,7 @@ const UserForm = ({ setStep }) => {
     let res = await axios.get(
       "https://api-adresse.data.gouv.fr/search/?q=" +
         e.target.value +
-        "&type=street&autocomplete=1&limit=15",
+        "&type=street&autocomplete=1",
       {
         withCredentials: false,
       }
@@ -176,12 +179,18 @@ const UserForm = ({ setStep }) => {
     if (addressValue?.city == "") {
       return toast.error("Please Enter Your Address");
     }
+    if (phone.length != 10 || phone[0] != 0) {
+      return toast.error("Phone number must be 10 digits and start with 0");
+    }
+    if (!accept_condition) {
+      return toast.error("Please Accept the Terms and Condtions");
+    }
     setLoading(true);
     let res = await api("post", "/users/create", {
       ...formData,
       address: addressValue,
     });
-    if (res) {
+    if (res.status === 200) {
       updateStore({
         questions: res?.data?.questions,
         answers: res?.data?.answers,
@@ -284,16 +293,7 @@ const UserForm = ({ setStep }) => {
           )}
         />
         <div style={{ margin: "auto" }}>
-          <Checkbox
-            label="aaaa"
-            color="primary"
-            inputProps={{ "aria-label": "secondary checkbox" }}
-            name="contact_me"
-            value={contact_me}
-            onChange={onChange}
-          />
-          ContactMe
-          <Checkbox
+          {/* <Checkbox
             label="aaaa"
             color="primary"
             inputProps={{ "aria-label": "secondary checkbox" }}
@@ -301,7 +301,17 @@ const UserForm = ({ setStep }) => {
             value={newsletter}
             onChange={onChange}
           />
-          NewSletter
+          NewSletter */}
+          <br />
+          <Checkbox
+            label="aaaa"
+            color="primary"
+            inputProps={{ "aria-label": "secondary checkbox" }}
+            name="accept_condition"
+            value={accept_condition}
+            onChange={onChange}
+          />
+          Accept Terms And Conditions
         </div>
         <br />
         <Button variant="contained" color="primary" size="large" type="submit">
