@@ -235,8 +235,6 @@ const UserForm = ({ setStep }) => {
           label="Phone"
           type="number"
           variant="outlined"
-          min={10}
-          max={10}
           size="small"
           name="phone"
           value={phone}
