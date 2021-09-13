@@ -16,6 +16,22 @@ function Cards({ courses }) {
               <p>
                 <b>Name of Course : </b> {course?.courseId?.course_name}
               </p>
+              <p>
+                <b>Selectivity Rating : </b>{" "}
+                {course?.selectivityrating
+                  ? course.selectivityrating + " " + "Star"
+                  : "No"}
+              </p>
+              <p>
+                <b>Language Rating : </b>{" "}
+                {course?.courseId?.languagestar
+                  ? course?.courseId?.languagestar
+                  : "No"}
+              </p>
+              <p>
+                <b>Cost Rating : </b>{" "}
+                {course?.courseId?.cost ? course?.courseId?.cost : "No"}
+              </p>
               <hr />
             </>
           ))
