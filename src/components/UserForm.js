@@ -151,6 +151,8 @@ const UserForm = ({ setStep }) => {
       [e.target.name]: e.target.value,
     });
 
+    delete axios.defaults.headers.common["x-auth-token"];
+
     let res = await axios.get(
       "https://api-adresse.data.gouv.fr/search/?q=" +
         e.target.value +
@@ -159,6 +161,11 @@ const UserForm = ({ setStep }) => {
         withCredentials: false,
       }
     );
+
+    if (localStorage.token) {
+      axios.defaults.headers.common["x-auth-token"] = localStorage.token;
+    }
+
     var addressToSet = []; // //debugger;
     for (var i = 0; i < res?.data?.features?.length; i++) {
       addressToSet.push({
