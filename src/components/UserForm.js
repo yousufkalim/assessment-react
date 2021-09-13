@@ -2,15 +2,43 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { TextField, Button, Checkbox } from "@material-ui/core";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { makeStyles } from "@material-ui/core/styles";
 import { Store, UpdateStore } from "../StoreContext";
 import api from "../api";
 
+let education = [
+  "Quatrième",
+  "Troisième",
+  "Seconde Générale",
+  "Première Générale",
+  "Première STL",
+  "Première STI2D",
+  "Première STD2A",
+  "Première STMG",
+  "Première ST2S",
+  "Première S2TMD",
+  "Première STHR",
+  "Première STAV",
+  "Terminale Générale",
+  "Terminale STL",
+  "Terminale STI2D",
+  "Terminale STD2A",
+  "Terminale STMG",
+  "Terminale ST2S",
+  "Terminale S2TMD",
+  "Terminale STHR",
+  "Terminale STAV",
+];
+
 const UserForm = ({ setStep }) => {
   // initialize ContextStore
   const updateStore = UpdateStore();
-  const { schools } = Store();
+  const { institutes } = Store();
 
   // Styles
   const useStyles = makeStyles((theme) => ({
@@ -39,15 +67,10 @@ const UserForm = ({ setStep }) => {
   const classes = useStyles();
   //
 
-  // Get schools data from API
-  useEffect(() => {
-    getSchoolData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   let getSchoolData = async () => {
-    let res = await api("get", "/schools");
+    let res = await api("get", "/institute");
     if (res) {
-      updateStore({ schools: res?.data?.schools });
+      updateStore({ institutes: res?.data?.institute });
     }
   };
   // initialize States
@@ -55,7 +78,7 @@ const UserForm = ({ setStep }) => {
     first_name: "",
     last_name: "",
     date_of_birth: "",
-    school: "",
+    institute: "",
     address: "",
     education_level: "",
     phone: "",
@@ -72,13 +95,14 @@ const UserForm = ({ setStep }) => {
     label: "",
   });
   const [loading, setLoading] = useState(false);
+  const [dateType, setDatetype] = useState("text");
 
   // Destructuring of UserForm State
   const {
     first_name,
     last_name,
     date_of_birth,
-    school,
+    institute,
     address,
     education_level,
     phone,
@@ -86,6 +110,12 @@ const UserForm = ({ setStep }) => {
     newsletter,
     accept_condition,
   } = formData;
+
+  // Get institutes data from API
+  useEffect(() => {
+    getSchoolData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // onChange Function for Input Field
   const onChange = (e) => {
@@ -95,16 +125,22 @@ const UserForm = ({ setStep }) => {
     ) {
       setFormData({ ...formData, [e.target.name]: e.target.checked });
     } else {
-      setFormData({
-        ...formData,
-        [e.target.name]: e.target.value,
-      });
+      if (e.target.name === "education_level" && e.target.value === "") {
+        setFormData({
+          ...formData,
+          institute: "",
+          education_level: "",
+        });
+      } else
+        setFormData({
+          ...formData,
+          [e.target.name]: e.target.value,
+        });
     }
   };
-
-  // onChange Function for Select School
+  // onChange Function for Select institute
   const handleChangeSchool = (event, value) => {
-    setFormData({ ...formData, school: value?._id });
+    setFormData({ ...formData, institute: value?._id });
   };
 
   // Get All Address in drop down List from API
@@ -114,6 +150,9 @@ const UserForm = ({ setStep }) => {
       ...formData,
       [e.target.name]: e.target.value,
     });
+
+    delete axios.defaults.headers.common["x-auth-token"];
+
     let res = await axios.get(
       "https://api-adresse.data.gouv.fr/search/?q=" +
         e.target.value +
@@ -122,6 +161,11 @@ const UserForm = ({ setStep }) => {
         withCredentials: false,
       }
     );
+
+    if (localStorage.token) {
+      axios.defaults.headers.common["x-auth-token"] = localStorage.token;
+    }
+
     var addressToSet = []; // //debugger;
     for (var i = 0; i < res?.data?.features?.length; i++) {
       addressToSet.push({
@@ -173,8 +217,8 @@ const UserForm = ({ setStep }) => {
   // handleSubmit Function
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (school == "") {
-      return toast.error("Please Enter Your school");
+    if (institute == "") {
+      return toast.error("Please Enter Your institute");
     }
     if (addressValue?.city == "") {
       return toast.error("Please Enter Your Address");
@@ -222,15 +266,28 @@ const UserForm = ({ setStep }) => {
           onChange={onChange}
           required
         />
-        <TextField
-          label="Education Level"
-          variant="outlined"
-          size="small"
-          name="education_level"
-          value={education_level}
-          onChange={onChange}
-          required
-        />
+
+        <FormControl variant="outlined">
+          <InputLabel id="demo-simple-select-outlined-label">
+            Education Level
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
+            name="education_level"
+            value={education_level}
+            onChange={onChange}
+            label="Education Level"
+            className="selecteducation"
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            {education.map((edu) => (
+              <MenuItem value={edu}>{edu}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
         <TextField
           label="Phone"
           type="number"
@@ -252,7 +309,10 @@ const UserForm = ({ setStep }) => {
           required
         />
         <TextField
-          type="date"
+          type={dateType}
+          placeholder="Date of Birth"
+          onFocus={() => setDatetype("date")}
+          onBlur={() => setDatetype("text")}
           variant="outlined"
           size="small"
           name="date_of_birth"
@@ -261,7 +321,11 @@ const UserForm = ({ setStep }) => {
           required
         />
         <Autocomplete
-          options={schools}
+          options={
+            education_level == "Quatrième" || education_level == "Troisième"
+              ? institutes?.filter((institute) => institute.type == "College")
+              : institutes?.filter((institute) => institute.type == "School")
+          }
           freeSolo
           getOptionLabel={(option) => option.name}
           onChange={handleChangeSchool}
@@ -271,11 +335,13 @@ const UserForm = ({ setStep }) => {
               {...params}
               label="Schools"
               variant="outlined"
-              value={school}
-              name="school"
+              value={institute}
+              name="institute"
               onChange={onChange}
             />
           )}
+          value={!education_level && ""}
+          disabled={!education_level}
         />
         <Autocomplete
           options={values}

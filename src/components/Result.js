@@ -52,10 +52,15 @@ const Result = () => {
                 style={{ margin: "0px", textAlign: "center" }}
               >
                 {typeOfCourses.map((type) => (
-                  <div>
-                    <h3>Type of Course : {type}</h3>
-                    <Card courses={getSingleTypeofCourse(type)} />
-                  </div>
+                  <>
+                    {getSingleTypeofCourse(type)[0]?.courseId?.type_of_course ==
+                      type && (
+                      <div>
+                        <h3>Type of Course : {type}</h3>
+                        <Card courses={getSingleTypeofCourse(type)} />
+                      </div>
+                    )}
+                  </>
                 ))}
               </div>
             ) : (

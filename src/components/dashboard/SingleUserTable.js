@@ -46,7 +46,6 @@ const SingleUserTable = ({ Heading, singleUserResults }) => {
                 <Link
                   to={{
                     pathname: `/singleresult/${row?._id}`,
-                    state: row,
                   }}
                 >
                   {" "}

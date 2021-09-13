@@ -32,7 +32,6 @@ const AdminTable = ({
 
   // change page newpage is in second parameter
   const handleChangePage = (event, newPage) => {
-    console.log("new page ", newPage);
     setPage(newPage);
   };
   return (

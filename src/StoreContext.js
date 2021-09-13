@@ -28,7 +28,7 @@ export function StoreProvider({ children }) {
     user: {},
     questions: [],
     answers: [],
-    schools: [],
+    institutes: [],
     history: [],
     disc_ans_id: [],
     result: {},
