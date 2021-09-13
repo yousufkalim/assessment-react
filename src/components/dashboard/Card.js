@@ -4,10 +4,11 @@ import "../../css/card.css";
 
 //Component
 function Cards({ courses }) {
+  console.log("courses", courses);
   return (
     <>
       <div className="card">
-        {courses.length >= 1 ? (
+        {courses?.length >= 1 ? (
           courses?.map((course) => (
             <>
               <p>
@@ -20,7 +21,7 @@ function Cards({ courses }) {
                 <b>Selectivity Rating : </b>{" "}
                 {course?.selectivityrating
                   ? course.selectivityrating + " " + "Star"
-                  : "No"}
+                  : "N/A"}
               </p>
               <p>
                 <b>Language Rating : </b>{" "}
@@ -32,7 +33,6 @@ function Cards({ courses }) {
                 <b>Cost Rating : </b>{" "}
                 {course?.courseId?.cost ? course?.courseId?.cost : "No"}
               </p>
-              <hr />
             </>
           ))
         ) : (

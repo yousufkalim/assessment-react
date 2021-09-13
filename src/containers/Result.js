@@ -5,6 +5,7 @@ import Card from "../components/dashboard/Card";
 import api from "../api";
 
 const Result = () => {
+  let typeOfCourses = ["BTS", "BUT", "CPGE", "Ecole Post-Bac", "Licence"];
   const updateStore = UpdateStore();
   const { singleUserResult } = Store();
   const { id } = useParams();
@@ -22,6 +23,17 @@ const Result = () => {
       setLoading(false);
     }
   };
+  console.log("singleUserResult", singleUserResult);
+  // get courses arrays base on there types
+  const getSingleTypeofCourse = (type) => {
+    {
+      console.log("sssssa,", singleUserResult?.courses);
+    }
+    return singleUserResult?.courses.filter(
+      (course) => type === course?.courseId?.type_of_course
+    );
+  };
+
   return (
     <>
       <div
@@ -41,10 +53,21 @@ const Result = () => {
             {singleUserResult?.courses &&
             singleUserResult?.courses.length >= 1 ? (
               <div className="cardflex">
-                {" "}
-                {singleUserResult?.courses.map((course) => (
-                  <Card course={course} />
+                {typeOfCourses.map((type) => (
+                  <>
+                    {getSingleTypeofCourse(type)[0]?.courseId?.type_of_course ==
+                      type && (
+                      <div>
+                        <h3>Type of Course : {type}</h3>
+                        {console.log("dddddd", getSingleTypeofCourse(type))}
+                        <Card courses={getSingleTypeofCourse(type)} />
+                      </div>
+                    )}
+                  </>
                 ))}
+                {/* {singleUserResult?.courses.map((course) => (
+                  <Card course={course} /> 
+                ))} */}
               </div>
             ) : (
               <div className="cardflex">

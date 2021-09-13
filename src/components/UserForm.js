@@ -38,7 +38,7 @@ let education = [
 const UserForm = ({ setStep }) => {
   // initialize ContextStore
   const updateStore = UpdateStore();
-  const { schools } = Store();
+  const { institutes } = Store();
 
   // Styles
   const useStyles = makeStyles((theme) => ({
@@ -68,9 +68,9 @@ const UserForm = ({ setStep }) => {
   //
 
   let getSchoolData = async () => {
-    let res = await api("get", "/schools");
+    let res = await api("get", "/institute");
     if (res) {
-      updateStore({ schools: res?.data?.schools });
+      updateStore({ institutes: res?.data?.institute });
     }
   };
   // initialize States
@@ -78,7 +78,7 @@ const UserForm = ({ setStep }) => {
     first_name: "",
     last_name: "",
     date_of_birth: "",
-    school: "",
+    institute: "",
     address: "",
     education_level: "",
     phone: "",
@@ -102,7 +102,7 @@ const UserForm = ({ setStep }) => {
     first_name,
     last_name,
     date_of_birth,
-    school,
+    institute,
     address,
     education_level,
     phone,
@@ -111,7 +111,7 @@ const UserForm = ({ setStep }) => {
     accept_condition,
   } = formData;
 
-  // Get schools data from API
+  // Get institutes data from API
   useEffect(() => {
     getSchoolData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -128,7 +128,7 @@ const UserForm = ({ setStep }) => {
       if (e.target.name === "education_level" && e.target.value === "") {
         setFormData({
           ...formData,
-          school: "",
+          institute: "",
           education_level: "",
         });
       } else
@@ -138,9 +138,9 @@ const UserForm = ({ setStep }) => {
         });
     }
   };
-  // onChange Function for Select School
+  // onChange Function for Select institute
   const handleChangeSchool = (event, value) => {
-    setFormData({ ...formData, school: value?._id });
+    setFormData({ ...formData, institute: value?._id });
   };
 
   // Get All Address in drop down List from API
@@ -150,6 +150,7 @@ const UserForm = ({ setStep }) => {
       ...formData,
       [e.target.name]: e.target.value,
     });
+
     let res = await axios.get(
       "https://api-adresse.data.gouv.fr/search/?q=" +
         e.target.value +
@@ -209,8 +210,8 @@ const UserForm = ({ setStep }) => {
   // handleSubmit Function
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (school == "") {
-      return toast.error("Please Enter Your school");
+    if (institute == "") {
+      return toast.error("Please Enter Your institute");
     }
     if (addressValue?.city == "") {
       return toast.error("Please Enter Your Address");
@@ -313,7 +314,11 @@ const UserForm = ({ setStep }) => {
           required
         />
         <Autocomplete
-          options={schools}
+          options={
+            education_level == "Quatrième" || education_level == "Troisième"
+              ? institutes?.filter((institute) => institute.type == "College")
+              : institutes?.filter((institute) => institute.type == "School")
+          }
           freeSolo
           getOptionLabel={(option) => option.name}
           onChange={handleChangeSchool}
@@ -323,8 +328,8 @@ const UserForm = ({ setStep }) => {
               {...params}
               label="Schools"
               variant="outlined"
-              value={school}
-              name="school"
+              value={institute}
+              name="institute"
               onChange={onChange}
             />
           )}

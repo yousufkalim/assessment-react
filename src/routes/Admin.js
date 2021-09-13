@@ -15,7 +15,6 @@ const Admin = () => {
   const updateStore = UpdateStore();
   const { authorization } = Store();
   useEffect(() => {
-    console.log("useeffect");
     checkAuth();
   }, []);
   let checkAuth = async () => {
