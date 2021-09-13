@@ -47,7 +47,6 @@ const SingleUserResult = ({}) => {
       setLoading(false);
     }
   };
-  console.log("singleUserResults", singleUserResults);
 
   return (
     <>

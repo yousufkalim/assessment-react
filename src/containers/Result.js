@@ -23,12 +23,9 @@ const Result = () => {
       setLoading(false);
     }
   };
-  console.log("singleUserResult", singleUserResult);
+
   // get courses arrays base on there types
   const getSingleTypeofCourse = (type) => {
-    {
-      console.log("sssssa,", singleUserResult?.courses);
-    }
     return singleUserResult?.courses.filter(
       (course) => type === course?.courseId?.type_of_course
     );
@@ -59,7 +56,10 @@ const Result = () => {
                       type && (
                       <div>
                         <h3>Type of Course : {type}</h3>
-                        {console.log("dddddd", getSingleTypeofCourse(type))}
+                        {console.log(
+                          "for test later",
+                          getSingleTypeofCourse(type)
+                        )}
                         <Card courses={getSingleTypeofCourse(type)} />
                       </div>
                     )}
