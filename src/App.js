@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { ToastContainer, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Index from "./routes/index";
+import "./css/index.css";
 
 import SetAuthToken from "./utils/SetAuthToken";
 

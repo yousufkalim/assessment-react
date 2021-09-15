@@ -1,0 +1,7 @@
+/* Importing all CSS files */
+@import url("./header.css");
+@import url("./Body.css");
+@import url("./userform.css");
+body {
+  font-family: lato;
+}
