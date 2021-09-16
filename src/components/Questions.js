@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Store, UpdateStore } from "../StoreContext";
+import Grid from "@material-ui/core/Grid";
 
-const Questions = ({ setStep }) => {
+const Questions = ({ setStep, setActiveStep }) => {
   // init context
   const updateStore = UpdateStore();
   const { questions, answers, history, disc_ans_id } = Store();
@@ -25,42 +26,13 @@ const Questions = ({ setStep }) => {
       },
     },
     main: {
-      width: "50%",
       margin: "auto",
       textAlign: "center",
       marginTop: "5%",
+      height: "70vh",
     },
     chekbox: {
       margin: "auto",
-    },
-    option: {
-      fontFamily: "sans-serif",
-      color: "gray",
-      width: "50%",
-      margin: "auto",
-      marginBottom: "25px",
-      padding: "15px",
-      border: "2px solid gray",
-      borderRadius: "15px",
-      "&:hover": {
-        background: "#eae7e7",
-        cursor: "pointer",
-      },
-    },
-    selectedOption: {
-      fontFamily: "sans-serif",
-      color: "gray",
-      width: "50%",
-      margin: "auto",
-      marginBottom: "25px",
-      padding: "15px",
-      border: "2px solid gray",
-      background: "#7d787c",
-      borderRadius: "15px",
-      "&:hover": {
-        background: "#eae7e7",
-        cursor: "pointer",
-      },
     },
   }));
   const classes = useStyles();
@@ -101,6 +73,7 @@ const Questions = ({ setStep }) => {
   };
   //it set the current answer which will be selected
   const currentans = () => {
+    console.log("1first");
     let currentans = prevQuestion?.find(
       (q) => q.question?._id === getQuestion()?._id
     );
@@ -112,9 +85,11 @@ const Questions = ({ setStep }) => {
   const getQuestion = () => {
     if (nextQuestionId == null) {
       setStep(3);
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
       return;
     }
     if (nextQuestionId === "first") {
+      console.log("first", questions);
       return questions?.find((question) => question.isFirst);
     } else {
       return questions?.find((question) => question._id === nextQuestionId);
@@ -129,32 +104,50 @@ const Questions = ({ setStep }) => {
   };
 
   return (
-    <div className={classes.main}>
-      <h1>{getQuestion()?.question ? getQuestion()?.question : "ended"}</h1>
-      {answers &&
-        getOptions(answers)?.map((ans) => (
-          <div
-            className={
-              currentAnswer?.answer === ans?.answer
-                ? classes.selectedOption
-                : classes.option
-            }
-            onClick={() => handleSelectOption(ans)}
-          >
-            {ans?.answer}
+    <Grid container spacing={2} className="">
+      <Grid item xs={12} sm={4} className="">
+        <h1>Dummy</h1>
+      </Grid>
+      <Grid item xs={12} sm={8} className="">
+        <div className={classes.main}>
+          <div className="questionBox">
+            <h1 style={{ paddingLeft: "30px" }}>
+              {getQuestion()?.question
+                ? getQuestion()?.question
+                : "There's no Question please try again"}
+            </h1>
           </div>
-        ))}
-      {history.length >= 1 && (
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          onClick={handlePrev}
-        >
-          {"Previous"}
-        </Button>
-      )}
-    </div>
+          <Grid container spacing={3} className="answerGrid">
+            {answers &&
+              getOptions(answers)?.map((ans) => (
+                <Grid
+                  item
+                  xs={12}
+                  sm={5}
+                  className={
+                    currentAnswer?.answer === ans?.answer
+                      ? "selectedOption"
+                      : "option"
+                  }
+                  onClick={() => handleSelectOption(ans)}
+                >
+                  {ans?.answer}
+                </Grid>
+              ))}
+          </Grid>
+          {/* {history.length >= 1 && (
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              onClick={handlePrev}
+            >
+              {"Previous"}
+            </Button>
+          )} */}
+        </div>
+      </Grid>
+    </Grid>
   );
 };
 

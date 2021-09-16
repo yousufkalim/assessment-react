@@ -23,13 +23,13 @@ const ColorlibConnector = withStyles({
   active: {
     "& $line": {
       backgroundImage:
-        "linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)",
+        "linear-gradient(265.05deg, #FECE24 0%, #FF6D1A 50.66%, #FF29AA 101.84%)",
     },
   },
   completed: {
     "& $line": {
       backgroundImage:
-        "linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)",
+        "linear-gradient(265.05deg, #FECE24 0%, #FF6D1A 50.66%, #FF29AA 101.84%)",
     },
   },
   line: {
@@ -54,12 +54,12 @@ const useColorlibStepIconStyles = makeStyles({
   },
   active: {
     backgroundImage:
-      "linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)",
+      "linear-gradient(265.05deg, #FECE24 0%, #FF6D1A 50.66%, #FF29AA 101.84%)",
     boxShadow: "0 4px 10px 0 rgba(0,0,0,.25)",
   },
   completed: {
     backgroundImage:
-      "linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)",
+      "linear-gradient(265.05deg, #FECE24 0%, #FF6D1A 50.66%, #FF29AA 101.84%)",
   },
 });
 
@@ -118,9 +118,9 @@ function getStepContent(step) {
   }
 }
 
-export default function CustomizedSteppers() {
+export default function CustomizedSteppers({ activeStep, setActiveStep }) {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(1);
+  // const [activeStep, setActiveStep] = React.useState(1);
   const steps = getSteps();
 
   const handleNext = () => {

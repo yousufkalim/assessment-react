@@ -10,7 +10,6 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { makeStyles } from "@material-ui/core/styles";
 import { Store, UpdateStore } from "../StoreContext";
 import Grid from "@material-ui/core/Grid";
-import Stepper from "./Stepper";
 import api from "../api";
 
 let education = [
@@ -37,7 +36,7 @@ let education = [
   "Terminale STAV",
 ];
 
-const UserForm = ({ setStep }) => {
+const UserForm = ({ setStep, setActiveStep }) => {
   // initialize ContextStore
   const updateStore = UpdateStore();
   const { institutes } = Store();
@@ -236,26 +235,19 @@ const UserForm = ({ setStep }) => {
         user: res?.data?.user,
       });
       setStep(2);
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
     setLoading(false);
   };
   return (
     <div className="mainuserform">
-      <Grid container spacing={1} className="stepper">
-        <Stepper />
-      </Grid>
-
       <Grid container spacing={2} className="">
         <Grid item xs={12} sm={4} className="">
           <h1>Dummy</h1>
         </Grid>
         <Grid item xs={12} sm={8} className="">
-          <form
-            // className={classes.root}
-            autoComplete="off"
-            onSubmit={handleSubmit}
-          >
-            <Grid container spacing={1} className="userformgrid">
+          <form autoComplete="off" onSubmit={handleSubmit}>
+            <Grid container className="userformgrid">
               <Grid item xs={12} sm={12} className="">
                 <h3 className="formheading">
                   Pour mieux te conseiller, j’ai besoin
@@ -312,11 +304,17 @@ const UserForm = ({ setStep }) => {
                     options={values}
                     getOptionLabel={(option) => option.label}
                     onChange={SetAddress}
-                    style={{ width: "50%", margin: "auto" }}
+                    hiddenLabel="true"
+                    style={{
+                      width: "89%",
+                      margin: "auto",
+                    }}
                     renderInput={(params) => (
                       <TextField
                         {...params}
-                        label="Address"
+                        placeholder="Address"
+                        // label="Address"
+                        style={{ color: "white" }}
                         variant="outlined"
                         onChange={getAllAdress}
                         value={address}
@@ -359,7 +357,7 @@ const UserForm = ({ setStep }) => {
                 <Grid item xs={12} sm={6} className="inputGrid">
                   <FormControl variant="outlined" className="selectformControl">
                     <InputLabel id="demo-simple-select-outlined-label">
-                      Education Level
+                      {education_level ? "" : "  Classe"}
                     </InputLabel>
                     <Select
                       labelId="demo-simple-select-outlined-label"
@@ -367,12 +365,9 @@ const UserForm = ({ setStep }) => {
                       name="education_level"
                       value={education_level}
                       onChange={onChange}
-                      label="Education Level"
+                      placeholder=" Class"
                       className="selectforeducation"
                     >
-                      <MenuItem value="">
-                        <em>None</em>
-                      </MenuItem>
                       {education.map((edu) => (
                         <MenuItem value={edu}>{edu}</MenuItem>
                       ))}
@@ -395,14 +390,13 @@ const UserForm = ({ setStep }) => {
                     getOptionLabel={(option) => option.name}
                     onChange={handleChangeSchool}
                     style={{
-                      width: "50%",
+                      width: "89%",
                       margin: "auto",
-                      marginBottom: "10px",
                     }}
                     renderInput={(params) => (
                       <TextField
                         {...params}
-                        label="Schools"
+                        placeholder="Schools"
                         variant="outlined"
                         value={institute}
                         name="institute"
@@ -414,23 +408,41 @@ const UserForm = ({ setStep }) => {
                   />
                 </Grid>
               </Grid>
-              <Grid container spacing={2} className="">
-                <Grid item xs={12} sm={6} className="">
-                  <h1>form7</h1>
+              <Grid container spacing={1} className="termsandconditionGrid">
+                <Checkbox
+                  inputProps={{ "aria-label": "secondary checkbox" }}
+                  style={{ color: "white" }}
+                  name="accept_condition"
+                  value={accept_condition}
+                  onChange={onChange}
+                />
+                <span className="termsandcondition">
+                  J’accepte les termes et les conditions
+                </span>
+              </Grid>
+              <Grid container spacing={2} className="formbuttonsGrid">
+                <Grid xs={12} sm={4}>
+                  <div
+                    // variant="contained"
+                    size="large"
+                    className="formbackbutton"
+                    onClick={() => setStep(0)}
+                  >
+                    Retour
+                  </div>
                 </Grid>
-                <Grid item xs={12} sm={6} className="">
-                  <h1>form8</h1>
+                <Grid xs={12} sm={4}></Grid>
+                <Grid xs={12} sm={4}>
+                  <button
+                    variant="contained"
+                    className="formSubmitButton"
+                    size="large"
+                    type="submit"
+                  >
+                    {loading ? "Loading..." : "Commencer le test"}
+                  </button>
                 </Grid>
               </Grid>
-
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                type="submit"
-              >
-                {loading ? "Loading..." : "Submit"}
-              </Button>
             </Grid>
           </form>
         </Grid>
