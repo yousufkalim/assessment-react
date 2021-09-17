@@ -84,6 +84,9 @@
   padding: 0 0 10px 0;
   margin: -20px 0 0 0;
 }
+.videImage {
+  width: 50%;
+}
 .footerGrid {
   width: 60% !important;
   margin: auto !important;
@@ -92,6 +95,9 @@
   .bodyimg {
     height: 50vh;
     width: 100%;
+  }
+  .mainbody {
+    overflow-x: hidden;
   }
   .body-rectangle {
     width: 90% !important;
@@ -117,5 +123,8 @@
   }
   .vidoSection {
     margin: -80px 0 0 0;
+  }
+  .videImage {
+    width: 90%;
   }
 }

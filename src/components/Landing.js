@@ -29,7 +29,7 @@ const Landing = ({ setStep }) => {
         <h2 className="h2">Comment ca marche ?</h2>
       </div>
       <div style={{ margin: "10px" }}>
-        <img src={VideoImage} style={{ width: "50%" }} />
+        <img src={VideoImage} className="videImage" />
       </div>
       <Grid container spacing={3} className="footerGrid">
         <Grid item xs={12} sm={4}>

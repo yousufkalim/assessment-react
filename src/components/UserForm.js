@@ -212,198 +212,196 @@ const UserForm = ({ setStep, setActiveStep }) => {
     setLoading(false);
   };
   return (
-    <div className="mainuserform">
-      <Grid container spacing={2} className="">
-        <Grid item xs={12} sm={4} className="">
-          <h1>Dummy</h1>
-        </Grid>
-        <Grid item xs={12} sm={8} className="">
-          <form autoComplete="off" onSubmit={handleSubmit}>
-            <Grid container className="userformgrid">
-              <Grid item xs={12} sm={12} className="">
-                <h3 className="formheading">
-                  Pour mieux te conseiller, j’ai besoin
-                  <br /> d’en savoir davantage sur toi !
-                </h3>
-              </Grid>
-              <Grid container spacing={2} className="">
-                <Grid item xs={12} sm={6} className="inputGrid">
-                  <input
-                    name="first_name"
-                    placeholder="Prénom"
-                    className="inputField"
-                    value={first_name}
-                    onChange={onChange}
-                    required
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6} className="inputGrid">
-                  <input
-                    name="last_name"
-                    value={last_name}
-                    onChange={onChange}
-                    placeholder="Nom"
-                    className="inputField"
-                    required
-                  />
-                </Grid>
-              </Grid>
-              <Grid container spacing={2} className="">
-                <Grid item xs={12} sm={6} className="inputGrid">
-                  <input
-                    type={dateType}
-                    placeholder="Date of Birth"
-                    onFocus={() => setDatetype("date")}
-                    onBlur={() => setDatetype("text")}
-                    name="date_of_birth"
-                    value={date_of_birth}
-                    onChange={onChange}
-                    placeholder="Date de naissance"
-                    className="inputField"
-                    required
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6} className="inputGrid">
-                  <Autocomplete
-                    options={values}
-                    getOptionLabel={(option) => option.label}
-                    onChange={SetAddress}
-                    hiddenLabel="true"
-                    style={{
-                      width: "89%",
-                      margin: "auto",
-                    }}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        placeholder="Address"
-                        style={{ color: "white" }}
-                        variant="outlined"
-                        onChange={getAllAdress}
-                        value={address}
-                      />
-                    )}
-                  />
-                </Grid>
-              </Grid>
-              <Grid container spacing={2} className="">
-                <Grid item xs={12} sm={6} className="inputGrid">
-                  <input
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={onChange}
-                    placeholder="E-mail"
-                    className="inputField"
-                    required
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6} className="inputGrid">
-                  <input
-                    type="number"
-                    name="phone"
-                    value={phone}
-                    onChange={onChange}
-                    placeholder="Numéro de téléphone"
-                    className="inputField"
-                    required
-                  />
-                </Grid>
-              </Grid>
-              <Grid container spacing={2} className="">
-                <Grid item xs={12} sm={6} className="inputGrid">
-                  <FormControl variant="outlined" className="selectformControl">
-                    <InputLabel id="demo-simple-select-outlined-label">
-                      {education_level ? "" : "  Classe"}
-                    </InputLabel>
-                    <Select
-                      labelId="demo-simple-select-outlined-label"
-                      id="demo-simple-select-outlined"
-                      name="education_level"
-                      value={education_level}
-                      onChange={onChange}
-                      placeholder=" Class"
-                      className="selectforeducation"
-                    >
-                      {education.map((edu) => (
-                        <MenuItem value={edu}>{edu}</MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12} sm={6} className="inputGrid">
-                  <Autocomplete
-                    options={
-                      education_level == "Quatrième" ||
-                      education_level == "Troisième"
-                        ? institutes?.filter(
-                            (institute) => institute.type == "College"
-                          )
-                        : institutes?.filter(
-                            (institute) => institute.type == "School"
-                          )
-                    }
-                    freeSolo
-                    getOptionLabel={(option) => option.name}
-                    onChange={handleChangeSchool}
-                    style={{
-                      width: "89%",
-                      margin: "auto",
-                    }}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        placeholder="Schools"
-                        variant="outlined"
-                        value={institute}
-                        name="institute"
-                        onChange={onChange}
-                      />
-                    )}
-                    value={!education_level && ""}
-                    disabled={!education_level}
-                  />
-                </Grid>
-              </Grid>
-              <Grid container spacing={1} className="termsandconditionGrid">
-                <Checkbox
-                  inputProps={{ "aria-label": "secondary checkbox" }}
-                  style={{ color: "white" }}
-                  name="accept_condition"
-                  value={accept_condition}
+    <Grid container spacing={2} className="mainuserform">
+      <Grid item xs={12} sm={4} className="">
+        <h1>Dummy</h1>
+      </Grid>
+      <Grid item xs={12} sm={8} className="">
+        <form autoComplete="off" onSubmit={handleSubmit}>
+          <Grid container className="userformgrid">
+            <Grid item xs={12} sm={12} className="">
+              <h3 className="formheading">
+                Pour mieux te conseiller, j’ai besoin
+                <br className="br" /> d’en savoir davantage sur toi !
+              </h3>
+            </Grid>
+            <Grid container spacing={2} className="">
+              <Grid item xs={12} sm={6} className="inputGrid">
+                <input
+                  name="first_name"
+                  placeholder="Prénom"
+                  className="inputField"
+                  value={first_name}
                   onChange={onChange}
+                  required
                 />
-                <span className="termsandcondition">
-                  J’accepte les termes et les conditions
-                </span>
               </Grid>
-              <Grid container spacing={2} className="formbuttonsGrid">
-                <Grid xs={12} sm={4}>
-                  <div
-                    size="large"
-                    className="formbackbutton"
-                    onClick={() => setStep(0)}
-                  >
-                    Retour
-                  </div>
-                </Grid>
-                <Grid xs={12} sm={4}></Grid>
-                <Grid xs={12} sm={4}>
-                  <button
-                    variant="contained"
-                    className="formSubmitButton"
-                    size="large"
-                    type="submit"
-                  >
-                    {loading ? "Loading..." : "Commencer le test"}
-                  </button>
-                </Grid>
+              <Grid item xs={12} sm={6} className="inputGrid">
+                <input
+                  name="last_name"
+                  value={last_name}
+                  onChange={onChange}
+                  placeholder="Nom"
+                  className="inputField"
+                  required
+                />
               </Grid>
             </Grid>
-          </form>
-        </Grid>
+            <Grid container spacing={2} className="">
+              <Grid item xs={12} sm={6} className="inputGrid">
+                <input
+                  type={dateType}
+                  placeholder="Date of Birth"
+                  onFocus={() => setDatetype("date")}
+                  onBlur={() => setDatetype("text")}
+                  name="date_of_birth"
+                  value={date_of_birth}
+                  onChange={onChange}
+                  placeholder="Date de naissance"
+                  className="inputField"
+                  required
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} className="inputGrid">
+                <Autocomplete
+                  options={values}
+                  getOptionLabel={(option) => option.label}
+                  onChange={SetAddress}
+                  hiddenLabel="true"
+                  style={{
+                    width: "89%",
+                    margin: "auto",
+                  }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      placeholder="Address"
+                      style={{ color: "white" }}
+                      variant="outlined"
+                      onChange={getAllAdress}
+                      value={address}
+                    />
+                  )}
+                />
+              </Grid>
+            </Grid>
+            <Grid container spacing={2} className="">
+              <Grid item xs={12} sm={6} className="inputGrid">
+                <input
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={onChange}
+                  placeholder="E-mail"
+                  className="inputField"
+                  required
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} className="inputGrid">
+                <input
+                  type="number"
+                  name="phone"
+                  value={phone}
+                  onChange={onChange}
+                  placeholder="Numéro de téléphone"
+                  className="inputField"
+                  required
+                />
+              </Grid>
+            </Grid>
+            <Grid container spacing={2} className="">
+              <Grid item xs={12} sm={6} className="inputGrid">
+                <FormControl variant="outlined" className="selectformControl">
+                  <InputLabel id="demo-simple-select-outlined-label">
+                    {education_level ? "" : "  Classe"}
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-outlined-label"
+                    id="demo-simple-select-outlined"
+                    name="education_level"
+                    value={education_level}
+                    onChange={onChange}
+                    placeholder=" Class"
+                    className="selectforeducation"
+                  >
+                    {education.map((edu) => (
+                      <MenuItem value={edu}>{edu}</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={6} className="inputGrid">
+                <Autocomplete
+                  options={
+                    education_level == "Quatrième" ||
+                    education_level == "Troisième"
+                      ? institutes?.filter(
+                          (institute) => institute.type == "College"
+                        )
+                      : institutes?.filter(
+                          (institute) => institute.type == "School"
+                        )
+                  }
+                  freeSolo
+                  getOptionLabel={(option) => option.name}
+                  onChange={handleChangeSchool}
+                  style={{
+                    width: "89%",
+                    margin: "auto",
+                  }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      placeholder="Schools"
+                      variant="outlined"
+                      value={institute}
+                      name="institute"
+                      onChange={onChange}
+                    />
+                  )}
+                  value={!education_level && ""}
+                  disabled={!education_level}
+                />
+              </Grid>
+            </Grid>
+            <Grid container spacing={1} className="termsandconditionGrid">
+              <Checkbox
+                inputProps={{ "aria-label": "secondary checkbox" }}
+                style={{ color: "white" }}
+                name="accept_condition"
+                value={accept_condition}
+                onChange={onChange}
+              />
+              <span className="termsandcondition">
+                J’accepte les termes et les conditions
+              </span>
+            </Grid>
+            <Grid container spacing={2} className="formbuttonsGrid">
+              <Grid xs={12} sm={4}>
+                <div
+                  size="large"
+                  className="formbackbutton"
+                  onClick={() => setStep(0)}
+                >
+                  Retour
+                </div>
+              </Grid>
+              <Grid xs={12} sm={4}></Grid>
+              <Grid xs={12} sm={4}>
+                <button
+                  variant="contained"
+                  className="formSubmitButton"
+                  size="large"
+                  type="submit"
+                >
+                  {loading ? "Loading..." : "Commencer le test"}
+                </button>
+              </Grid>
+            </Grid>
+          </Grid>
+        </form>
       </Grid>
-    </div>
+    </Grid>
   );
 };
 export default UserForm;

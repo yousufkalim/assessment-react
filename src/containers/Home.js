@@ -16,7 +16,7 @@ const Home = () => {
       {step === 0 && <Landing step={step} setStep={setStep} />}
       <div className="mainbody">
         {step >= 1 && (
-          <Grid container spacing={1} className="stepper">
+          <Grid spacing={1} className="stepper">
             <Stepper activeStep={activeStep} setActiveStep={setActiveStep} />
           </Grid>
         )}

@@ -22,6 +22,9 @@
   left: -9%;
   top: 10%;
 }
+.questiontext {
+  padding-left: 30px;
+}
 .answerGrid {
   padding: 5% 15% 0 15% !important;
 }
@@ -63,4 +66,18 @@
     #ff29aa 101.84%
   );
   cursor: pointer !important;
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  .questionBox {
+    text-align: center;
+  }
+  .questiontext {
+    padding: 10px;
+    font-size: 28px;
+  }
+  .questionBox::before {
+    content: "";
+    display: none;
+  }
 }

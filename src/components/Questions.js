@@ -110,7 +110,7 @@ const Questions = ({ setStep, setActiveStep }) => {
       <Grid item xs={12} sm={8} className="">
         <div className={classes.main}>
           <div className="questionBox">
-            <h1 style={{ paddingLeft: "30px" }}>
+            <h1 className="questiontext">
               {getQuestion()?.question
                 ? getQuestion()?.question
                 : "There's no Question please try again"}

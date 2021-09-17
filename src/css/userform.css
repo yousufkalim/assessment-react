@@ -1,5 +1,5 @@
 .mainuserform {
-  height: 100vh;
+  height: 100vh !important;
 }
 .stepperMain {
   width: 50%;
@@ -137,11 +137,22 @@
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
   * {
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
+    width: auto;
   }
   .stepperMain {
     width: 100%;
   }
+  .formheading {
+    font-size: 20px;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+  }
+  .br {
+    display: none;
+  }
+
   .selectformControl {
     margin: 15px 0px 0px 0 !important;
   }
