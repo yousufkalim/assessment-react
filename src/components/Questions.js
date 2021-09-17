@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Store, UpdateStore } from "../StoreContext";
 import Grid from "@material-ui/core/Grid";
@@ -104,7 +103,7 @@ const Questions = ({ setStep, setActiveStep }) => {
   };
 
   return (
-    <Grid container spacing={2} className="">
+    <Grid container spacing={2} className="mainquestionscreen">
       <Grid item xs={12} sm={4} className="">
         <h1>Dummy</h1>
       </Grid>

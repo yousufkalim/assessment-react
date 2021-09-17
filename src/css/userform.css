@@ -1,11 +1,13 @@
 .mainuserform {
   height: 100vh;
 }
+.stepperMain {
+  width: 50%;
+}
 .stepper {
   justify-content: center !important;
   background: none !important;
 }
-
 .userform {
   width: 50%;
   margin: auto;
@@ -15,8 +17,8 @@
   color: white !important;
   background: #343747 !important;
   width: 78% !important;
-  padding: 0 0 10px 10px;
-  margin: auto !important;
+  padding: 0 0 10px 10px !important;
+  margin: 40px auto !important;
   border-radius: 18px !important;
   box-shadow: 1px 1px 8px 8px #2b2735 !important;
 }
@@ -59,14 +61,17 @@
   height: 6vh !important;
   margin: 3px 13px 13px 13px !important;
 }
-
 .selectforeducation {
-  height: 40px !important;
+  height: 6vh;
 }
+
 /* education level placeholder */
 .MuiInputLabel-outlined {
   color: #9198a5 !important;
-  margin: -8px 0 0 0 !important;
+  margin: -5px 0 0 0 !important;
+}
+.MuiOutlinedInput-notchedOutline {
+  border: none !important;
 }
 /* education level icon */
 .MuiSelect-iconOutlined {
@@ -128,4 +133,32 @@
   color: white;
   margin: 20px 20px 20px 20px;
   padding: 15px 25px 15px 25px;
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  * {
+    overflow-x: hidden;
+  }
+  .stepperMain {
+    width: 100%;
+  }
+  .selectformControl {
+    margin: 15px 0px 0px 0 !important;
+  }
+  .mainuserform {
+    height: auto;
+  }
+  .termsandconditionGrid {
+    margin: 15px 0 0 10px !important;
+  }
+  .termsandcondition {
+    width: 80%;
+  }
+  .formbackbutton {
+    width: 80%;
+    margin: 25px auto 20px auto;
+  }
+  .formSubmitButton {
+    width: 80%;
+  }
 }

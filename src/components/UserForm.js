@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { TextField, Button, Checkbox } from "@material-ui/core";
+import { TextField, Checkbox } from "@material-ui/core";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import { makeStyles } from "@material-ui/core/styles";
 import { Store, UpdateStore } from "../StoreContext";
 import Grid from "@material-ui/core/Grid";
 import api from "../api";
@@ -40,33 +39,6 @@ const UserForm = ({ setStep, setActiveStep }) => {
   // initialize ContextStore
   const updateStore = UpdateStore();
   const { institutes } = Store();
-
-  // Styles
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      "& > *": {
-        margin: theme.spacing(1),
-        width: "35ch",
-      },
-    },
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
-    main: {
-      width: "50%",
-      margin: "auto",
-      textAlign: "center",
-    },
-    chekbox: {
-      margin: "auto",
-    },
-  }));
-  const classes = useStyles();
-  //
 
   let getSchoolData = async () => {
     let res = await api("get", "/institute");
@@ -257,9 +229,6 @@ const UserForm = ({ setStep, setActiveStep }) => {
               <Grid container spacing={2} className="">
                 <Grid item xs={12} sm={6} className="inputGrid">
                   <input
-                    label="First_name"
-                    variant="outlined"
-                    size="small"
                     name="first_name"
                     placeholder="Prénom"
                     className="inputField"
@@ -270,9 +239,6 @@ const UserForm = ({ setStep, setActiveStep }) => {
                 </Grid>
                 <Grid item xs={12} sm={6} className="inputGrid">
                   <input
-                    label="Last Name"
-                    variant="outlined"
-                    size="small"
                     name="last_name"
                     value={last_name}
                     onChange={onChange}
@@ -289,8 +255,6 @@ const UserForm = ({ setStep, setActiveStep }) => {
                     placeholder="Date of Birth"
                     onFocus={() => setDatetype("date")}
                     onBlur={() => setDatetype("text")}
-                    variant="outlined"
-                    size="small"
                     name="date_of_birth"
                     value={date_of_birth}
                     onChange={onChange}
@@ -313,7 +277,6 @@ const UserForm = ({ setStep, setActiveStep }) => {
                       <TextField
                         {...params}
                         placeholder="Address"
-                        // label="Address"
                         style={{ color: "white" }}
                         variant="outlined"
                         onChange={getAllAdress}
@@ -326,10 +289,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
               <Grid container spacing={2} className="">
                 <Grid item xs={12} sm={6} className="inputGrid">
                   <input
-                    label="Email"
                     type="email"
-                    variant="outlined"
-                    size="small"
                     name="email"
                     value={email}
                     onChange={onChange}
@@ -340,10 +300,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                 </Grid>
                 <Grid item xs={12} sm={6} className="inputGrid">
                   <input
-                    label="Phone"
                     type="number"
-                    variant="outlined"
-                    size="small"
                     name="phone"
                     value={phone}
                     onChange={onChange}
@@ -423,7 +380,6 @@ const UserForm = ({ setStep, setActiveStep }) => {
               <Grid container spacing={2} className="formbuttonsGrid">
                 <Grid xs={12} sm={4}>
                   <div
-                    // variant="contained"
                     size="large"
                     className="formbackbutton"
                     onClick={() => setStep(0)}

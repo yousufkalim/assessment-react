@@ -3,12 +3,10 @@ body {
   padding: 0;
   font-family: "Roboto", sans-serif;
 }
-
 .headera {
   z-index: 1;
   position: fixed;
   background: #22242a;
-  /* padding: 20px; */
   width: calc(100% - 0%);
   top: 0;
   height: 70px;
@@ -28,7 +26,6 @@ body {
 .option:hover {
   background: #4cc1e4;
 }
-
 .left_area h3 {
   color: #fff;
   margin-bottom: -15px;
@@ -37,11 +34,9 @@ body {
   font-weight: 900;
   padding: 5px;
 }
-
 .left_area span {
   color: #19b3d3;
 }
-
 .logout_btn {
   padding: 10px;
   background: #19b3d3;
@@ -56,11 +51,9 @@ body {
   transition: 0.5s;
   transition-property: background;
 }
-
 .logout_btn:hover {
   background: #0b87a6;
 }
-
 .sidebar {
   z-index: 1;
   top: 0;
@@ -75,27 +68,23 @@ body {
   transition-property: left;
   overflow-y: auto;
 }
-
 .profile_info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
 .sidebar .profile_info .profile_image {
   width: 100px;
   height: 100px;
   border-radius: 100px;
   margin-bottom: 10px;
 }
-
 .sidebar .profile_info h4 {
   color: #ccc;
   margin-top: 0;
   margin-bottom: 20px;
 }
-
 .sidebar a {
   color: #fff;
   display: block;
@@ -108,15 +97,12 @@ body {
   transition-property: background;
   font-family: "Montserrat', sans-serif";
 }
-
 .sidebar a:hover {
   background: #19b3d3;
 }
-
 .sidebar i {
   padding-right: 10px;
 }
-
 label #sidebar_btn {
   z-index: 1;
   color: #fff;
@@ -132,7 +118,6 @@ label #sidebar_btn {
 label #sidebar_btn:hover {
   color: #19b3d3;
 }
-
 #check:checked ~ .sidebar {
   left: -185px;
 }

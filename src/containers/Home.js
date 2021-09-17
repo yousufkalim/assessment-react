@@ -1,19 +1,18 @@
 import React, { useState } from "react";
+import Grid from "@material-ui/core/Grid";
 import UserForm from "../components/UserForm";
 import Questions from "../components/Questions";
 import Result from "../components/Result";
 import Landing from "../components/Landing";
 import Header from "../components/Header";
-import Grid from "@material-ui/core/Grid";
 import Stepper from "../components/Stepper";
 
 const Home = () => {
   const [activeStep, setActiveStep] = useState(1);
   const [step, setStep] = useState(0);
   return (
-    <div>
+    <>
       <Header />
-
       {step === 0 && <Landing step={step} setStep={setStep} />}
       <div className="mainbody">
         {step >= 1 && (
@@ -35,9 +34,9 @@ const Home = () => {
             setActiveStep={setActiveStep}
           />
         )}
+        {step === 3 && <Result />}
       </div>
-      {step === 3 && <Result />}
-    </div>
+    </>
   );
 };
 

@@ -25,10 +25,7 @@ const Landing = ({ setStep }) => {
           </button>
         </Grid>
       </Grid>
-      <div
-        id="comment"
-        style={{ padding: "0 0 10px 0", margin: "-20px 0 0 0" }}
-      >
+      <div id="comment" className="vidoSection">
         <h2 className="h2">Comment ca marche ?</h2>
       </div>
       <div style={{ margin: "10px" }}>
