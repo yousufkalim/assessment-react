@@ -5,6 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import NavIcon from "../assets/icons/navbaricon.jpeg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,22 +13,6 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
     background: "rgb(18 16 23)",
     color: "white",
-    fontFamily: "lato",
-  },
-  menuButton: {
-    fontSize: "21px",
-    fontWeight: "bold",
-    opacity: "0.8",
-    margin: "0 20px 0 12px",
-    fontFamily: "lato",
-  },
-  title: {
-    flexGrow: 0.06,
-    textAlign: "center",
-    fontSize: "16px",
-    padding: "0px",
-    fontFamily: "roman",
-    opacity: ".7",
     fontFamily: "lato",
   },
 }));
@@ -38,15 +23,26 @@ export default function Header() {
 
   return (
     <AppBar color="black" position="sticky" className={classes.root}>
-      <Toolbar>
-        <IconButton
-          edge="start"
-          className={`${classes.menuButton} IconButton`}
-          color="inherit"
-          aria-label="menu"
-        >
-          Orientator
-        </IconButton>
+      <Toolbar color="" className="showToolbar">
+        <div className="logowithicondiv">
+          <div
+            edge="start"
+            className="navIconbox"
+            color="inherit"
+            aria-label="menu"
+            onClick={() => setFlag(!flag)}
+          >
+            {flag ? "---" : "==="}
+          </div>
+          <IconButton
+            edge="start"
+            className="menuButton"
+            color="inherit"
+            aria-label="menu"
+          >
+            Orientator
+          </IconButton>
+        </div>
 
         <AnchorLink
           href="#top"
@@ -56,13 +52,17 @@ export default function Header() {
             padding: "0 25px 0 0",
           }}
         >
-          <Typography className={classes.title}>Accuiel</Typography>
+          <Typography className={flag ? "title" : "hidetitle"}>
+            Accuiel
+          </Typography>
         </AnchorLink>
         <AnchorLink
           href="#comment"
           style={{ textDecoration: "none", color: "white" }}
         >
-          <Typography className={classes.title}>Comment ca marche ?</Typography>
+          <Typography className={flag ? "title" : "hidetitle"}>
+            Comment ca marche ?
+          </Typography>
         </AnchorLink>
       </Toolbar>
     </AppBar>
