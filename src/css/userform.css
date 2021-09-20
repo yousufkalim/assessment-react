@@ -3,6 +3,7 @@
 }
 .stepperMain {
   width: 50%;
+  margin: auto;
 }
 .stepper {
   justify-content: center !important;

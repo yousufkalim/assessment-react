@@ -1,6 +1,6 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import Main from "../assets/img/mainimg.png";
+import Main from "../assets/img/a.png";
 import VideoImage from "../assets/img/videoimg.png";
 import footer1 from "../assets/img/1.png";
 

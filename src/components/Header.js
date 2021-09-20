@@ -5,7 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-import NavIcon from "../assets/icons/navbaricon.jpeg";
+import logo from "../assets/img/logo.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,14 +34,7 @@ export default function Header() {
           >
             {flag ? "---" : "==="}
           </div>
-          <IconButton
-            edge="start"
-            className="menuButton"
-            color="inherit"
-            aria-label="menu"
-          >
-            Orientator
-          </IconButton>
+          <img src={logo} width="90%" />
         </div>
 
         <AnchorLink

@@ -22,12 +22,11 @@
 .body-rectangle {
   color: white !important;
   background: #343747 !important;
-
-  width: 60% !important;
-  height: 120px !important;
+  width: 75% !important;
+  height: 130px !important;
   margin: auto !important;
   position: relative !important;
-  bottom: 250px !important;
+  bottom: 135px !important;
   border-radius: 18px !important;
   box-shadow: 1px 1px 8px 8px #2b2735 !important;
 }
@@ -91,6 +90,8 @@
   width: 60% !important;
   margin: auto !important;
 }
+
+/* for mobile */
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
   .bodyimg {
     height: 50vh;
@@ -126,5 +127,14 @@
   }
   .videImage {
     width: 90%;
+  }
+}
+
+/* for big screens */
+@media only screen and (min-device-width: 1500px) and (max-device-width: 1900px) {
+  .body-rectangle {
+    width: 75% !important;
+    height: 155px !important;
+    bottom: 160px !important;
   }
 }
