@@ -9,6 +9,14 @@
   justify-content: center !important;
   background: none !important;
 }
+.dummyGrid {
+  text-align: center !important;
+  margin-top: 6% !important;
+}
+.dummyimg {
+  height: 60%;
+}
+
 .userform {
   width: 50%;
   margin: auto;
@@ -109,6 +117,11 @@
 .formbuttonsGrid {
   text-align: center !important;
 }
+.arrowleft {
+  position: relative;
+  right: 10px;
+  top: 4px;
+}
 .formbackbutton {
   background: linear-gradient(180deg, #ffffff -24.17%, #bac0d6 100%);
   border-radius: 100px;
@@ -136,7 +149,16 @@
   padding: 15px 25px 15px 25px;
 }
 
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+/* for big screens */
+@media only screen and (min-device-width: 1500px) and (max-device-width: 1900px) {
+  .dummyGrid {
+    margin-top: 0% !important;
+  }
+}
+
+/* for mbile */
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 812px) {
   * {
     /* overflow-x: hidden; */
     width: auto;
@@ -152,6 +174,17 @@
   }
   .br {
     display: none;
+  }
+  .dummyGrid {
+    text-align: center !important;
+    margin-top: 6% !important;
+  }
+  .dummyimg {
+    height: auto;
+    margin-left: 12px;
+  }
+  .responsiveform {
+    margin-top: -28% !important;
   }
 
   .selectformControl {

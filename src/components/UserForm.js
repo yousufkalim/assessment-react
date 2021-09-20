@@ -9,6 +9,10 @@ import Select from "@material-ui/core/Select";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { Store, UpdateStore } from "../StoreContext";
 import Grid from "@material-ui/core/Grid";
+import Dummy from "../assets/img/dummy.png";
+import MainMobile from "../assets/img/mobileform.png";
+import arrowleft from "../assets/img/arrow2.png";
+
 import api from "../api";
 
 let education = [
@@ -213,10 +217,11 @@ const UserForm = ({ setStep, setActiveStep }) => {
   };
   return (
     <Grid container spacing={2} className="mainuserform">
-      <Grid item xs={12} sm={4} className="">
-        <h1>Dummy</h1>
+      <Grid item xs={12} sm={4} className="dummyGrid">
+        <img src={Dummy} className="dummyimg forweb" />
+        <img src={MainMobile} className="dummyimg formobile" />
       </Grid>
-      <Grid item xs={12} sm={8} className="">
+      <Grid item xs={12} sm={8} className="responsiveform">
         <form autoComplete="off" onSubmit={handleSubmit}>
           <Grid container className="userformgrid">
             <Grid item xs={12} sm={12} className="">
@@ -299,7 +304,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
               </Grid>
               <Grid item xs={12} sm={6} className="inputGrid">
                 <input
-                  type="number"
+                  type="tel"
                   name="phone"
                   value={phone}
                   onChange={onChange}
@@ -383,6 +388,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   className="formbackbutton"
                   onClick={() => setStep(0)}
                 >
+                  <img src={arrowleft} className="arrowleft" />
                   Retour
                 </div>
               </Grid>
