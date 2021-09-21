@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Store, UpdateStore } from "../StoreContext";
+import Dummy from "../assets/img/dummy.png";
+import MainMobile from "../assets/img/mobileform.png";
 import Grid from "@material-ui/core/Grid";
 
 const Questions = ({ setStep, setActiveStep }) => {
@@ -105,7 +107,8 @@ const Questions = ({ setStep, setActiveStep }) => {
   return (
     <Grid container spacing={2} className="mainquestionscreen">
       <Grid item xs={12} sm={4} className="">
-        <h1>Dummy</h1>
+        <img src={Dummy} className="dummyimg forweb" />
+        <img src={MainMobile} className="dummyimg formobile" />
       </Grid>
       <Grid item xs={12} sm={8} className="">
         <div className={classes.main}>

@@ -45,7 +45,7 @@ export default function Header() {
             padding: "0 25px 0 0",
           }}
         >
-          <Typography className={flag ? "title" : "hidetitle"}>
+          <Typography className={flag ? "title a" : "hidetitle a"}>
             Accuiel
           </Typography>
         </AnchorLink>
@@ -53,7 +53,7 @@ export default function Header() {
           href="#comment"
           style={{ textDecoration: "none", color: "white" }}
         >
-          <Typography className={flag ? "title" : "hidetitle"}>
+          <Typography className={flag ? "title b" : "hidetitle b"}>
             Comment ca marche ?
           </Typography>
         </AnchorLink>

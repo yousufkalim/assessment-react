@@ -43,6 +43,19 @@
     opacity: 0.7;
     font-family: lato;
   }
+  .a {
+    margin-top: 17px !important;
+  }
+  .a:hover {
+    background: #46495c;
+  }
+  .b {
+    margin-top: -29px !important;
+    padding-bottom: 25px !important;
+  }
+  .b:hover {
+    background: #46495c;
+  }
   .menuButton {
     margin: 0 20px 0 40px !important;
   }

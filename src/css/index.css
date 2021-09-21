@@ -3,6 +3,7 @@
 @import url("./Body.css");
 @import url("./userform.css");
 @import url("./Question.css");
+@import url("./result.css");
 body {
   font-family: lato;
   overflow-x: hidden;
