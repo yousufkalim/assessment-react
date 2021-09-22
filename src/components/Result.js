@@ -5,6 +5,8 @@ import Grid from "@material-ui/core/Grid";
 import Dummy from "../assets/img/dummy.png";
 import MainMobile from "../assets/img/mobileform.png";
 import TypeOfCourse from "./TypeOfCourse";
+import userimg from "../assets/icons/user.png";
+import share from "../assets/icons/share.png";
 import Card from "../components/dashboard/Card";
 
 const Result = () => {
@@ -55,10 +57,10 @@ const Result = () => {
 
                   Bravo ! Tu as répondu à toutes les questions !{" "}
                 </h1>
-                <p className="resultText">
+                {loading ? <p className="resultText">Loading...</p> : <p className="resultText">
                   D'après tes réponses, je pense que ton profil est tourné vers<br />
                   <b> {loading ? "loading" : result?.type_of_job ? result.type_of_job : "Currently no job available"} </b> comme par exemple <b>  {loading ? "loading" : result?.example_of_job ? result.example_of_job : "Currently no example available"}</b>
-                </p>
+                </p>}
                 <p className="resultText">Je te propose une liste de voeux Parcoursup qui correspondrait à ton profil</p>
               </div>
               <div className="resultButtondiv">
@@ -89,11 +91,13 @@ const Result = () => {
 
                               <TypeOfCourse type={type} percentage={getSingleTypeofCourse(type)[0]?.percentage} courses={getSingleTypeofCourse(type)} />
 
-                              // {showDetail && <Card courses={getSingleTypeofCourse(type)} />}
-
                             )}
                         </>
                       ))}
+                      <div className="buttonDiv">
+                        <button className="sharebutton"><img src={userimg} /><span style={{ marginTop: "2px" }}>Invite un</span></button>
+                        <button className="sharebutton"><img src={share} /><b style={{ marginTop: "2px" }}> Partager</b></button>
+                      </div>
                     </div>
                   ) : (
                     <div className="cardflex" style={{ margin: "0px" }}>
@@ -103,26 +107,17 @@ const Result = () => {
                 </div>
               ) : (
                 <div className="cardflex" style={{ margin: "0px" }}>
-                  <h1>Loading...</h1>
+                  <h1>Load!ng...</h1>
                 </div>
               )}
             </div>
 
-            <div>
 
 
-
-
-              <div style={{ background: "red", margin: "20px" }}>
-                {" "}
-                show and hide detail.
-              </div>
-            </div>
-
-            <div></div>
           </Grid>
         </Grid>
-      )}
+      )
+      }
       {/* <div
         style={{
           textAlign: "center",

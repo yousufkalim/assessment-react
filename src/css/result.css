@@ -1,5 +1,5 @@
 .mainresultscreen {
-  /* height: 100vh !important; */
+ min-height: 100vh !important;
 }
 .resultBox {
   color: white;
@@ -15,15 +15,31 @@
   margin: 25px auto;
   background: #343747;
   width: 70%;
-  border-radius: 18px;
+  border-radius: 25px;
   box-shadow: 1px 1px 8px 8px #2b2735;
   padding: 10px 0 10px 0;
   position: relative;
 }
-
-.percentageBox{
-  background: red;
-  padding: 20px
+.coursediv{
+  font-weight: 900 !important;
+  padding: 15px 7px 15px 7px !important;
+  margin: 0 4px 0 4px !important;
+}
+.courseType{
+  font-size: 25px !important ;
+  padding: 6px 30px !important;
+}
+.percentageGrid{
+  display: flex !important;
+  justify-content: space-evenly !important;
+  text-align: center;
+  border-radius: 100px;
+  padding: 5px !important;
+  
+}
+.searchimg{
+  padding: 2px;
+  margin-top: 2px;
 }
 .resultBoxText {
   margin: 0 auto 30px auto;
@@ -58,4 +74,17 @@
   text-align: center;
   color: white;
   padding: 15px 25px 15px 25px;
+}
+.buttonDiv{
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  padding: 10px;
+}
+.sharebutton{
+  border-radius: 100px;
+  background: linear-gradient(#FFFFFF,#BAC0D6);
+  padding: 13px 30px;
+  margin: 20px;
+
 }
