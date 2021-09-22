@@ -1,0 +1,209 @@
+.mainuserform {
+  height: 100vh !important;
+}
+.stepperMain {
+  width: 50%;
+  margin: auto;
+}
+.stepper {
+  justify-content: center !important;
+  background: none !important;
+}
+.dummyGrid {
+  text-align: center !important;
+  margin-top: 6% !important;
+}
+.dummyimg {
+  height: 60%;
+}
+
+.userform {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
+.userformgrid {
+  color: white !important;
+  background: #343747 !important;
+  width: 78% !important;
+  padding: 0 0 10px 10px !important;
+  margin: 40px auto !important;
+  border-radius: 18px !important;
+  box-shadow: 1px 1px 8px 8px #2b2735 !important;
+}
+.formheading {
+  font-size: 28px;
+  text-align: center;
+  margin: 10px 0px 0px 0px;
+}
+.inputGrid {
+  margin: 18px 0 0 0 !important;
+  text-align: center !important;
+}
+.inputField {
+  border: none;
+  background: #242635;
+  color: #9198a5;
+  font-size: 15px;
+  border-radius: 10px;
+  padding: 0 0 0 20px;
+  width: 85%;
+  height: 6vh;
+  margin: 2px;
+}
+.inputField:focus {
+  outline: none;
+  border: 1px solid #f0c7c7;
+  border-radius: 10px;
+}
+::placeholder {
+  color: #858b96;
+}
+.selectformControl {
+  border: none !important;
+  background: #242635 !important;
+  color: #9198a5 !important;
+  font-size: 15px !important;
+  border-radius: 10px !important;
+  padding: 0 0 0 0px !important;
+  width: 92% !important;
+  height: 6vh !important;
+  margin: 3px 13px 13px 13px !important;
+}
+.selectforeducation {
+  height: 6vh;
+}
+
+/* education level placeholder */
+.MuiInputLabel-outlined {
+  color: #9198a5 !important;
+  margin: -5px 0 0 0 !important;
+}
+.MuiOutlinedInput-notchedOutline {
+  border: none !important;
+}
+/* education level icon */
+.MuiSelect-iconOutlined {
+  color: #9198a5 !important;
+}
+/* education level on focus */
+.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border: 1px solid #f0c7c7 !important;
+  color: #9198a5 !important;
+}
+/* education level text color */
+.MuiSelect-outlined.MuiSelect-outlined {
+  color: #9198a5 !important;
+}
+/* address field */
+/* .MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon */
+.MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
+  height: 6vh !important;
+  background: #242635 !important;
+  border-radius: 10px !important;
+}
+.MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"]
+  .MuiAutocomplete-input:first-child {
+  color: #9198a5 !important;
+  padding: 0 0 2px 5px !important;
+}
+.termsandconditionGrid {
+  margin: 0 0 0 10px !important;
+}
+.termsandcondition {
+  color: #9198a5;
+  margin: 10px 0 0 0px;
+}
+.formbuttonsGrid {
+  text-align: center !important;
+}
+.arrowleft {
+  position: relative;
+  right: 10px;
+  top: 4px;
+}
+.formbackbutton {
+  background: linear-gradient(180deg, #ffffff -24.17%, #bac0d6 100%);
+  border-radius: 100px;
+  width: 50%;
+  text-align: center;
+  color: black;
+  margin: 20px 20px 20px 20px;
+  padding: 13px 0px 13px 0px;
+  cursor: pointer;
+}
+.formSubmitButton {
+  background: linear-gradient(
+    265.05deg,
+    #fece24 0%,
+    #ff6d1a 50.66%,
+    #ff29aa 101.84%
+  );
+  cursor: pointer;
+  border: none;
+  border-radius: 100px;
+  /* width: 55%; */
+  text-align: center;
+  color: white;
+  margin: 20px 20px 20px 20px;
+  padding: 15px 25px 15px 25px;
+}
+
+/* for big screens */
+@media only screen and (min-device-width: 1500px) and (max-device-width: 1900px) {
+  .dummyGrid {
+    margin-top: 0% !important;
+  }
+}
+
+/* for mbile */
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 812px) {
+  * {
+    /* overflow-x: hidden; */
+    width: auto;
+  }
+  .stepperMain {
+    width: 100%;
+  }
+  .formheading {
+    font-size: 20px;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+  }
+  .br {
+    display: none;
+  }
+  .dummyGrid {
+    text-align: center !important;
+    margin-top: 6% !important;
+  }
+  .dummyimg {
+    height: auto;
+    margin-left: 12px;
+  }
+  .responsiveform {
+    margin-top: -28% !important;
+  }
+
+  .selectformControl {
+    margin: 15px 0px 0px 0 !important;
+  }
+  .mainuserform {
+    height: auto;
+  }
+  .termsandconditionGrid {
+    margin: 15px 0 0 10px !important;
+  }
+  .termsandcondition {
+    width: 80%;
+  }
+  .formbackbutton {
+    width: 80%;
+    margin: 25px auto 20px auto;
+  }
+  .formSubmitButton {
+    width: 80%;
+  }
+}

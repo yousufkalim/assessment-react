@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Store, UpdateStore } from "../StoreContext";
 import api from "../api";
+import Grid from "@material-ui/core/Grid";
+import Dummy from "../assets/img/dummy.png";
+import MainMobile from "../assets/img/mobileform.png";
 import Card from "../components/dashboard/Card";
 
 const Result = () => {
@@ -9,6 +12,7 @@ const Result = () => {
   const updateStore = UpdateStore();
   const { history, user, disc_ans_id, result } = Store();
   const [loading, setLoading] = useState(false);
+  const [resultStep, setresultStep] = useState(0);
   useEffect(() => {
     getResult();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -33,17 +37,69 @@ const Result = () => {
     result.courses.filter(
       (course) => type === course?.courseId?.type_of_course
     );
+  console.log("result ", result);
   return (
     <>
-      <div
+      {resultStep == 0 && (
+        <Grid container spacing={2} className="mainresultscreen">
+          <Grid item xs={12} sm={4} className="">
+            <img src={Dummy} className="dummyimg forweb" />
+            <img src={MainMobile} className="dummyimg formobile" />
+          </Grid>
+          <Grid item xs={12} sm={8} className="">
+            <div className="resultBox">
+              <div className="resultBoxText">
+                <h1 className="" style={{ textAlign: "center" }}>
+                  Bravo ! Tu as répondu à toutes les questions !{" "}
+                </h1>
+                <p className="resultText">
+                  D'après tes réponses, je pense que ton profil est tourné vers
+                  <b> type of job </b> comme par exemple <b> example of job</b>
+                </p>
+              </div>
+              <div className="resultButtondiv">
+                <button onClick={() => setresultStep(1)}>
+                  Ma liste Parcoursup
+                </button>
+              </div>
+            </div>
+            <div></div>
+          </Grid>
+        </Grid>
+      )}
+      {resultStep == 1 && (
+        <Grid container spacing={1} className="mainresultscreen">
+          <Grid item xs={12} sm={12} className="">
+            <div className="resultBox1">
+              <div className="resultBoxText1">
+                <h1 className="">
+                  Bravo ! Tu as répondu à toutes les questions !{" "}
+                </h1>
+              </div>
+              <div>
+                <div style={{ background: "red", margin: "20px" }}>
+                  {" "}
+                  show and hide detail
+                </div>
+                <div style={{ background: "red", margin: "20px" }}>
+                  {" "}
+                  show and hide detail.
+                </div>
+              </div>
+            </div>
+            <div></div>
+          </Grid>
+        </Grid>
+      )}
+      {/* <div
         style={{
           textAlign: "center",
         }}
       >
         <h2>Domain : {result?.domain}</h2>
         <h3>Job-Exapmle : {result?.example_of_job}</h3>
-      </div>
-      <div>
+      </div> */}
+      {/* <div>
         {!loading ? (
           <div>
             {result?.courses && result?.courses.length >= 1 ? (
@@ -75,6 +131,7 @@ const Result = () => {
           </div>
         )}
       </div>
+    */}
     </>
   );
 };

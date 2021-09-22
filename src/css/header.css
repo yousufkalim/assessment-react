@@ -1,0 +1,75 @@
+.color {
+  color: red;
+}
+.navIconbox {
+  display: none;
+  margin: 0 20px 0 12px;
+}
+.menuButton {
+  font-size: 21px;
+  font-weight: bold;
+  opacity: 0.8;
+  margin: 0 20px 0 12px;
+  font-family: lato;
+}
+.title {
+  flex-grow: 0.06;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px;
+  font-family: lato;
+}
+.hidetitle {
+  flex-grow: 0.06;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px;
+  font-family: lato;
+}
+.showToolbar {
+  margin: 0px 0px 0px 30px !important;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 812px) {
+  .showToolbar {
+    display: block !important;
+    margin: 0px !important;
+  }
+  .title {
+    flex-grow: 0.06;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px 0px 10px 0px;
+    opacity: 0.7;
+    font-family: lato;
+  }
+  .a {
+    margin-top: 17px !important;
+  }
+  .a:hover {
+    background: #46495c;
+  }
+  .b {
+    margin-top: -29px !important;
+    padding-bottom: 25px !important;
+  }
+  .b:hover {
+    background: #46495c;
+  }
+  .menuButton {
+    margin: 0 20px 0 40px !important;
+  }
+  .hidetitle {
+    display: none;
+  }
+
+  .logowithicondiv {
+    display: flex;
+  }
+  .navIconbox {
+    margin: 10px 20px 0 12px;
+    background-color: red;
+    display: inherit;
+    cursor: pointer;
+  }
+}
