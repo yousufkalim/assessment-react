@@ -1,5 +1,5 @@
 .mainresultscreen {
-  height: 100vh !important;
+  /* height: 100vh !important; */
 }
 .resultBox {
   color: white;
@@ -10,14 +10,20 @@
   box-shadow: 1px 1px 8px 8px #2b2735;
   position: relative;
 }
-.resultBox1 {
+.typeOfCourses {
   color: white;
-  margin: 20px auto;
+  margin: 25px auto;
   background: #343747;
   width: 70%;
   border-radius: 18px;
   box-shadow: 1px 1px 8px 8px #2b2735;
+  padding: 10px 0 10px 0;
   position: relative;
+}
+
+.percentageBox{
+  background: red;
+  padding: 20px
 }
 .resultBoxText {
   margin: 0 auto 30px auto;
@@ -38,4 +44,18 @@
   text-align: center;
   border-bottom-left-radius: 18px;
   border-bottom-right-radius: 18px;
+}
+.resultButton{
+  background: linear-gradient(
+    265.05deg,
+    #fece24 0%,
+    #ff6d1a 50.66%,
+    #ff29aa 101.84%
+  );
+  cursor: pointer;
+  border: none;
+  border-radius: 100px;
+  text-align: center;
+  color: white;
+  padding: 15px 25px 15px 25px;
 }

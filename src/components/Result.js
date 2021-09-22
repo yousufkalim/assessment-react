@@ -4,6 +4,7 @@ import api from "../api";
 import Grid from "@material-ui/core/Grid";
 import Dummy from "../assets/img/dummy.png";
 import MainMobile from "../assets/img/mobileform.png";
+import TypeOfCourse from "./TypeOfCourse";
 import Card from "../components/dashboard/Card";
 
 const Result = () => {
@@ -13,6 +14,7 @@ const Result = () => {
   const { history, user, disc_ans_id, result } = Store();
   const [loading, setLoading] = useState(false);
   const [resultStep, setresultStep] = useState(0);
+  const [showDetail, setShowDetail] = useState(false);
   useEffect(() => {
     getResult();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -50,15 +52,17 @@ const Result = () => {
             <div className="resultBox">
               <div className="resultBoxText">
                 <h1 className="" style={{ textAlign: "center" }}>
+
                   Bravo ! Tu as répondu à toutes les questions !{" "}
                 </h1>
                 <p className="resultText">
-                  D'après tes réponses, je pense que ton profil est tourné vers
-                  <b> type of job </b> comme par exemple <b> example of job</b>
+                  D'après tes réponses, je pense que ton profil est tourné vers<br />
+                  <b> {loading ? "loading" : result?.type_of_job ? result.type_of_job : "Currently no job available"} </b> comme par exemple <b>  {loading ? "loading" : result?.example_of_job ? result.example_of_job : "Currently no example available"}</b>
                 </p>
+                <p className="resultText">Je te propose une liste de voeux Parcoursup qui correspondrait à ton profil</p>
               </div>
               <div className="resultButtondiv">
-                <button onClick={() => setresultStep(1)}>
+                <button className="resultButton" onClick={() => setresultStep(1)}>
                   Ma liste Parcoursup
                 </button>
               </div>
@@ -70,23 +74,51 @@ const Result = () => {
       {resultStep == 1 && (
         <Grid container spacing={1} className="mainresultscreen">
           <Grid item xs={12} sm={12} className="">
-            <div className="resultBox1">
-              <div className="resultBoxText1">
-                <h1 className="">
-                  Bravo ! Tu as répondu à toutes les questions !{" "}
-                </h1>
-              </div>
-              <div>
-                <div style={{ background: "red", margin: "20px" }}>
-                  {" "}
-                  show and hide detail
+
+            <div>
+              {!loading ? (
+                <div>
+                  {result?.courses && result?.courses.length >= 1 ? (
+                    <div
+
+                    >
+                      {typeOfCourses.map((type) => (
+                        <>
+                          {getSingleTypeofCourse(type)[0]?.courseId?.type_of_course ==
+                            type && (
+
+                              <TypeOfCourse type={type} percentage={getSingleTypeofCourse(type)[0]?.percentage} courses={getSingleTypeofCourse(type)} />
+
+                              // {showDetail && <Card courses={getSingleTypeofCourse(type)} />}
+
+                            )}
+                        </>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="cardflex" style={{ margin: "0px" }}>
+                      <h1>No Course Available</h1>
+                    </div>
+                  )}
                 </div>
-                <div style={{ background: "red", margin: "20px" }}>
-                  {" "}
-                  show and hide detail.
+              ) : (
+                <div className="cardflex" style={{ margin: "0px" }}>
+                  <h1>Loading...</h1>
                 </div>
+              )}
+            </div>
+
+            <div>
+
+
+
+
+              <div style={{ background: "red", margin: "20px" }}>
+                {" "}
+                show and hide detail.
               </div>
             </div>
+
             <div></div>
           </Grid>
         </Grid>
