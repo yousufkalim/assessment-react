@@ -61,7 +61,7 @@ const Result = () => {
                   D'après tes réponses, je pense que ton profil est tourné vers<br />
                   <b> {loading ? "loading" : result?.type_of_job ? result.type_of_job : "Currently no job available"} </b> comme par exemple <b>  {loading ? "loading" : result?.example_of_job ? result.example_of_job : "Currently no example available"}</b>
                 </p>}
-                <p className="resultText">Je te propose une liste de voeux Parcoursup qui correspondrait à ton profil</p>
+                <p className="resultText">Je te propose une liste de voeux Parcoursup qui correspondrait à ton profil.</p>
               </div>
               <div className="resultButtondiv">
                 <button className="resultButton" onClick={() => setresultStep(1)}>
@@ -95,8 +95,8 @@ const Result = () => {
                         </>
                       ))}
                       <div className="buttonDiv">
-                        <button className="sharebutton"><img src={userimg} /><span style={{ marginTop: "2px" }}>Invite un</span></button>
-                        <button className="sharebutton"><img src={share} /><b style={{ marginTop: "2px" }}> Partager</b></button>
+                        <button className="sharebutton"><img src={userimg} /><b style={{ margin: "12px" }}>Invite un</b></button>
+                        <button className="sharebutton"><img src={share} /><b style={{ margin: "12px" }}> Partager</b></button>
                       </div>
                     </div>
                   ) : (
