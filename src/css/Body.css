@@ -16,14 +16,14 @@
 }
 .bodyimg {
   height: 100vh;
-  width: 75%;
+  width: 70%;
 }
 
 .body-rectangle {
   color: white !important;
   background: #343747 !important;
-  width: 75% !important;
-  height: 130px !important;
+  width: 65% !important;
+  height: 140px !important;
   margin: auto !important;
   position: relative !important;
   bottom: 135px !important;
@@ -46,10 +46,11 @@
   border: none;
   margin: 30px 0px 0px 0px;
   border-radius: 100px;
-  padding: 20px 40px 20px 13px;
+  padding: 20px 75px 20px 13px;
   color: white;
   cursor: pointer;
   font-size: 16px;
+  font-weight: 900;
 
   background: linear-gradient(
     265.05deg,
@@ -158,7 +159,7 @@
 /* for big screens */
 @media only screen and (min-device-width: 1500px) and (max-device-width: 1900px) {
   .body-rectangle {
-    width: 75% !important;
+    width: 65% !important;
     height: 155px !important;
     bottom: 160px !important;
   }

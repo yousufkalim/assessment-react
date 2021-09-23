@@ -74,7 +74,6 @@ const Questions = ({ setStep, setActiveStep }) => {
   };
   //it set the current answer which will be selected
   const currentans = () => {
-    console.log("1first");
     let currentans = prevQuestion?.find(
       (q) => q.question?._id === getQuestion()?._id
     );
@@ -90,7 +89,6 @@ const Questions = ({ setStep, setActiveStep }) => {
       return;
     }
     if (nextQuestionId === "first") {
-      console.log("first", questions);
       return questions?.find((question) => question.isFirst);
     } else {
       return questions?.find((question) => question._id === nextQuestionId);

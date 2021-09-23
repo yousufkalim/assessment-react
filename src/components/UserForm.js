@@ -132,8 +132,8 @@ const UserForm = ({ setStep, setActiveStep }) => {
 
     let res = await axios.get(
       "https://api-adresse.data.gouv.fr/search/?q=" +
-        e.target.value +
-        "&type=street&autocomplete=1",
+      e.target.value +
+      "&type=street&autocomplete=1",
       {
         withCredentials: false,
       }
@@ -233,8 +233,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
           <Grid container className="userformgrid">
             <Grid item xs={12} sm={12} className="">
               <h3 className="formheading">
-                Pour mieux te conseiller, j’ai besoin
-                <br className="br" /> d’en savoir davantage sur toi !
+                Pour mieux te conseiller, j’ai
               </h3>
             </Grid>
             <Grid container spacing={2} className="">
@@ -269,7 +268,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   name="date_of_birth"
                   value={date_of_birth}
                   onChange={onChange}
-                  placeholder="Date de naissance"
+                  placeholder="Date de "
                   className="inputField"
                   required
                 />
@@ -315,7 +314,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   name="phone"
                   value={phone}
                   onChange={onChange}
-                  placeholder="Numéro de téléphone"
+                  placeholder="Numéro de "
                   className="inputField"
                   required
                 />
@@ -346,13 +345,13 @@ const UserForm = ({ setStep, setActiveStep }) => {
                 <Autocomplete
                   options={
                     education_level == "Quatrième" ||
-                    education_level == "Troisième"
+                      education_level == "Troisième"
                       ? institutes?.filter(
-                          (institute) => institute.type == "College"
-                        )
+                        (institute) => institute.type == "College"
+                      )
                       : institutes?.filter(
-                          (institute) => institute.type == "School"
-                        )
+                        (institute) => institute.type == "School"
+                      )
                   }
                   freeSolo
                   getOptionLabel={(option) => option.name}
@@ -396,7 +395,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   onClick={() => setStep(0)}
                 >
                   <img src={arrowleft} className="arrowleft" />
-                  Retour
+                  <b>    Retour</b>
                 </div>
               </Grid>
               <Grid xs={12} sm={4}></Grid>
@@ -407,7 +406,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   size="large"
                   type="submit"
                 >
-                  {loading ? "Loading..." : "Commencer le test"}
+                  <b>      {loading ? "Loading..." : "Commencer le test"}</b>
                 </button>
               </Grid>
             </Grid>

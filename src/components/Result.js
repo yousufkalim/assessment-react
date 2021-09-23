@@ -7,7 +7,6 @@ import MainMobile from "../assets/img/mobileform.png";
 import TypeOfCourse from "./TypeOfCourse";
 import userimg from "../assets/icons/user.png";
 import share from "../assets/icons/share.png";
-import Card from "../components/dashboard/Card";
 
 const Result = () => {
   let typeOfCourses = ["BTS", "BUT", "CPGE", "Ecole Post-Bac", "Licence"];
@@ -16,7 +15,6 @@ const Result = () => {
   const { history, user, disc_ans_id, result } = Store();
   const [loading, setLoading] = useState(false);
   const [resultStep, setresultStep] = useState(0);
-  const [showDetail, setShowDetail] = useState(false);
   useEffect(() => {
     getResult();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,7 +39,6 @@ const Result = () => {
     result.courses.filter(
       (course) => type === course?.courseId?.type_of_course
     );
-  console.log("result ", result);
   return (
     <>
       {resultStep == 0 && (
@@ -55,7 +52,7 @@ const Result = () => {
               <div className="resultBoxText">
                 <h1 className="" style={{ textAlign: "center" }}>
 
-                  Bravo ! Tu as répondu à toutes les questions !{" "}
+                  Bravo ! Tu as répondu à toutes{" "}
                 </h1>
                 {loading ? <p className="resultText">Loading...</p> : <p className="resultText">
                   D'après tes réponses, je pense que ton profil est tourné vers<br />
@@ -65,7 +62,7 @@ const Result = () => {
               </div>
               <div className="resultButtondiv">
                 <button className="resultButton" onClick={() => setresultStep(1)}>
-                  Ma liste Parcoursup
+                  <b>  Ma liste Parcoursup</b>
                 </button>
               </div>
             </div>
@@ -100,14 +97,14 @@ const Result = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="cardflex" style={{ margin: "0px" }}>
-                      <h1>No Course Available</h1>
+                    <div className="" style={{ margin: "10px", textAlign: "center" }}>
+                      <h1> Sorry no course available</h1>
                     </div>
                   )}
                 </div>
               ) : (
-                <div className="cardflex" style={{ margin: "0px" }}>
-                  <h1>Load!ng...</h1>
+                <div className="" style={{ margin: "10px", textAlign: "center" }}>
+                  <h1>Loading...</h1>
                 </div>
               )}
             </div>

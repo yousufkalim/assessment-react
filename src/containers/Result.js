@@ -48,21 +48,17 @@ const Result = () => {
         {!loading ? (
           <div style={{ padding: "5px" }}>
             {singleUserResult?.courses &&
-            singleUserResult?.courses.length >= 1 ? (
+              singleUserResult?.courses.length >= 1 ? (
               <div className="cardflex">
                 {typeOfCourses.map((type) => (
                   <>
                     {getSingleTypeofCourse(type)[0]?.courseId?.type_of_course ==
                       type && (
-                      <div>
-                        <h3>Type of Course : {type}</h3>
-                        {console.log(
-                          "for test later",
-                          getSingleTypeofCourse(type)
-                        )}
-                        <Card courses={getSingleTypeofCourse(type)} />
-                      </div>
-                    )}
+                        <div>
+                          <h3>Type of Course : {type}</h3>
+                          <Card courses={getSingleTypeofCourse(type)} />
+                        </div>
+                      )}
                   </>
                 ))}
                 {/* {singleUserResult?.courses.map((course) => (
