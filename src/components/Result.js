@@ -100,14 +100,14 @@ const Result = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="cardflex" style={{ margin: "0px" }}>
-                      <h1>No Course Available</h1>
+                    <div className="" style={{ margin: "10px", textAlign: "center" }}>
+                      <h1> Sorry no course available</h1>
                     </div>
                   )}
                 </div>
               ) : (
-                <div className="cardflex" style={{ margin: "0px" }}>
-                  <h1>Load!ng...</h1>
+                <div className="" style={{ margin: "10px", textAlign: "center" }}>
+                  <h1>Loading...</h1>
                 </div>
               )}
             </div>

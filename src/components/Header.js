@@ -54,7 +54,7 @@ export default function Header() {
           style={{ textDecoration: "none", color: "white" }}
         >
           <Typography className={flag ? "title b" : "hidetitle b"}>
-            Comment ca marche ?
+            Comment ça marche ?
           </Typography>
         </AnchorLink>
       </Toolbar>
