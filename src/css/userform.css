@@ -155,6 +155,10 @@
   .dummyGrid {
     margin-top: 0% !important;
   }
+  .selectformControl {
+    width: 87% !important;
+    
+  }
 }
 
 /* for mbile */

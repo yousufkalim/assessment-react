@@ -16,14 +16,14 @@
 }
 .bodyimg {
   height: 100vh;
-  width: 75%;
+  width: 70%;
 }
 
 .body-rectangle {
   color: white !important;
   background: #343747 !important;
-  width: 75% !important;
-  height: 130px !important;
+  width: 65% !important;
+  height: 140px !important;
   margin: auto !important;
   position: relative !important;
   bottom: 135px !important;
@@ -159,7 +159,7 @@
 /* for big screens */
 @media only screen and (min-device-width: 1500px) and (max-device-width: 1900px) {
   .body-rectangle {
-    width: 75% !important;
+    width: 65% !important;
     height: 155px !important;
     bottom: 160px !important;
   }

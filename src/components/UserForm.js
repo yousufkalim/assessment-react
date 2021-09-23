@@ -395,7 +395,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   onClick={() => setStep(0)}
                 >
                   <img src={arrowleft} className="arrowleft" />
-                  Retou
+                  <b>    Retour</b>
                 </div>
               </Grid>
               <Grid xs={12} sm={4}></Grid>
@@ -406,7 +406,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   size="large"
                   type="submit"
                 >
-                  {loading ? "Loading..." : "Commencer le test"}
+                  <b>      {loading ? "Loading..." : "Commencer le test"}</b>
                 </button>
               </Grid>
             </Grid>
