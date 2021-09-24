@@ -11,6 +11,7 @@ import proximate from "../../assets/icons/proximate.png";
 import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
+
 //Component
 function Cards({ courses }) {
 
