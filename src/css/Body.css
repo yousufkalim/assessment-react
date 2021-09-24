@@ -106,6 +106,7 @@
   display: none;
 }
 .forweb {
+  height: 60%;
   display: inherit;
   margin: auto;
 }
@@ -123,13 +124,15 @@
     display: none;
   }
   .formobile {
-    display: inherit;
-    margin: auto;
+    display: inherit; 
+    height: auto;
+    margin: auto ;
+    
   }
   .body-rectangle {
     width: 90% !important;
-    height: 40vh !important;
-    bottom: 150px !important;
+    height: 30vh !important;
+    bottom: 95px !important;
   }
   .grid1 {
     margin: auto;
@@ -147,6 +150,12 @@
   .partiButton {
     border: none;
     margin: 0px;
+    padding: 15px 35% 15px 35% !important;
+  }
+  .arrowright {
+    
+    right: 95px;
+    
   }
   .vidoSection {
     margin: -80px 0 0 0;

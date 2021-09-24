@@ -61,7 +61,7 @@
 .option:hover {
   background: linear-gradient(
     265.05deg,
-    #fece24 0%,
+    #fece24 0%, 
     #ff6d1a 50.66%,
     #ff29aa 101.84%
   );
@@ -79,5 +79,8 @@
   .questionBox::before {
     content: "";
     display: none;
+  }
+  .questionGrid{
+    margin-top: -22% !important;
   }
 }
