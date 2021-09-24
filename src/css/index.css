@@ -4,6 +4,7 @@
 @import url("./userform.css");
 @import url("./Question.css");
 @import url("./result.css");
+@import url("./dialog.css");
 body {
   font-family: lato;
   overflow-x: hidden;

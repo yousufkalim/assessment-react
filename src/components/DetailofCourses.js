@@ -1,5 +1,5 @@
 //init
-import React from "react";
+import React, { useState } from "react";
 import "../css/card.css";
 import Grid from "@material-ui/core/Grid";
 import selectivity from "../assets/icons/selectivity.png";
@@ -10,14 +10,16 @@ import proximate from "../assets/icons/proximate.png";
 
 import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import Dialog from "./Dialog"
 
 
 //Component
-function DetailofCourses({ courses }) {
+function DetailofCourses({ courses, open, setOpen }) {
 
     return (
         <>
 
+            <Dialog open={open} setOpen={setOpen} />
             {courses?.length >= 1 ? (
                 courses?.map((course) => (
                     <Grid container spacing={2} className="courseDetail">
