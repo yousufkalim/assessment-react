@@ -50,7 +50,7 @@ const Result = () => {
           <Grid item xs={12} sm={8} className="">
             <div className="resultBox">
               <div className="resultBoxText">
-                <h1 className="" style={{ textAlign: "center" }}>
+                <h1 className="resultHeading" style={{ textAlign: "center" }}>
 
                   Bravo ! Tu as répondu à toutes{" "}
                 </h1>

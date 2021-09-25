@@ -6,7 +6,7 @@
   margin: 20px auto;
   background: #343747;
   width: 70%;
-  border-radius: 18px;
+  border-radius: 30px;
   box-shadow: 1px 1px 8px 8px #2b2735;
   position: relative;
 }
@@ -43,6 +43,13 @@
 }
 .ratingGrid div p{
   opacity: 0.7;
+}
+.languageRating{
+  /* margin-top: 35px !important; */
+  padding-top: 13px !important;
+}
+.costRating{
+  padding-top: 7px !important;
 }
 .coursediv{
   font-weight: 900 !important;
@@ -115,7 +122,8 @@
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 812px) {
   .resultBox {
-    width: 70% !important;
+    width: 80% !important;
+    margin:-60% auto !important
     
   }
   .typeOfCourses {
@@ -154,4 +162,17 @@
     
     font-size: 12px !important;
   }
+  .resultHeading{
+    font-size: 20px !important;
+  }
+  .resultText {
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+  }
+  .resultBoxText {
+    margin: 0 auto 15px auto;
+    padding: 15px;
+  }
+  
+ 
 }
