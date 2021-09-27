@@ -24,6 +24,7 @@ export default function DialogBox({ open, setOpen }) {
             <BootstrapDialog
                 onClose={handleClose}
                 open={open}
+                style={{backdropFilter:"blur(4px)"}}
             >
                 <IconButton
                     className="closeButton"
@@ -34,7 +35,7 @@ export default function DialogBox({ open, setOpen }) {
                 </IconButton>
                 <DialogContent className="modalcontent">
                     <h3 className="dialogHeading">Besoin de plus d'informations<br /> sur ton projet d'études ? </h3>
-                    <Grid container spacing={1} className="">
+                    <Grid container spacing={1} className="popupcheckbox">
                         <Checkbox
                             inputProps={{ "aria-label": "secondary checkbox" }}
                             style={{ color: "white" }}
@@ -43,10 +44,10 @@ export default function DialogBox({ open, setOpen }) {
                         // onChange={onChange}
                         />
                         <span className="dialogcheckboxtext">
-                            Je veux recevoir des conseils, des informations, et des invitations à des <br />événements d'orientation en rapport avec mon projet.
+                            Je veux recevoir des conseils, des informations, et des invitations à des événements d'orientation en rapport avec mon projet.
                         </span>
                     </Grid>
-                    <Grid container spacing={1} className="">
+                    <Grid container spacing={1} className="popupcheckbox">
                         <Checkbox
                             inputProps={{ "aria-label": "secondary checkbox" }}
                             style={{ color: "white" }}
@@ -55,7 +56,7 @@ export default function DialogBox({ open, setOpen }) {
                         // onChange={onChange}
                         />
                         <span className="dialogcheckboxtext">
-                            Je souhaite être contacté gratuitement par un conseiller Orientator pour<br /> répondre davantage à mes questions ou clarifier certains aspects de mon<br /> projet.
+                            Je souhaite être contacté gratuitement par un conseiller Orientator pour répondre davantage à mes questions ou clarifier certains aspects de mon<br /> projet.
                         </span>
                     </Grid>
                     <Grid container spacing={1} className="dialoginputGrid">
@@ -75,7 +76,7 @@ export default function DialogBox({ open, setOpen }) {
                             name="email"
                             //   value={email}
                             //   onChange={onChange}
-                            placeholder="Number"
+                            placeholder="06.64.31.31.43"
                             className="dialoginputField"
                             required
                         />

@@ -46,7 +46,7 @@
   border: none;
   margin: 30px 0px 0px 0px;
   border-radius: 100px;
-  padding: 20px 75px 20px 13px;
+  padding: 20px 40px 20px 13px;
   color: white;
   cursor: pointer;
   font-size: 16px;
@@ -61,8 +61,8 @@
 }
 .arrowright {
   position: relative;
-  right: 28px;
-  top: 3px;
+  top: 4px;
+  right: 30px;
 }
 
 .h2 {
@@ -117,6 +117,9 @@
     height: auto;
     width: auto;
   }
+  .body-rectangleGrid2 {
+    padding: 25px 15px 0 15px !important;
+  }
   .mainbody {
     overflow-x: hidden;
   }
@@ -124,15 +127,14 @@
     display: none;
   }
   .formobile {
-    display: inherit; 
+    display: inherit;
     height: auto;
-    margin: auto ;
-    
+    margin: auto;
   }
   .body-rectangle {
     width: 90% !important;
     height: 30vh !important;
-    bottom: 95px !important;
+    bottom: 118px !important;
   }
   .grid1 {
     margin: auto;
@@ -153,15 +155,17 @@
     padding: 15px 35% 15px 35% !important;
   }
   .arrowright {
-    
-    right: 95px;
-    
+    right: -19%;
+    top: -39%;
   }
   .vidoSection {
     margin: -80px 0 0 0;
   }
   .videImage {
     width: 90%;
+  }
+  .footerGrid {
+    width: 75% !important;
   }
 }
 
@@ -171,6 +175,11 @@
     width: 65% !important;
     height: 155px !important;
     bottom: 160px !important;
+  }
+  .arrowright {
+    position: relative;
+    left: -28px;
+    top: 3px;
   }
   .h3 {
     font-size: 35px;

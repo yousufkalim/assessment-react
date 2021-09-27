@@ -6,6 +6,8 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import logo from "../assets/img/logo.png";
+import Navicon from "../assets/icons/navicon.png"
+import Closeicon from "../assets/icons/closeicon.png"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,9 +34,9 @@ export default function Header() {
             aria-label="menu"
             onClick={() => setFlag(!flag)}
           >
-            {flag ? "---" : "==="}
+            {flag ? <img src={Closeicon} /> : <img src={Navicon} />}
           </div>
-          <img src={logo} width="90%" />
+          <img src={logo} width="90%" className="logoImage" onClick={()=>window.location.reload()}/>
         </div>
 
         <AnchorLink
@@ -46,7 +48,7 @@ export default function Header() {
           }}
         >
           <Typography className={flag ? "title a" : "hidetitle a"}>
-            Accuiel
+            Accueil
           </Typography>
         </AnchorLink>
         <AnchorLink

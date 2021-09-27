@@ -4,9 +4,12 @@ import api from "../api";
 import Grid from "@material-ui/core/Grid";
 import Dummy from "../assets/img/dummy.png";
 import MainMobile from "../assets/img/mobileform.png";
+import CircularProgress from '@material-ui/core/CircularProgress';
 import TypeOfCourse from "./TypeOfCourse";
 import userimg from "../assets/icons/user.png";
 import share from "../assets/icons/share.png";
+import Loading from "./Loading";
+
 
 const Result = () => {
   let typeOfCourses = ["BTS", "BUT", "CPGE", "Ecole Post-Bac", "Licence"];
@@ -52,11 +55,11 @@ const Result = () => {
               <div className="resultBoxText">
                 <h1 className="resultHeading" style={{ textAlign: "center" }}>
 
-                  Bravo ! Tu as répondu à toutes{" "}
+                Bravo ! Tu as répondu à toutes les questions !
                 </h1>
-                {loading ? <p className="resultText">Loading...</p> : <p className="resultText">
+                {loading ? <p className="resultText"><CircularProgress color="inherit" /></p> : <p className="resultText">
                   D'après tes réponses, je pense que ton profil est tourné vers<br />
-                  <b> {loading ? "loading" : result?.type_of_job ? result.type_of_job : "Currently no job available"} </b> comme par exemple <b>  {loading ? "loading" : result?.example_of_job ? result.example_of_job : "Currently no example available"}</b>
+                  <b> {loading ? <div><CircularProgress color="inherit" /></div> : result?.type_of_job ? result.type_of_job : "Currently no job available"} </b> comme par exemple <b>  {loading ? "loading" : result?.example_of_job ? result.example_of_job : "Currently no example available"}</b>
                 </p>}
                 <p className="resultText">Je te propose une liste de voeux Parcoursup qui correspondrait à ton profil.</p>
               </div>
@@ -93,18 +96,21 @@ const Result = () => {
                       ))}
                       <div className="buttonDiv">
                         <button className="sharebutton"><img src={userimg} /><b style={{ margin: "12px" }}>Invite un</b></button>
-                        <button className="sharebutton"><img src={share} /><b style={{ margin: "12px" }}> Partager</b></button>
+                        <button className="sharebutton"><img src={share} /><b style={{ margin: "12px" }}> Partager </b></button>
                       </div>
                     </div>
                   ) : (
                     <div className="" style={{ margin: "10px", textAlign: "center" }}>
                       <h1> Sorry no course available</h1>
+                      <img src={Dummy} className="dummyimg " />
                     </div>
                   )}
                 </div>
               ) : (
-                <div className="" style={{ margin: "10px", textAlign: "center" }}>
-                  <h1>Loading...</h1>
+                
+                <div className="" style={{ margin: "10%", textAlign: "center" }}>
+                <h1>Loading...</h1>   
+                  <Loading/>
                 </div>
               )}
             </div>
