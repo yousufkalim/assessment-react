@@ -32,7 +32,7 @@
   width: 50% !important;
   margin: auto !important;
   margin-bottom: 25px !important;
-  border: 1px solid gray !important;
+  border: 1px solid #6e738c !important;
   background: #7d787c !important;
   border-radius: 100px !important;
   background: linear-gradient(
@@ -42,7 +42,7 @@
     #ff29aa 101.84%
   ) !important;
 }
-.selectedOption:hover {
+.selected.resultButtondiv:hover {
   background: linear-gradient(
     265.05deg,
     #fece24 0%,
@@ -55,13 +55,13 @@
   width: 50% !important;
   margin: auto !important;
   margin-bottom: 25px !important;
-  border: 1px solid gray !important;
+  border: 1px solid #6e738c !important;
   border-radius: 100px !important;
 }
 .option:hover {
   background: linear-gradient(
     265.05deg,
-    #fece24 0%, 
+    #fece24 0%,
     #ff6d1a 50.66%,
     #ff29aa 101.84%
   );
@@ -71,6 +71,7 @@
 @media only screen and (min-device-width: 320px) and (max-device-width: 812px) {
   .questionBox {
     text-align: center;
+    border-radius: 30px;
   }
   .questiontext {
     padding: 10px;
@@ -80,7 +81,7 @@
     content: "";
     display: none;
   }
-  .questionGrid{
+  .questionGrid {
     margin-top: -22% !important;
   }
 }

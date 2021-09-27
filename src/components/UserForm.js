@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { TextField, Checkbox } from "@material-ui/core";
+import CircularProgress from '@material-ui/core/CircularProgress';
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -233,7 +234,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
           <Grid container className="userformgrid">
             <Grid item xs={12} sm={12} className="">
               <h3 className="formheading">
-                Pour mieux te conseiller, j’ai
+              Pour mieux te conseiller, j’ai besoin d’en savoir davantage sur toi !
               </h3>
             </Grid>
             <Grid container spacing={2} className="">
@@ -268,7 +269,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   name="date_of_birth"
                   value={date_of_birth}
                   onChange={onChange}
-                  placeholder="Date de "
+                  placeholder="Date de naissance"
                   className="inputField"
                   required
                 />
@@ -286,7 +287,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   renderInput={(params) => (
                     <TextField
                       {...params}
-                      placeholder="Address"
+                      placeholder="Adresse"
                       style={{ color: "white" }}
                       variant="outlined"
                       onChange={getAllAdress}
@@ -314,7 +315,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   name="phone"
                   value={phone}
                   onChange={onChange}
-                  placeholder="Numéro de "
+                  placeholder="Numéro de téléphone"
                   className="inputField"
                   required
                 />
@@ -363,7 +364,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   renderInput={(params) => (
                     <TextField
                       {...params}
-                      placeholder="Schools"
+                      placeholder="Établissement actuel"
                       variant="outlined"
                       value={institute}
                       name="institute"
@@ -387,6 +388,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                 J’accepte les termes et les conditions
               </span>
             </Grid>
+            {loading && <div style={{margin:"auto"}}><CircularProgress/></div>}
             <Grid container spacing={2} className="formbuttonsGrid">
               <Grid xs={12} sm={4}>
                 <div
@@ -398,15 +400,18 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   <b>    Retour</b>
                 </div>
               </Grid>
+              
               <Grid xs={12} sm={4}></Grid>
+              
               <Grid xs={12} sm={4}>
                 <button
                   variant="contained"
                   className="formSubmitButton"
                   size="large"
                   type="submit"
+                  disabled={loading}
                 >
-                  <b>      {loading ? "Loading..." : "Commencer le test"}</b>
+                  <b>      {"Commencer le test"}</b>
                 </button>
               </Grid>
             </Grid>

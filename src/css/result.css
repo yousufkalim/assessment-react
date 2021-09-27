@@ -1,12 +1,12 @@
 .mainresultscreen {
- min-height: 100vh !important;
+  min-height: 100vh !important;
 }
 .resultBox {
   color: white;
-  margin: 20px auto;
+  margin: 40px auto;
   background: #343747;
   width: 70%;
-  border-radius: 30px;
+  border-radius: 18px;
   box-shadow: 1px 1px 8px 8px #2b2735;
   position: relative;
 }
@@ -20,55 +20,57 @@
   padding: 10px 0 10px 0;
   position: relative;
 }
-.courseDetail{
+.courseDetail {
+  padding-left: 20px;
   color: white;
   margin: 20px auto !important;
-  background:#242635;
+  background: #242635;
   width: 90% !important;
   border-radius: 12px;
-  
 }
-.courseDetail p{ opacity: 0.7;}
-.courseDetail h2{ font-size: 17px;}
+.courseDetail p {
+  opacity: 0.7;
+}
+.courseDetail h2 {
+  font-size: 17px;
+}
 
-.ratingGrid{
+.ratingGrid {
   display: flex !important;
   justify-content: space-evenly !important;
   text-align: center !important;
 }
-.ratingGrid div{
+.ratingGrid div {
   height: auto !important;
   margin: auto 0px !important;
   font-size: 10px !important;
 }
-.ratingGrid div p{
+.ratingGrid div p {
   opacity: 0.7;
 }
-.languageRating{
-  /* margin-top: 35px !important; */
-  padding-top: 13px !important;
+.languageRating {
+  padding-top: 12px !important;
 }
-.costRating{
-  padding-top: 7px !important;
+.costRating {
+  padding-top: 8px !important;
 }
-.coursediv{
+.coursediv {
   font-weight: 900 !important;
   padding: 15px 7px 15px 7px !important;
   margin: 0 4px 0 4px !important;
 }
-.courseType{
+.courseType {
   font-size: 25px !important ;
   padding: 6px 30px !important;
 }
-.percentageGrid{
+.percentageGrid {
   display: flex !important;
   justify-content: space-evenly !important;
   text-align: center;
   border-radius: 100px;
   padding: 5px !important;
-  
 }
-.searchimg{
+.searchimg {
   padding: 5px;
   margin-top: 2px;
 }
@@ -84,6 +86,7 @@
   text-align: center;
   padding: 2px;
   opacity: 0.7;
+  line-height: 1.8 !important;
 }
 .resultButtondiv {
   background: #46495c;
@@ -92,7 +95,7 @@
   border-bottom-left-radius: 18px;
   border-bottom-right-radius: 18px;
 }
-.resultButton{
+.resultButton {
   background: linear-gradient(
     265.05deg,
     #fece24 0%,
@@ -106,73 +109,78 @@
   color: white;
   padding: 15px 25px 15px 25px;
 }
-.buttonDiv{
-  width: 50%;
-  margin: auto;
+.buttonDiv {
   text-align: center;
   padding: 10px;
 }
-.sharebutton{
+.sharebutton {
   cursor: pointer;
+  border: none;
   border-radius: 100px;
-  background: linear-gradient(#FFFFFF,#BAC0D6);
-  padding: 13px 30px;
+  background: linear-gradient(#ffffff, #bac0d6);
+  padding: 15px 17px 15px 17px;
   margin: 20px;
-
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 812px) {
   .resultBox {
     width: 80% !important;
-    margin:-60% auto !important
-    
+    border-radius: 35px !important;
+    margin: -18% auto 6% auto !important;
+  }
+  .resultButtondiv {
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
   }
   .typeOfCourses {
-  
     width: 83% !important;
- 
   }
-  .coursediv{
+  .coursediv {
     font-weight: 900 !important;
     padding: 0px 7px 0px 7px !important;
     text-align: center !important;
     margin: 0 4px 0 4px !important;
   }
-  .courseType{
-    font-size: 15px !important ;
-    padding:  30px 10px 30px 10px !important;
+  .courseType {
+    font-size: 14px !important ;
+    padding: 40px 0px 30px 0px !important;
   }
-  .percentageGrid{  
-    margin: 20px 0px 17px 0px!important;
+  .percentageGrid {
+    height: fit-content !important;
+    margin: 20px 0px 17px 0px !important;
     font-size: 12px !important;
     padding: 12px !important;
-    
   }
-  .showhide{
+  .showhide {
     margin: 25px 0px 0px 10px !important;
   }
-  .courseDetail{
-    color: white;
-    margin: 20px auto !important;
-    background:#242635;
-    width: 90% !important;
+  .courseDetail {
+    padding-left: 5px;
+    width: 92% !important;
     border-radius: 25px;
-    
   }
-  .ratingGrid div{
-    
-    font-size: 12px !important;
+
+  .ratingGrid {
+    justify-content: space-between !important;
+    padding: 3px !important;
   }
-  .resultHeading{
-    font-size: 20px !important;
+
+  .resultHeading {
+    font-size: 23px !important;
+    font-weight: 900;
   }
   .resultText {
-    font-size: 15px !important;
-    line-height: 1.5 !important;
+    font-size: 14px !important;
+    line-height: 1.8 !important;
+    word-break: break-all !important;
+  }
+  .textonmobile {
+    display: none;
   }
   .resultBoxText {
     margin: 0 auto 15px auto;
     padding: 15px;
   }
-  
- 
+  .resultButton {
+    padding: 15px 50px 15px 50px;
+  }
 }

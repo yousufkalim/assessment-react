@@ -26,8 +26,8 @@ function DetailofCourses({ courses, open, setOpen }) {
                         <Grid item xs={12} sm={5}><p>{course?.courseId?.sub_domains} </p><h2> {course?.courseId?.course_name}</h2></Grid>
                         <Grid item xs={12} sm={7} className="ratingGrid">
 
-                            <div><p><img src={selectivity} /></p><p>Séléctivité</p><div><b style={{ fontSize: "15px" }}>4/5</b></div></div>
-                            <div className="costRating"><p><img src={cost} /></p><p>Coût</p><div>
+                            <div><img src={selectivity} /><p className="textonmobile">Séléctivité</p><div><b style={{ fontSize: "15px" }}>{course?.selectivityrating? course?.selectivityrating[0]:course?.courseId?.selectivity[0]?course?.courseId?.selectivity[0]:"N/A"}/5</b></div></div>
+                            <div className="costRating"><img src={cost} /><p className="textonmobile">Coût</p><div>
 
                                 {course?.courseId?.cost ? (<>
                                     {[1, 2, 3, 4, 5].map((item) => {
@@ -37,9 +37,9 @@ function DetailofCourses({ courses, open, setOpen }) {
                                             return (
                                                 <StarBorderIcon style={{ width: "12px", height: "20px" }} />
                                             );
-                                    })}</>) : "No"}
+                                    })}</>) : "N/A"}
                             </div></div>
-                            <div className="languageRating" ><p><img src={language} /></p><p>Langue</p><div>  {course?.courseId?.languagestar ? (<>
+                            <div className="languageRating" ><img src={language} /><p className="textonmobile" >Langue</p><div>  {course?.courseId?.languagestar ? (<>
                                 {[1, 2, 3, 4, 5].map((item) => {
                                     if (course?.courseId?.languagestar[0] >= item) {
                                         return <StarIcon style={{ width: "12px", height: "20px" }} />;
@@ -47,9 +47,17 @@ function DetailofCourses({ courses, open, setOpen }) {
                                         return (
                                             <StarBorderIcon style={{ width: "12px", height: "20px" }} />
                                         )
-                                })}</>) : "No"}</div></div>
-                            <div><p><img src={duration} /></p><p>Durée</p><div>{[1, 2, 3, 4, 5].map(item => <StarIcon style={{ width: "12px", height: "20px" }} />)}</div></div>
-                            <div><p><img src={proximate} /></p><p>Proximité</p><div>{[1, 2, 3, 4, 5].map(item => <StarIcon style={{ width: "12px", height: "20px" }} />)}</div></div>
+                                })}</>) : "N/A"}</div></div>
+                            <div><img src={duration} /><p className="textonmobile">Durée</p><div>{course?.courseId?.duration ? (<>
+                                {[1, 2, 3, 4, 5].map((item) => {
+                                    if (course?.courseId?.duration[0] >= item) {
+                                        return <StarIcon style={{ width: "12px", height: "20px" }} />;
+                                    } else
+                                        return (
+                                            <StarBorderIcon style={{ width: "12px", height: "20px" }} />
+                                        )
+                                })}</>) : "N/A"}</div></div>
+                            <div><img src={proximate} /><p className="textonmobile">Proximité</p><div>{[1, 2, 3, 4, 5].map(item => <StarIcon style={{ width: "12px", height: "20px" }} />)}</div></div>
 
 
 

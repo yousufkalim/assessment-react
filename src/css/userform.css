@@ -157,7 +157,6 @@
   }
   .selectformControl {
     width: 87% !important;
-    
   }
 }
 
@@ -186,13 +185,13 @@
   }
   .dummyimg {
     height: auto;
-    margin-left: 12px;
+    margin-left: 25px !important;
   }
   .responsiveform {
     margin-top: -28% !important;
   }
 
-  .selectformControl { 
+  .selectformControl {
     margin: 15px 0px 0px 0 !important;
   }
   .mainuserform {
@@ -203,6 +202,7 @@
   }
   .termsandcondition {
     width: 80%;
+    font-size: 14px;
   }
   .formbackbutton {
     width: 80%;
@@ -210,5 +210,8 @@
   }
   .formSubmitButton {
     width: 80%;
+  }
+  .steplabel {
+    display: none;
   }
 }

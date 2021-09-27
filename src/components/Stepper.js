@@ -94,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ["Depart !", "Qui suis-je ?", "Mon test", "Mes resultats"];
+  return ["Départ !", "Qui suis-je ?", "Mon test", "Mes résultats"];
 }
 
 export default function CustomizedSteppers({ activeStep, setActiveStep }) {
@@ -114,6 +114,7 @@ export default function CustomizedSteppers({ activeStep, setActiveStep }) {
           <Step key={label}>
             <StepLabel StepIconComponent={ColorlibStepIcon}>
               <span
+              className="steplabel"
                 style={{
                   color: "gray",
                 }}
