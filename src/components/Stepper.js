@@ -9,6 +9,9 @@ import HelpIcon from "@material-ui/icons/Help";
 import FlagIcon from "@material-ui/icons/Flag";
 import CreateIcon from "@material-ui/icons/Create";
 import StepConnector from "@material-ui/core/StepConnector";
+import editicon from "../assets/icons/Frame.png"
+import step1 from "../assets/icons/step1.png"
+import step4 from "../assets/icons/step4.png"
 
 const ColorlibConnector = withStyles({
   alternativeLabel: {
@@ -62,10 +65,10 @@ function ColorlibStepIcon(props) {
   const { active, completed } = props;
 
   const icons = {
-    1: <ViewQuiltIcon />,
-    2: <CreateIcon />,
+    1: <img src={step1} />,
+    2: <img src={editicon} />,
     3: <HelpIcon />,
-    4: <FlagIcon />,
+    4: <img src={step4} />,
   };
 
   return (
@@ -110,13 +113,13 @@ export default function CustomizedSteppers({ activeStep, setActiveStep }) {
         connector={<ColorlibConnector />}
         className="stepper"
       >
-        {steps.map((label) => (
+        {steps.map((label,index) => (
           <Step key={label}>
             <StepLabel StepIconComponent={ColorlibStepIcon}>
               <span
               className="steplabel"
                 style={{
-                  color: "gray",
+                  color: `${activeStep==index?"white":"gray"}`,
                 }}
               >
                 {label}

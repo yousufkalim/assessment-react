@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Store, UpdateStore } from "../StoreContext";
 import Dummy from "../assets/img/dummy.png";
 import MainMobile from "../assets/img/mobileform.png";
+import qarrow from "../assets/icons/qarrow.png"
 import Grid from "@material-ui/core/Grid";
 
 const Questions = ({ setStep, setActiveStep }) => {
@@ -110,6 +111,7 @@ const Questions = ({ setStep, setActiveStep }) => {
       </Grid>
       <Grid item xs={12} sm={8} className="questionGrid">
         <div className={classes.main}>
+          <img src={qarrow}  className="qboximg"/>
           <div className="questionBox">
             <h1 className="questiontext">
               {getQuestion()?.question

@@ -25,7 +25,7 @@
   color: white;
   margin: 20px auto !important;
   background: #242635;
-  width: 90% !important;
+  width: 95% !important;
   border-radius: 12px;
 }
 .courseDetail p {
@@ -61,7 +61,7 @@
 }
 .courseType {
   font-size: 25px !important ;
-  padding: 6px 30px !important;
+  padding: 6px 30px 6px 40px !important;
 }
 .percentageGrid {
   display: flex !important;
@@ -118,7 +118,7 @@
   border: none;
   border-radius: 100px;
   background: linear-gradient(#ffffff, #bac0d6);
-  padding: 15px 17px 15px 17px;
+  padding: 15px 27px 15px 27px;
   margin: 20px;
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 812px) {
@@ -141,14 +141,15 @@
     margin: 0 4px 0 4px !important;
   }
   .courseType {
-    font-size: 14px !important ;
-    padding: 40px 0px 30px 0px !important;
+    text-align: left !important;
+    font-size: 20px !important ;
+    padding: 40px 0px 30px 17px !important;
   }
   .percentageGrid {
     height: fit-content !important;
-    margin: 20px 0px 17px 0px !important;
+    margin: 30px 0px 17px 0px !important;
     font-size: 12px !important;
-    padding: 12px !important;
+    /* padding: 3px !important; */
   }
   .showhide {
     margin: 25px 0px 0px 10px !important;
@@ -163,10 +164,25 @@
     justify-content: space-between !important;
     padding: 3px !important;
   }
-
+  .ratingGrid div {
+    font-size: 40px !important;
+  }
+  .languageRating {
+    padding-top: 0px !important;
+  }
+  .costRating {
+    padding-top: 0px !important;
+  }
+  .selectivitydiv {
+    padding-bottom: 8px !important;
+  }
+  .searchimg {
+    padding: 0px;
+    margin-top: 5px;
+  }
   .resultHeading {
-    font-size: 23px !important;
-    font-weight: 900;
+    font-size: 21px !important;
+    line-height: 1.5 !important;
   }
   .resultText {
     font-size: 14px !important;
@@ -182,5 +198,12 @@
   }
   .resultButton {
     padding: 15px 50px 15px 50px;
+  }
+}
+
+/* for big screens */
+@media only screen and (min-device-width: 1500px) and (max-device-width: 1900px) {
+  .courseType {
+    padding: 6px 30px 6px 65px !important;
   }
 }

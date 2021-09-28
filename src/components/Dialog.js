@@ -34,7 +34,7 @@ export default function DialogBox({ open, setOpen }) {
                     <CloseIcon style={{ color: "white" }} />
                 </IconButton>
                 <DialogContent className="modalcontent">
-                    <h3 className="dialogHeading">Besoin de plus d'informations<br /> sur ton projet d'études ? </h3>
+                    <h3 className="dialogHeading">Besoin de plus d'informations sur <br className="br"/> ton projet d'études ? </h3>
                     <Grid container spacing={1} className="popupcheckbox">
                         <Checkbox
                             inputProps={{ "aria-label": "secondary checkbox" }}
@@ -56,7 +56,7 @@ export default function DialogBox({ open, setOpen }) {
                         // onChange={onChange}
                         />
                         <span className="dialogcheckboxtext">
-                            Je souhaite être contacté gratuitement par un conseiller Orientator pour répondre davantage à mes questions ou clarifier certains aspects de mon<br /> projet.
+                            Je souhaite être contacté gratuitement par un conseiller Orientator pour répondre davantage à mes questions ou clarifier certains aspects de mon<br className="br"/> projet.
                         </span>
                     </Grid>
                     <Grid container spacing={1} className="dialoginputGrid">
