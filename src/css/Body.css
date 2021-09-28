@@ -105,6 +105,9 @@
 .formobile {
   display: none;
 }
+.formobileBodyImg {
+  display: none;
+}
 .forweb {
   display: inherit;
   margin: auto;
@@ -130,11 +133,16 @@
     height: auto;
     margin: auto;
   }
+  .formobileBodyImg {
+    display: inherit;
+    height: 62vh;
+    margin: auto;
+  }
 
   .body-rectangle {
     width: 90% !important;
     height: 30vh !important;
-    bottom: 118px !important;
+    bottom: 60px !important;
   }
   .grid1 {
     margin: auto;

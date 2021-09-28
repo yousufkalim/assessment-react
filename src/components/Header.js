@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const scrollToTop = () => {
   window.scrollTo({
-    top: 115,
+    top: 95,
     behavior: "smooth",
   });
 };
@@ -40,7 +40,7 @@ export default function Header() {
             aria-label="menu"
             onClick={() => setFlag(!flag)}
           >
-            {flag ? <img src={Closeicon} /> : <img src={Navicon} />}
+            {flag ? <img src={Closeicon} className="navicon" /> : <img src={Navicon} className="navicon" />}
           </div>
           <img src={logo} width="90%" className="logoImage" onClick={()=>window.location.reload()}/>
         </div>
