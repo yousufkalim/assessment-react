@@ -14,7 +14,7 @@ const Landing = ({ setStep }) => {
     <>
     <div className="main" id="top">
       <img src={Main} className="bodyimg forweb" />
-      <img src={MainMobile} className="bodyimg formobileBodyImg " />
+      <img src={MainMobile} className="bodyimg formobile " />
       <Grid container spacing={2} className="body-rectangle">
         <Grid item xs={12} sm={9} className="body-rectangleGrid2">
           <h3 className="h3">Commençons le test d'orientation !</h3>
@@ -31,7 +31,7 @@ const Landing = ({ setStep }) => {
         </Grid>
       </Grid>
       <div id="comment" className="vidoSection">
-        <h2 className="h2"></h2>
+      <h2 className="h2">Comment ça marche ?</h2>
       </div>
       <div style={{ margin: "10px" }}>
         <img src={VideoImage} className="videImage" />
