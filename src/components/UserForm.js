@@ -234,10 +234,10 @@ const UserForm = ({ setStep, setActiveStep }) => {
           <Grid container className="userformgrid">
             <Grid item xs={12} sm={12} className="">
               <h3 className="formheading">
-              Pour mieux te conseiller, j’ai besoin d’en savoir davantage sur toi !
+              Pour mieux te conseiller, j’ai besoin  <br className="br"/>d’en savoir davantage sur toi !
               </h3>
             </Grid>
-            <Grid container spacing={2} className="">
+            <Grid container spacing={2} className="inputgrid1">
               <Grid item xs={12} sm={6} className="inputGrid">
                 <input
                   name="first_name"
@@ -259,7 +259,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                 />
               </Grid>
             </Grid>
-            <Grid container spacing={2} className="">
+            <Grid container spacing={2} className="inputgrid1">
               <Grid item xs={12} sm={6} className="inputGrid">
                 <input
                   type={dateType}
@@ -281,7 +281,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   onChange={SetAddress}
                   hiddenLabel="true"
                   style={{
-                    width: "89%",
+                    width: "91%",
                     margin: "auto",
                   }}
                   renderInput={(params) => (
@@ -358,7 +358,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   getOptionLabel={(option) => option.name}
                   onChange={handleChangeSchool}
                   style={{
-                    width: "89%",
+                    width: "91%",
                     margin: "auto",
                   }}
                   renderInput={(params) => (

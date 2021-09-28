@@ -18,6 +18,12 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "lato",
   },
 }));
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 95,
+    behavior: "smooth",
+  });
+};
 
 export default function Header() {
   const classes = useStyles();
@@ -34,20 +40,20 @@ export default function Header() {
             aria-label="menu"
             onClick={() => setFlag(!flag)}
           >
-            {flag ? <img src={Closeicon} /> : <img src={Navicon} />}
+            {flag ? <img src={Closeicon} className="navicon" /> : <img src={Navicon} className="navicon" />}
           </div>
           <img src={logo} width="90%" className="logoImage" onClick={()=>window.location.reload()}/>
         </div>
-
+ 
         <AnchorLink
-          href="#top"
+          href={`${!flag?"#top":""}`}
           style={{
             textDecoration: "none",
             color: "white",
             padding: "0 25px 0 0",
           }}
         >
-          <Typography className={flag ? "title a" : "hidetitle a"}>
+          <Typography className={flag ? "title a" : "hidetitle a"} onClick={()=>{flag && scrollToTop()}}>
             Accueil
           </Typography>
         </AnchorLink>

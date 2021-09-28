@@ -58,7 +58,7 @@ const Result = () => {
                 Bravo ! Tu as répondu à toutes les questions !
                 </h1>
                 {loading ? <p className="resultText"><CircularProgress color="inherit" /></p> : <p className="resultText">
-                  D'après tes réponses, je pense que ton profil est tourné vers<br />
+                  D'après tes réponses, je pense que ton profil est tourné vers<br  />
                   <b> {loading ? <div><CircularProgress color="inherit" /></div> : result?.type_of_job ? result.type_of_job : "Currently no job available"} </b> comme par exemple <b>  {loading ? "loading" : result?.example_of_job ? result.example_of_job : "Currently no example available"}</b>
                 </p>}
                 <p className="resultText">Je te propose une liste de voeux Parcoursup qui correspondrait à ton profil.</p>

@@ -11,10 +11,11 @@
 }
 .dummyGrid {
   text-align: center !important;
-  margin-top: 6% !important;
+  margin-top: 3% !important;
 }
 .dummyimg {
-  height: 60%;
+  height: 75%;
+  margin: auto auto auto 20%;
 }
 
 .userform {
@@ -73,6 +74,10 @@
 }
 .selectforeducation {
   height: 6vh;
+}
+/* address icon */
+.MuiAutocomplete-popupIndicator {
+  display: none !important;
 }
 
 /* education level placeholder */
@@ -147,16 +152,37 @@
   text-align: center;
   color: white;
   margin: 20px 20px 20px 20px;
-  padding: 15px 25px 15px 25px;
+  padding: 16px 25px 16px 25px;
 }
 
 /* for big screens */
 @media only screen and (min-device-width: 1500px) and (max-device-width: 1900px) {
   .dummyGrid {
-    margin-top: 0% !important;
+    margin-top: 2% !important;
+  }
+  .dummyimg {
+    height: 60% !important;
+    margin: auto auto auto 30%;
+  }
+  .formheading {
+    font-weight: 500;
+    font-size: 32px;
+
+    margin: 10px 0px 10px 0px;
+    padding: 10px;
   }
   .selectformControl {
     width: 87% !important;
+  }
+  /* education level placeholder */
+  .MuiInputLabel-outlined {
+    margin: 0px 0 0 0 !important;
+  }
+  .termsandconditionGrid {
+    margin: 0 0 0 20px !important;
+  }
+  .formbackbutton {
+    margin: 20px 20px 20px 35px;
   }
 }
 
@@ -164,20 +190,27 @@
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 812px) {
   * {
-    /* overflow-x: hidden; */
+    /* overflow-x: hidden;  */
     width: auto;
   }
   .stepperMain {
     width: 100%;
   }
+  .br {
+    display: none;
+  }
   .formheading {
-    font-size: 20px;
+    font-size: 17px;
     text-align: center;
     margin: 10px;
     padding: 10px;
   }
-  .br {
-    display: none;
+  .inputGrid {
+    margin: 4px 0 4px 0 !important;
+    text-align: center !important;
+  }
+  .inputgrid1 {
+    margin-bottom: 8px !important;
   }
   .dummyGrid {
     text-align: center !important;
@@ -206,7 +239,7 @@
   }
   .formbackbutton {
     width: 80%;
-    margin: 25px auto 20px auto;
+    margin: 0px auto 0px auto;
   }
   .formSubmitButton {
     width: 80%;

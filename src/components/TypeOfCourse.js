@@ -30,13 +30,13 @@ const TypeOfCourse = ({ type, percentage, courses }) => {
 
         <div className="typeOfCourses">
             <Grid container spacing={3} className="coursediv">
-                <Grid item xs={3} sm={8} className="courseType"> {type}</Grid>
-                <Grid item xs={6} sm={2} style={{ background: `${getPercentageColor(percentage)}` }} className="percentageGrid" ><img src={search} className="searchimg" /><b style={{ marginTop: "5px" }}>Compatible à {percentage}</b></Grid>
-                <Grid item xs={2} sm={2} className="showhide" onClick={() => {
+                <Grid item xs={4} sm={8} className="courseType"> {type}</Grid>
+                <Grid item xs={5} sm={3} style={{ background: `${getPercentageColor(percentage)}` }} className="percentageGrid" ><img src={search} className="searchimg" /><b style={{ marginTop: "5px" }}>Compatible à {percentage}%</b></Grid>
+                <Grid item xs={1} sm={1} className="showhide" onClick={() => {
                     setShowDetail(!showDetail)
                     !showDetail && setOpen(true)
 
-                }} style={{ textAlign: "center", cursor: "pointer" }}>{showDetail ? <img src={hide} /> : <img src={showhide} />} </Grid>
+                }} style={{ cursor: "pointer" }}>{showDetail ? <img src={hide} /> : <img src={showhide} />} </Grid>
 
             </Grid>
             {showDetail && <DetailofCourses courses={courses} open={open} setOpen={setOpen} />}

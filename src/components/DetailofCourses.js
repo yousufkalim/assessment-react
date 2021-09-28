@@ -26,7 +26,7 @@ function DetailofCourses({ courses, open, setOpen }) {
                         <Grid item xs={12} sm={5}><p>{course?.courseId?.sub_domains} </p><h2> {course?.courseId?.course_name}</h2></Grid>
                         <Grid item xs={12} sm={7} className="ratingGrid">
 
-                            <div><img src={selectivity} /><p className="textonmobile">Séléctivité</p><div><b style={{ fontSize: "15px" }}>{course?.selectivityrating? course?.selectivityrating[0]:course?.courseId?.selectivity[0]?course?.courseId?.selectivity[0]:"N/A"}/5</b></div></div>
+                            <div className="selectivitydiv"><img src={selectivity} /><p className="textonmobile">Séléctivité</p><div><b style={{ fontSize: "15px" }}>{course?.selectivityrating? course?.selectivityrating[0]:course?.courseId?.selectivity[0]?course?.courseId?.selectivity[0]:"N/A"}/5</b></div></div>
                             <div className="costRating"><img src={cost} /><p className="textonmobile">Coût</p><div>
 
                                 {course?.courseId?.cost ? (<>
