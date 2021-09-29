@@ -13,6 +13,7 @@ import Grid from "@material-ui/core/Grid";
 import Dummy from "../assets/img/dummy.png";
 import MainMobile from "../assets/img/mobileform.png";
 import arrowleft from "../assets/img/arrow2.png";
+import scrollToTop from "../utils/ScrollTop"
 
 import api from "../api";
 
@@ -91,6 +92,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
 
   // Get institutes data from API
   useEffect(() => {
+    scrollToTop()
     getSchoolData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
