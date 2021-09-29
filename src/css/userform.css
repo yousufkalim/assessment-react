@@ -17,6 +17,14 @@
   height: 75%;
   margin: auto auto auto 20%;
 }
+.dummyimgQuestion {
+  height: 75%;
+  margin: auto auto auto 20%;
+}
+.dummyimgResult {
+  height: 75%;
+  margin: auto auto auto 20%;
+}
 
 .userform {
   width: 50%;
@@ -169,6 +177,14 @@
   .dummyimg {
     height: 75% !important;
     margin: auto auto auto 30%;
+  }
+  .dummyimgQuestion {
+    height: 57% !important;
+    margin: 40px auto auto 30%;
+  }
+  .dummyimgResult {
+    height: 50% !important;
+    margin: 20px auto auto 30%;
   }
   .formheading {
     font-weight: 500;

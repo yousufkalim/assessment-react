@@ -47,7 +47,7 @@ const Result = () => {
       {resultStep == 0 && (
         <Grid container spacing={2} className="mainresultscreen">
           <Grid item xs={12} sm={4} className="">
-            <img src={Dummy} className="dummyimg forweb" />
+            <img src={Dummy} className="dummyimgResult forweb" />
             <img src={MainMobile} className="dummyimg formobile" />
           </Grid>
           <Grid item xs={12} sm={8} className="">
@@ -58,10 +58,10 @@ const Result = () => {
                 Bravo ! Tu as répondu à toutes les questions !
                 </h1>
                 {loading ? <p className="resultText"><CircularProgress color="inherit" /></p> : <p className="resultText">
-                  D'après tes réponses, je pense que ton profil est tourné vers<br  />
-                  <b> {loading ? <div><CircularProgress color="inherit" /></div> : result?.type_of_job ? result.type_of_job : "Currently no job available"} </b> comme par exemple <b>  {loading ? "loading" : result?.example_of_job ? result.example_of_job : "Currently no example available"}</b>
+                <span style={{color:"#9198A5"}}>  D'après tes réponses, je pense que ton profil est tourné vers</span><br  />
+                  <b> <span style={{color:"#BCC3CF",fontWeight:"900"}}>{loading ? <div><CircularProgress color="inherit" /></div> : result?.type_of_job ? result.type_of_job : "Currently no job available"} </span></b> <span style={{color:"#9198A5"}}>comme par exemple</span>  <span style={{color:"#BCC3CF",fontWeight:"900"}}> {loading ? "loading" : result?.example_of_job ?result.example_of_job : "Currently no example available"}</span>
                 </p>}
-                <p className="resultText">Je te propose une liste de voeux Parcoursup qui correspondrait à ton profil.</p>
+                <p className="resultText"><span style={{color:"#9198A5"}}>Je te propose une liste de voeux Parcoursup qui correspondrait à ton profil.</span></p>
               </div>
               <div className="resultButtondiv">
                 <button className="resultButton" onClick={() => setresultStep(1)}>
