@@ -86,7 +86,8 @@ const Questions = ({ setStep, setActiveStep }) => {
   const getQuestion = () => {
     if (nextQuestionId == null) {
       setStep(3);
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      // setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      setActiveStep(3)
       return;
     }
     if (nextQuestionId === "first") {
@@ -102,7 +103,6 @@ const Questions = ({ setStep, setActiveStep }) => {
     });
     return options;
   }
-
   return (
     <Grid container spacing={2} className="mainquestionscreen">
       <Grid item xs={12} sm={4} className="">

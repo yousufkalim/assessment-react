@@ -10,7 +10,6 @@ import userimg from "../assets/icons/user.png";
 import share from "../assets/icons/share.png";
 import Loading from "./Loading";
 
-
 const Result = () => {
   let typeOfCourses = ["BTS", "BUT", "CPGE", "Ecole Post-Bac", "Licence"];
   // init
@@ -76,21 +75,17 @@ const Result = () => {
       {resultStep == 1 && (
         <Grid container spacing={1} className="mainresultscreen">
           <Grid item xs={12} sm={12} className="">
-
             <div>
               {!loading ? (
                 <div>
                   {result?.courses && result?.courses.length >= 1 ? (
                     <div
-
                     >
                       {typeOfCourses.map((type) => (
                         <>
                           {getSingleTypeofCourse(type)[0]?.courseId?.type_of_course ==
                             type && (
-
                               <TypeOfCourse type={type} percentage={getSingleTypeofCourse(type)[0]?.percentage} courses={getSingleTypeofCourse(type)} />
-
                             )}
                         </>
                       ))}
@@ -106,17 +101,13 @@ const Result = () => {
                     </div>
                   )}
                 </div>
-              ) : (
-                
+              ) : ( 
                 <div className="" style={{ margin: "10%", textAlign: "center" }}>
                 <h1>Loading...</h1>   
                   <Loading/>
                 </div>
               )}
             </div>
-
-
-
           </Grid>
         </Grid>
       )
