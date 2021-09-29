@@ -5,6 +5,9 @@
   color: white;
   position: relative;
   bottom: 23%;
+  width: 74% !important;
+  margin: auto !important;
+  text-align: left !important;
 }
 .qboximg {
   width: 84%;
@@ -14,7 +17,7 @@
   padding-left: 30px;
 }
 .answerGrid {
-  padding: 1% 15% 0 20% !important;
+  padding: 1% 8% 0 13% !important;
 }
 .selectedOption {
   width: 50% !important;
@@ -95,9 +98,10 @@
     margin-top: auto;
   }
   .questionBox {
-    color: white;
-    position: relative;
-    bottom: 19%;
+    color: white !important;
+    position: relative !important;
+    bottom: 19% !important;
+    width: 64% !important;
   }
   .answerGrid {
     padding: 1% 20% 0 25% !important;
