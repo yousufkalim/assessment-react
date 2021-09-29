@@ -101,7 +101,7 @@ const Questions = ({ setStep, setActiveStep }) => {
       return answer.question._id === getQuestion()?._id;
     });
     return options;
-  };
+  }
 
   return (
     <Grid container spacing={2} className="mainquestionscreen">
@@ -114,7 +114,7 @@ const Questions = ({ setStep, setActiveStep }) => {
           <img src={qarrow}  className="qboximg"/>
           <div className="questionBox">
             <h1 className="questiontext">
-              {getQuestion()?.question
+              {getQuestion()?.question 
                 ? getQuestion()?.question
                 : "There's no Question please try again"}
             </h1>

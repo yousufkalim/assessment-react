@@ -390,7 +390,6 @@ const UserForm = ({ setStep, setActiveStep }) => {
                 J’accepte les termes et les conditions
               </span>
             </Grid>
-            {loading && <div style={{margin:"auto"}}><CircularProgress/></div>}
             <Grid container spacing={2} className="formbuttonsGrid">
               <Grid xs={12} sm={4}>
                 <div
@@ -412,9 +411,12 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   size="large"
                   type="submit"
                   disabled={loading}
+                  style={{opacity:`${loading?"0.5":"1"}`}}
                 >
-                  <b>      {"Commencer le test"}</b>
+                  <b>      {loading? <div className="circulardiv"><CircularProgress size={20} className="" /></div>:"Commencer le test"}</b>
+                  
                 </button>
+              
               </Grid>
             </Grid>
           </Grid>

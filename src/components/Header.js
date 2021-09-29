@@ -12,8 +12,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     boxShadow: "none",
-    background: 'radial-gradient(97.47% 66.83% at 50% 50%, #202129 0%,   #000000 100%)',
-  
+    background:'radial-gradient(97.47% 66.83% at 50% 50%, #0e0f14 0%,   #000000 100%)',
     // background: "rgb(10 11 15)",
     color: "white",
     fontFamily: "lato",
