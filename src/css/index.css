@@ -8,6 +8,11 @@
 body {
   font-family: "lato", sans-serif !important;
   overflow-x: hidden;
+  background: radial-gradient(
+    97.47% 66.83% at 50% 50%,
+    #35384e 0%,
+    #000000 100%
+  ) !important;
 }
 * {
   font-family: "lato", sans-serif !important;

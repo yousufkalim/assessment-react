@@ -1,6 +1,13 @@
 .color {
   color: red;
 }
+.headerRoot {
+  background: transparent !important;
+  flex-grow: 1 !important;
+  box-shadow: none !important;
+  color: white !important;
+  font-family: lato !important;
+}
 .navIconbox {
   display: none;
   margin: 0 20px 0 12px;
@@ -80,5 +87,12 @@
   .navicon {
     width: 30px;
     height: 30px;
+  }
+}
+/* for mbile */
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 812px) {
+  .headerRoot {
+    background: #0e0f15 !important;
   }
 }

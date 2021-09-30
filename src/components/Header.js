@@ -12,8 +12,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     boxShadow: "none",
-    background:'radial-gradient(97.47% 66.83% at 50% 50%, #0e0f14 0%,   #000000 100%)',
-    // background: "rgb(10 11 15)",
+    // background:'radial-gradient(97.47% 66.83% at 50% 50%, #0e0f14 0%,   #000000 100%)',
+    // background:"linear-gradient(240deg, #0a0a0f, #000000f0)",
+    background:"transparent",
     color: "white",
     fontFamily: "lato",
   },
@@ -36,12 +37,12 @@ export default function Header() {
       return "";
   }
   else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
-      return "";
+      return "sticky";
   }
-  return "sticky";
+  return "";
  };
   return (
-    <AppBar color="black" position="sticky" className={classes.root}>
+    <AppBar color="black" position={deviceType()} className="headerRoot" >
       <Toolbar color="" className="showToolbar">
         <div className="logowithicondiv">
           <div

@@ -1,17 +1,17 @@
 .main {
-  background: radial-gradient(
+  /* background: radial-gradient(
     97.47% 66.83% at 50% 50%,
     #35384e 0%,
     #000000 100%
-  ) !important;
+  ) !important; */
   text-align: center;
 }
 .mainbody {
-  background: radial-gradient(
+  /* background: radial-gradient(
     97.47% 66.83% at 50% 50%,
     #35384e 0%,
     #000000 100%
-  ) !important;
+  ) !important; */
   color: white;
 }
 .bodyimg {
@@ -28,7 +28,7 @@
   position: relative !important;
   bottom: 97px !important;
   border-radius: 18px !important;
-  /* box-shadow: 1px 2px 1px 11px #2b2735 !important; */
+  /* box-shadow: 0px 1px 0px 13px rgb(72 68 68 / 10%) !important; */
   box-shadow: 0px 1px 0px 13px rgb(0 0 0 / 12%) !important;
 }
 .grid1 {

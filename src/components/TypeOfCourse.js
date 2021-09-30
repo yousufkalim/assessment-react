@@ -5,7 +5,6 @@ import search from "../assets/icons/search.png";
 import showhide from "../assets/icons/showhide.png";
 import hide from "../assets/icons/hide.png";
 
-
 const TypeOfCourse = ({ type, percentage, courses }) => {
     const [showDetail, setShowDetail] = useState(false);
     const [open, setOpen] = useState(false);
