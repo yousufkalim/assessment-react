@@ -70,6 +70,39 @@
 ::placeholder {
   color: #858b96;
 }
+/* for date picker */
+.react-datepicker {
+  background-color: #242635 !important;
+  color: white !important ;
+}
+.react-datepicker__header {
+  background: #242635 !important;
+  color: white !important;
+}
+.react-datepicker__day {
+  color: white !important;
+}
+.react-datepicker__day:hover {
+  color: #242635 !important;
+}
+.react-datepicker__current-month {
+  color: white !important;
+}
+.react-datepicker__day-name {
+  color: white !important;
+}
+.react-datepicker__day-name {
+  color: white !important;
+}
+/* for selelect education level field options */
+.MuiPopover-paper {
+  background: #242635 !important;
+  color: white !important;
+}
+.MuiMenuItem-root:hover {
+  background: #9198a5 !important ;
+}
+
 .selectformControl {
   border: none !important;
   background: #242635 !important;
@@ -123,7 +156,7 @@
   padding: 0 0 2px 5px !important;
 }
 .termsandconditionGrid {
-  margin: 12px 0 6px 10px !important;
+  margin: -5px 0 6px 10px !important;
 }
 .termsandcondition {
   color: #9198a5;
@@ -202,7 +235,7 @@
     margin: 0px 0 0 0 !important;
   }
   .termsandconditionGrid {
-    margin: 12px 0 8px 20px !important;
+    margin: -5px 0 8px 20px !important;
   }
   .formbackbutton {
     margin: 20px 20px 20px 35px;

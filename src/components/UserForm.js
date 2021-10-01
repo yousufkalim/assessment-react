@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { TextField, Checkbox } from "@material-ui/core";
+import "react-datepicker/dist/react-datepicker.css";
+import { TextField, Checkbox,Paper } from "@material-ui/core";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -14,6 +16,7 @@ import Dummy from "../assets/img/dummy.png";
 import MainMobile from "../assets/img/mobileform.png";
 import arrowleft from "../assets/img/arrow2.png";
 import scrollToTop from "../utils/ScrollTop"
+import DatePicker from "react-datepicker";
 
 import api from "../api";
 
@@ -40,8 +43,38 @@ let education = [
   "Terminale STHR",
   "Terminale STAV",
 ];
-
+const useStyles = makeStyles({
+  customTextField: {
+    "& input::placeholder": {
+      color:"white"
+    }
+  },
+  option: {
+    background:"#242635 ",
+    
+    color:"white",
+    "&:hover": {
+      backgroundColor: "#9198a5 !important"
+    }
+  },
+  noOptions: {
+    color: "white",
+    
+  },
+  select: {
+    background:"#242635",
+    color:"#9198a5",
+    '&:before': {
+        borderColor: "red",
+    },
+    '&:after': {
+        borderColor: "yellow",
+    }
+},
+})
 const UserForm = ({ setStep, setActiveStep }) => {
+  
+  const classes = useStyles();
   // initialize ContextStore
   const updateStore = UpdateStore();
   const { institutes } = Store();
@@ -122,6 +155,11 @@ const UserForm = ({ setStep, setActiveStep }) => {
   const handleChangeSchool = (event, value) => {
     setFormData({ ...formData, institute: value?._id });
   };
+  // fordate
+  const onChangeDate=(date)=>{
+    console.log("date ",date)
+    setFormData({ ...formData, date_of_birth: date });
+  }
 
   // Get All Address in drop down List from API
   const [values, setValues] = useState([]);
@@ -196,6 +234,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
 
   // handleSubmit Function
   const handleSubmit = async (e) => {
+    console.log("fomrdata",formData)
     e.preventDefault();
     if (institute == "") {
       return toast.error("Please Enter Your institute");
@@ -263,31 +302,42 @@ const UserForm = ({ setStep, setActiveStep }) => {
             </Grid>
             <Grid container spacing={2} className="inputgrid1">
               <Grid item xs={12} sm={6} className="inputGrid">
-                <input
-                  type={dateType}
-                  placeholder="Date of Birth"
-                  onFocus={() => setDatetype("date")}
-                  onBlur={() => setDatetype("text")}
-                  name="date_of_birth"
-                  value={date_of_birth}
-                  onChange={onChange}
-                  placeholder="Date de naissance"
-                  className="inputField"
-                  required
-                />
+              <DatePicker
+                    selected={date_of_birth}
+                    // locale={selectedDateLang}
+                    dateFormat="dd/MM/yyyy"
+                    onChange={onChangeDate}
+                    className="inputField"
+                    value={date_of_birth}
+                    autoComplete="off"
+                    placeholderText="Date de naissance"
+                    openToDate={new Date("1999/01/01")}
+                    required
+                    
+                  />
               </Grid>
               <Grid item xs={12} sm={6} className="inputGrid">
                 <Autocomplete
                   options={values}
+                  classes={{
+                    option: classes.option,
+                    noOptions: classes.noOptions
+                  }}
+                  PaperComponent={({ children }) => (
+                    <Paper style={{ background: "#242635" }}>{children}</Paper>
+                  )}
                   getOptionLabel={(option) => option.label}
+                  
                   onChange={SetAddress}
                   hiddenLabel="true"
                   style={{
                     width: "91%",
                     margin: "auto",
+                    
                   }}
                   renderInput={(params) => (
                     <TextField
+                    classes={{ root: classes.customTextField }}
                       {...params}
                       placeholder="Adresse"
                       style={{ color: "white" }}
@@ -336,6 +386,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                     value={education_level}
                     onChange={onChange}
                     placeholder=" Class"
+                    className={classes.select}
                     className="selectforeducation"
                   >
                     {education.map((edu) => (
@@ -346,6 +397,12 @@ const UserForm = ({ setStep, setActiveStep }) => {
               </Grid>
               <Grid item xs={12} sm={6} className="inputGrid">
                 <Autocomplete
+                classes={{
+                  option: classes.option,
+                }}
+                PaperComponent={({ children }) => (
+                  <Paper style={{ background: "#242635", }}>{children}</Paper>
+                )}
                   options={
                     education_level == "Quatrième" ||
                       education_level == "Troisième"
@@ -365,6 +422,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   }}
                   renderInput={(params) => (
                     <TextField
+                    classes={{ root: classes.customTextField }}
                       {...params}
                       placeholder="Établissement actuel"
                       variant="outlined"
