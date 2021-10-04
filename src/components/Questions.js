@@ -86,7 +86,8 @@ const Questions = ({ setStep, setActiveStep }) => {
   const getQuestion = () => {
     if (nextQuestionId == null) {
       setStep(3);
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      // setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      setActiveStep(3)
       return;
     }
     if (nextQuestionId === "first") {
@@ -101,12 +102,11 @@ const Questions = ({ setStep, setActiveStep }) => {
       return answer.question._id === getQuestion()?._id;
     });
     return options;
-  };
-
+  }
   return (
     <Grid container spacing={2} className="mainquestionscreen">
       <Grid item xs={12} sm={4} className="">
-        <img src={Dummy} className="dummyimg forweb" />
+        <img src={Dummy} className="dummyimgQuestion forweb" />
         <img src={MainMobile} className="dummyimg formobile" />
       </Grid>
       <Grid item xs={12} sm={8} className="questionGrid">
@@ -114,7 +114,7 @@ const Questions = ({ setStep, setActiveStep }) => {
           <img src={qarrow}  className="qboximg"/>
           <div className="questionBox">
             <h1 className="questiontext">
-              {getQuestion()?.question
+              {getQuestion()?.question 
                 ? getQuestion()?.question
                 : "There's no Question please try again"}
             </h1>

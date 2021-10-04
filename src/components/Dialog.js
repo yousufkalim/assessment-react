@@ -6,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Grid from "@material-ui/core/Grid";
 import { Checkbox } from "@material-ui/core";
+import close from "../assets/icons/close.png"
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuDialogContent-root': {
@@ -24,14 +25,14 @@ export default function DialogBox({ open, setOpen }) {
             <BootstrapDialog
                 onClose={handleClose}
                 open={open}
-                style={{backdropFilter:"blur(4px)"}}
+                style={{backdropFilter:"blur(20px)"}}
             >
                 <IconButton
                     className="closeButton"
                     aria-label="close"
                     onClick={handleClose}
                 >
-                    <CloseIcon style={{ color: "white" }} />
+                    <img src={close} className="closeimg"/>
                 </IconButton>
                 <DialogContent className="modalcontent">
                     <h3 className="dialogHeading">Besoin de plus d'informations sur <br className="br"/> ton projet d'études ? </h3>
@@ -39,7 +40,9 @@ export default function DialogBox({ open, setOpen }) {
                         <Checkbox
                             inputProps={{ "aria-label": "secondary checkbox" }}
                             style={{ color: "white" }}
+                            className="checkboxpop"
                             name="accept_condition"
+                            defaultChecked
                         // value={accept_condition}
                         // onChange={onChange}
                         />
@@ -51,7 +54,9 @@ export default function DialogBox({ open, setOpen }) {
                         <Checkbox
                             inputProps={{ "aria-label": "secondary checkbox" }}
                             style={{ color: "white" }}
+                            className="checkboxpop"
                             name="accept_condition"
+                            defaultChecked
                         // value={accept_condition}
                         // onChange={onChange}
                         />

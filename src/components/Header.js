@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import logo from "../assets/img/logo.png";
 import Navicon from "../assets/icons/navicon.png"
@@ -13,24 +12,37 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     boxShadow: "none",
-    background: "rgb(18 16 23)",
+    // background:'radial-gradient(97.47% 66.83% at 50% 50%, #0e0f14 0%,   #000000 100%)',
+    // background:"linear-gradient(240deg, #0a0a0f, #000000f0)",
+    background:"transparent",
     color: "white",
     fontFamily: "lato",
   },
 }));
-const scrollToTop = () => {
-  window.scrollTo({
-    top: 95,
-    behavior: "smooth",
-  });
-};
 
 export default function Header() {
   const classes = useStyles();
   const [flag, setFlag] = useState(false);
+ // Show navbar when page is scorlled upto given distance
 
+ const scrollToTop = () => {
+  window.scrollTo({
+    top: 115,
+    behavior: "smooth",
+  });
+ };
+ const deviceType = () => {
+  const ua = navigator.userAgent;
+  if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+      return "";
+  }
+  else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+      return "sticky";
+  }
+  return "";
+ };
   return (
-    <AppBar color="black" position="sticky" className={classes.root}>
+    <AppBar color="black" position={deviceType()} className="headerRoot" >
       <Toolbar color="" className="showToolbar">
         <div className="logowithicondiv">
           <div
@@ -50,7 +62,7 @@ export default function Header() {
           style={{
             textDecoration: "none",
             color: "white",
-            padding: "0 25px 0 0",
+            padding: "15px 25px 0 0",
           }}
         >
           <Typography className={flag ? "title a" : "hidetitle a"} onClick={()=>{flag && scrollToTop()}}>
@@ -59,7 +71,7 @@ export default function Header() {
         </AnchorLink>
         <AnchorLink
           href="#comment"
-          style={{ textDecoration: "none", color: "white" }}
+          style={{ textDecoration: "none", color: "white",paddingTop:"15px" }}
         >
           <Typography className={flag ? "title b" : "hidetitle b"}>
             Comment ça marche ?

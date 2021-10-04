@@ -1,5 +1,5 @@
 .mainuserform {
-  height: 100vh !important;
+  min-height: 90vh !important;
 }
 .stepperMain {
   width: 50%;
@@ -17,6 +17,14 @@
   height: 75%;
   margin: auto auto auto 20%;
 }
+.dummyimgQuestion {
+  height: 75%;
+  margin: auto auto auto 20%;
+}
+.dummyimgResult {
+  height: 75%;
+  margin: 40px auto auto 20%;
+}
 
 .userform {
   width: 50%;
@@ -30,12 +38,13 @@
   padding: 0 0 10px 10px !important;
   margin: 40px auto !important;
   border-radius: 18px !important;
-  box-shadow: 1px 1px 8px 8px #2b2735 !important;
+  /* box-shadow: 0px 1px 0px 13px rgb(0 0 0 / 12%) !important; */
+  box-shadow: 0px 1px 0px 13px rgb(72 68 68 / 10%) !important;
 }
 .formheading {
   font-size: 28px;
   text-align: center;
-  margin: 10px 0px 10px 0px;
+  margin: 22px 0px 10px 0px;
   padding: 10px;
 }
 .inputGrid {
@@ -55,12 +64,45 @@
 }
 .inputField:focus {
   outline: none;
-  border: 1px solid #f0c7c7;
+  border: 1px solid white;
   border-radius: 10px;
 }
 ::placeholder {
   color: #858b96;
 }
+/* for date picker */
+.react-datepicker {
+  background-color: #242635 !important;
+  color: white !important ;
+}
+.react-datepicker__header {
+  background: #242635 !important;
+  color: white !important;
+}
+.react-datepicker__day {
+  color: white !important;
+}
+.react-datepicker__day:hover {
+  color: #242635 !important;
+}
+.react-datepicker__current-month {
+  color: white !important;
+}
+.react-datepicker__day-name {
+  color: white !important;
+}
+.react-datepicker__day-name {
+  color: white !important;
+}
+/* for selelect education level field options */
+.MuiPopover-paper {
+  background: #242635 !important;
+  color: white !important;
+}
+.MuiMenuItem-root:hover {
+  background: #9198a5 !important ;
+}
+
 .selectformControl {
   border: none !important;
   background: #242635 !important;
@@ -94,7 +136,7 @@
 }
 /* education level on focus */
 .Mui-focused .MuiOutlinedInput-notchedOutline {
-  border: 1px solid #f0c7c7 !important;
+  border: 1px solid white !important;
   color: #9198a5 !important;
 }
 /* education level text color */
@@ -114,7 +156,7 @@
   padding: 0 0 2px 5px !important;
 }
 .termsandconditionGrid {
-  margin: 0 0 0 10px !important;
+  margin: -5px 0 6px 10px !important;
 }
 .termsandcondition {
   color: #9198a5;
@@ -154,21 +196,35 @@
   margin: 20px 20px 20px 20px;
   padding: 16px 25px 16px 25px;
 }
+.circulardiv {
+  padding: 0px 48px 0px 36px;
+}
 
 /* for big screens */
 @media only screen and (min-device-width: 1500px) and (max-device-width: 1900px) {
+  .mainuserform {
+    min-height: 80vh !important;
+  }
   .dummyGrid {
     margin-top: 2% !important;
   }
   .dummyimg {
-    height: 60% !important;
+    height: 75% !important;
     margin: auto auto auto 30%;
+  }
+  .dummyimgQuestion {
+    height: 57% !important;
+    margin: 40px auto auto 30%;
+  }
+  .dummyimgResult {
+    height: 50% !important;
+    margin: 20px auto auto 30%;
   }
   .formheading {
     font-weight: 500;
     font-size: 32px;
 
-    margin: 10px 0px 10px 0px;
+    margin: 22px 0px 10px 0px;
     padding: 10px;
   }
   .selectformControl {
@@ -179,10 +235,13 @@
     margin: 0px 0 0 0 !important;
   }
   .termsandconditionGrid {
-    margin: 0 0 0 20px !important;
+    margin: -5px 0 8px 20px !important;
   }
   .formbackbutton {
     margin: 20px 20px 20px 35px;
+  }
+  .formSubmitButton {
+    margin: 20px 20px 20px 92px;
   }
 }
 
@@ -231,11 +290,15 @@
     height: auto;
   }
   .termsandconditionGrid {
-    margin: 15px 0 0 10px !important;
+    margin: 6px 0 15px 10px !important;
   }
   .termsandcondition {
     width: 80%;
     font-size: 14px;
+  }
+  .formbuttonsGrid {
+    text-align: center !important;
+    margin-top: 20px !important;
   }
   .formbackbutton {
     width: 80%;

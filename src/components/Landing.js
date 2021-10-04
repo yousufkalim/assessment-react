@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import Main from "../assets/img/a.png";
 import MainMobile from "../assets/img/mainmobile.png";
 import VideoImage from "../assets/img/videoimg.png";
+import scrollToTop from "../utils/ScrollTop"
 
 import f1 from "../assets/img/f1.png";
 import f2 from "../assets/img/f2.png";
@@ -10,6 +11,10 @@ import f3 from "../assets/img/f3.png";
 import arrowright from "../assets/img/arrow.png";
 
 const Landing = ({ setStep }) => {
+  useEffect(() => {
+    scrollToTop()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
     <div className="main" id="top">
@@ -39,20 +44,20 @@ const Landing = ({ setStep }) => {
       <Grid container spacing={3} className="footerGrid">
         <Grid item xs={12} sm={4}>
           <img src={f1} className="footerimg" />
-          <h4 className="h4">Etape 1</h4>
-          <p className="p2">Dis a Orientator qui tu es</p>
+          <h4 className="h4">Étape 1</h4>
+          <p className="p3">Dis a Orientator qui tu es</p>
         </Grid>
         <Grid item xs={12} sm={4}>
           <img src={f2} className="footerimg" />
-          <h4 className="h4">Etape 2</h4>
-          <p className="p2">Réponds aux questions d'Orientator.</p>
+          <h4 className="h4">Étape 2</h4>
+          <p className="p3">Réponds aux questions d'Orientator.</p>
         </Grid>
         <Grid item xs={12} sm={4}>
           <img src={f3} className="footerimg" />
-          <h4 className="h4">Etape 3</h4>
-          <p className="p2">
+          <h4 className="h4">Étape 3</h4>
+          <p className="p3">
             Orientator te propose une liste de voeux
-            <br /> pour ton Parcoursup !
+             pour ton Parcoursup !
           </p>
         </Grid>
       </Grid>
