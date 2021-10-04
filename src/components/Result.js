@@ -25,7 +25,10 @@ const Result = () => {
   // get Result from api
   let getResult = async () => {
     setLoading(true);
-    let lastAnswerId = history?.find((his) => his.next_question === null);
+    // let lastAnswerId = history?.find((his) => his.next_question === null);
+    let lastAnswerId = history?.find(
+      (his) => his.next_question == "61111167760c9840b8d2c9d2"
+    );
 
     const userData = {
       disc_answers: disc_ans_id,
@@ -153,7 +156,7 @@ const Result = () => {
                       style={{ margin: "10px", textAlign: "center" }}
                     >
                       <h1> Désolé pas de cours disponible</h1>
-                      <img src={Dummy} className="dummyimg " />
+                      {/* <img src={Dummy} style={{}} /> */}
                     </div>
                   )}
                 </div>
