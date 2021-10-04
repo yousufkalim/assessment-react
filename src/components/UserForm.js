@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-datepicker/dist/react-datepicker.css";
-import { TextField, Checkbox,Paper } from "@material-ui/core";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { TextField, Checkbox, Paper } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -15,7 +15,7 @@ import Grid from "@material-ui/core/Grid";
 import Dummy from "../assets/img/dummy.png";
 import MainMobile from "../assets/img/mobileform.png";
 import arrowleft from "../assets/img/arrow2.png";
-import scrollToTop from "../utils/ScrollTop"
+import scrollToTop from "../utils/ScrollTop";
 import DatePicker from "react-datepicker";
 
 import api from "../api";
@@ -46,34 +46,32 @@ let education = [
 const useStyles = makeStyles({
   customTextField: {
     "& input::placeholder": {
-      color:"white"
-    }
+      color: "white",
+    },
   },
   option: {
-    background:"#242635 ",
-    
-    color:"white",
+    background: "#242635 ",
+
+    color: "white",
     "&:hover": {
-      backgroundColor: "#9198a5 !important"
-    }
+      backgroundColor: "#9198a5 !important",
+    },
   },
   noOptions: {
     color: "white",
-    
   },
   select: {
-    background:"#242635",
-    color:"#9198a5",
-    '&:before': {
-        borderColor: "red",
+    background: "#242635",
+    color: "#9198a5",
+    "&:before": {
+      borderColor: "red",
     },
-    '&:after': {
-        borderColor: "yellow",
-    }
-},
-})
+    "&:after": {
+      borderColor: "yellow",
+    },
+  },
+});
 const UserForm = ({ setStep, setActiveStep }) => {
-  
   const classes = useStyles();
   // initialize ContextStore
   const updateStore = UpdateStore();
@@ -125,7 +123,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
 
   // Get institutes data from API
   useEffect(() => {
-    scrollToTop()
+    scrollToTop();
     getSchoolData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -156,10 +154,10 @@ const UserForm = ({ setStep, setActiveStep }) => {
     setFormData({ ...formData, institute: value?._id });
   };
   // fordate
-  const onChangeDate=(date)=>{
-    console.log("date ",date)
+  const onChangeDate = (date) => {
+    console.log("date ", date);
     setFormData({ ...formData, date_of_birth: date });
-  }
+  };
 
   // Get All Address in drop down List from API
   const [values, setValues] = useState([]);
@@ -173,8 +171,8 @@ const UserForm = ({ setStep, setActiveStep }) => {
 
     let res = await axios.get(
       "https://api-adresse.data.gouv.fr/search/?q=" +
-      e.target.value +
-      "&type=street&autocomplete=1",
+        e.target.value +
+        "&type=street&autocomplete=1",
       {
         withCredentials: false,
       }
@@ -234,19 +232,21 @@ const UserForm = ({ setStep, setActiveStep }) => {
 
   // handleSubmit Function
   const handleSubmit = async (e) => {
-    console.log("fomrdata",formData)
+    console.log("fomrdata", formData);
     e.preventDefault();
     if (institute == "") {
-      return toast.error("Please Enter Your institute");
+      return toast.error("Veuillez entrer votre institut");
     }
     if (addressValue?.city == "") {
-      return toast.error("Please Enter Your Address");
+      return toast.error("Veuillez entrer votre adresse");
     }
     if (phone.length != 10 || phone[0] != 0) {
-      return toast.error("Phone number must be 10 digits and start with 0");
+      return toast.error(
+        "Le numéro de téléphone doit être composé de 10 chiffres et commencer par 0"
+      );
     }
     if (!accept_condition) {
-      return toast.error("Please Accept the Terms and Condtions");
+      return toast.error("Veuillez accepter les termes et conditions");
     }
     setLoading(true);
     let res = await api("post", "/users/create", {
@@ -275,7 +275,8 @@ const UserForm = ({ setStep, setActiveStep }) => {
           <Grid container className="userformgrid">
             <Grid item xs={12} sm={12} className="">
               <h3 className="formheading">
-              Pour mieux te conseiller, j’ai besoin  <br className="br"/>d’en savoir davantage sur toi !
+                Pour mieux te conseiller, j’ai besoin <br className="br" />
+                d’en savoir davantage sur toi !
               </h3>
             </Grid>
             <Grid container spacing={2} className="inputgrid1">
@@ -302,42 +303,39 @@ const UserForm = ({ setStep, setActiveStep }) => {
             </Grid>
             <Grid container spacing={2} className="inputgrid1">
               <Grid item xs={12} sm={6} className="inputGrid">
-              <DatePicker
-                    selected={date_of_birth}
-                    // locale={selectedDateLang}
-                    dateFormat="dd/MM/yyyy"
-                    onChange={onChangeDate}
-                    className="inputField"
-                    value={date_of_birth}
-                    autoComplete="off"
-                    placeholderText="Date de naissance"
-                    openToDate={new Date("1999/01/01")}
-                    required
-                    
-                  />
+                <DatePicker
+                  selected={date_of_birth}
+                  // locale={selectedDateLang}
+                  dateFormat="dd/MM/yyyy"
+                  onChange={onChangeDate}
+                  className="inputField"
+                  value={date_of_birth}
+                  autoComplete="off"
+                  placeholderText="Date de naissance"
+                  openToDate={new Date("1999/01/01")}
+                  required
+                />
               </Grid>
               <Grid item xs={12} sm={6} className="inputGrid">
                 <Autocomplete
                   options={values}
                   classes={{
                     option: classes.option,
-                    noOptions: classes.noOptions
+                    noOptions: classes.noOptions,
                   }}
                   PaperComponent={({ children }) => (
                     <Paper style={{ background: "#242635" }}>{children}</Paper>
                   )}
                   getOptionLabel={(option) => option.label}
-                  
                   onChange={SetAddress}
                   hiddenLabel="true"
                   style={{
                     width: "91%",
                     margin: "auto",
-                    
                   }}
                   renderInput={(params) => (
                     <TextField
-                    classes={{ root: classes.customTextField }}
+                      classes={{ root: classes.customTextField }}
                       {...params}
                       placeholder="Adresse"
                       style={{ color: "white" }}
@@ -397,21 +395,21 @@ const UserForm = ({ setStep, setActiveStep }) => {
               </Grid>
               <Grid item xs={12} sm={6} className="inputGrid">
                 <Autocomplete
-                classes={{
-                  option: classes.option,
-                }}
-                PaperComponent={({ children }) => (
-                  <Paper style={{ background: "#242635", }}>{children}</Paper>
-                )}
+                  classes={{
+                    option: classes.option,
+                  }}
+                  PaperComponent={({ children }) => (
+                    <Paper style={{ background: "#242635" }}>{children}</Paper>
+                  )}
                   options={
                     education_level == "Quatrième" ||
-                      education_level == "Troisième"
+                    education_level == "Troisième"
                       ? institutes?.filter(
-                        (institute) => institute.type == "College"
-                      )
+                          (institute) => institute.type == "College"
+                        )
                       : institutes?.filter(
-                        (institute) => institute.type == "School"
-                      )
+                          (institute) => institute.type == "School"
+                        )
                   }
                   freeSolo
                   getOptionLabel={(option) => option.name}
@@ -422,7 +420,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   }}
                   renderInput={(params) => (
                     <TextField
-                    classes={{ root: classes.customTextField }}
+                      classes={{ root: classes.customTextField }}
                       {...params}
                       placeholder="Établissement actuel"
                       variant="outlined"
@@ -456,12 +454,12 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   onClick={() => setStep(0)}
                 >
                   <img src={arrowleft} className="arrowleft" />
-                  <b>    Retour</b>
+                  <b> Retour</b>
                 </div>
               </Grid>
-              
+
               <Grid xs={12} sm={4}></Grid>
-              
+
               <Grid xs={12} sm={4}>
                 <button
                   variant="contained"
@@ -469,12 +467,19 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   size="large"
                   type="submit"
                   disabled={loading}
-                  style={{opacity:`${loading?"0.5":"1"}`}}
+                  style={{ opacity: `${loading ? "0.5" : "1"}` }}
                 >
-                  <b>      {loading? <div className="circulardiv"><CircularProgress size={20} className="" /></div>:"Commencer le test"}</b>
-                  
+                  <b>
+                    {" "}
+                    {loading ? (
+                      <div className="circulardiv">
+                        <CircularProgress size={20} className="" />
+                      </div>
+                    ) : (
+                      "Commencer le test"
+                    )}
+                  </b>
                 </button>
-              
               </Grid>
             </Grid>
           </Grid>
