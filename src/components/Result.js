@@ -170,47 +170,6 @@ const Result = () => {
           </Grid>
         </Grid>
       )}
-      {/* <div
-        style={{
-          textAlign: "center",
-        }}
-      >
-        <h2>Domain : {result?.domain}</h2>
-        <h3>Job-Exapmle : {result?.example_of_job}</h3>
-      </div> */}
-      {/* <div>
-        {!loading ? (
-          <div>
-            {result?.courses && result?.courses.length >= 1 ? (
-              <div
-                className="cardflex"
-                style={{ margin: "0px", textAlign: "center" }}
-              >
-                {typeOfCourses.map((type) => (
-                  <>
-                    {getSingleTypeofCourse(type)[0]?.courseId?.type_of_course ==
-                      type && (
-                      <div>
-                        <h3>Type of Course : {type}</h3>
-                        <Card courses={getSingleTypeofCourse(type)} />
-                      </div>
-                    )}
-                  </>
-                ))}
-              </div>
-            ) : (
-              <div className="cardflex" style={{ margin: "0px" }}>
-                <h1>No Course Available</h1>
-              </div>
-            )}
-          </div>
-        ) : (
-          <div className="cardflex" style={{ margin: "0px" }}>
-            <h1>Loading...</h1>
-          </div>
-        )}
-      </div>
-    */}
     </>
   );
 };
