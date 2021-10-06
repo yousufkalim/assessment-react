@@ -90,7 +90,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
     date_of_birth: "",
     institute: "",
     address: "",
-    education_level: "",
+    education_level: "Classe",
     phone: "",
     email: "",
     newsletter: false,
@@ -106,7 +106,6 @@ const UserForm = ({ setStep, setActiveStep }) => {
   });
   const [loading, setLoading] = useState(false);
   const [dateType, setDatetype] = useState("text");
-
   // Destructuring of UserForm State
   const {
     first_name,
@@ -155,7 +154,6 @@ const UserForm = ({ setStep, setActiveStep }) => {
   };
   // fordate
   const onChangeDate = (date) => {
-    console.log("date ", date);
     setFormData({ ...formData, date_of_birth: date });
   };
 
@@ -232,7 +230,6 @@ const UserForm = ({ setStep, setActiveStep }) => {
 
   // handleSubmit Function
   const handleSubmit = async (e) => {
-    console.log("fomrdata", formData);
     e.preventDefault();
     if (institute == "") {
       return toast.error("Veuillez entrer votre institut");
@@ -271,7 +268,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
         <img src={MainMobile} className="dummyimg formobile" />
       </Grid>
       <Grid item xs={12} sm={8} className="responsiveform">
-        <form autoComplete="off" onSubmit={handleSubmit}>
+        <form autoComplete="off" onSubmit={handleSubmit} className="userForm">
           <Grid container className="userformgrid">
             <Grid item xs={12} sm={12} className="">
               <h3 className="formheading">
@@ -374,19 +371,26 @@ const UserForm = ({ setStep, setActiveStep }) => {
             <Grid container spacing={2} className="">
               <Grid item xs={12} sm={6} className="inputGrid">
                 <FormControl variant="outlined" className="selectformControl">
-                  <InputLabel id="demo-simple-select-outlined-label">
-                    {education_level ? "" : "  Classe"}
-                  </InputLabel>
+                  {/* <InputLabel id="demo-simple-select-outlined-label">
+                    {education_level ? "" : " classe "}
+                  </InputLabel> */}
                   <Select
                     labelId="demo-simple-select-outlined-label"
                     id="demo-simple-select-outlined"
                     name="education_level"
                     value={education_level}
+                    defaultValue={education_level}
                     onChange={onChange}
-                    placeholder=" Class"
                     className={classes.select}
                     className="selectforeducation"
                   >
+                    <MenuItem
+                      value="Classe"
+                      disabled
+                      style={{ textAlign: "left !important" }}
+                    >
+                      <em>Classe</em>
+                    </MenuItem>
                     {education.map((edu) => (
                       <MenuItem value={edu}>{edu}</MenuItem>
                     ))}
@@ -430,7 +434,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                     />
                   )}
                   value={!education_level && ""}
-                  disabled={!education_level}
+                  disabled={!education_level || education_level == "Classe"}
                 />
               </Grid>
             </Grid>

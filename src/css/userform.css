@@ -14,8 +14,8 @@
   margin-top: 3% !important;
 }
 .dummyimg {
-  height: 75%;
-  margin: auto auto auto 20%;
+  height: 80% !important;
+  margin: 25px auto auto 20% !important;
 }
 .dummyimgQuestion {
   height: 75%;
@@ -30,6 +30,9 @@
   width: 50%;
   margin: auto;
   text-align: center;
+}
+.userForm {
+  padding: 30px;
 }
 .userformgrid {
   color: white !important;
@@ -121,7 +124,9 @@
 .MuiAutocomplete-popupIndicator {
   display: none !important;
 }
-
+.MuiSelect-outlined.MuiSelect-outlined {
+  text-align: left !important;
+}
 /* education level placeholder */
 .MuiInputLabel-outlined {
   color: #9198a5 !important;
@@ -173,7 +178,7 @@
 .formbackbutton {
   background: linear-gradient(180deg, #ffffff -24.17%, #bac0d6 100%);
   border-radius: 100px;
-  width: 50%;
+  width: 57%;
   text-align: center;
   color: black;
   margin: 20px 20px 20px 20px;
@@ -241,7 +246,9 @@
     margin: 20px 20px 20px 35px;
   }
   .formSubmitButton {
-    margin: 20px 20px 20px 92px;
+    margin: 20px 20px 20px 70px !important;
+    font-size: 15px !important;
+    padding: 15px 25px 15px 25px !important;
   }
 }
 
