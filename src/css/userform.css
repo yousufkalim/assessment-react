@@ -14,8 +14,8 @@
   margin-top: 3% !important;
 }
 .dummyimg {
-  height: 75%;
-  margin: auto auto auto 20%;
+  height: 80% !important;
+  margin: 25px auto auto 20% !important;
 }
 .dummyimgQuestion {
   height: 75%;
@@ -30,6 +30,9 @@
   width: 50%;
   margin: auto;
   text-align: center;
+}
+.userForm {
+  padding: 30px;
 }
 .userformgrid {
   color: white !important;
@@ -59,7 +62,7 @@
   border-radius: 10px;
   padding: 0 0 0 20px;
   width: 85%;
-  height: 6vh;
+  height: 45px;
   margin: 2px;
 }
 .inputField:focus {
@@ -111,17 +114,19 @@
   border-radius: 10px !important;
   padding: 0 0 0 0px !important;
   width: 92% !important;
-  height: 6vh !important;
+  height: 45px !important;
   margin: 3px 13px 13px 13px !important;
 }
 .selectforeducation {
-  height: 6vh;
+  height: 45px;
 }
 /* address icon */
 .MuiAutocomplete-popupIndicator {
   display: none !important;
 }
-
+.MuiSelect-outlined.MuiSelect-outlined {
+  text-align: left !important;
+}
 /* education level placeholder */
 .MuiInputLabel-outlined {
   color: #9198a5 !important;
@@ -146,7 +151,7 @@
 /* address field */
 /* .MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon */
 .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
-  height: 6vh !important;
+  height: 45px !important;
   background: #242635 !important;
   border-radius: 10px !important;
 }
@@ -173,7 +178,7 @@
 .formbackbutton {
   background: linear-gradient(180deg, #ffffff -24.17%, #bac0d6 100%);
   border-radius: 100px;
-  width: 50%;
+  width: 57%;
   text-align: center;
   color: black;
   margin: 20px 20px 20px 20px;
@@ -241,7 +246,9 @@
     margin: 20px 20px 20px 35px;
   }
   .formSubmitButton {
-    margin: 20px 20px 20px 92px;
+    margin: 20px 20px 20px 70px !important;
+    font-size: 15px !important;
+    padding: 15px 25px 15px 25px !important;
   }
 }
 

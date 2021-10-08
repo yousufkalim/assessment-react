@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Store, UpdateStore } from "../StoreContext";
 import Dummy from "../assets/img/dummy.png";
 import MainMobile from "../assets/img/mobileform.png";
-import qarrow from "../assets/icons/qarrow.png"
+import qarrow from "../assets/icons/qarrow.png";
 import Grid from "@material-ui/core/Grid";
 
 const Questions = ({ setStep, setActiveStep }) => {
@@ -87,7 +87,7 @@ const Questions = ({ setStep, setActiveStep }) => {
     if (nextQuestionId == null) {
       setStep(3);
       // setActiveStep((prevActiveStep) => prevActiveStep + 1);
-      setActiveStep(3)
+      setActiveStep(3);
       return;
     }
     if (nextQuestionId === "first") {
@@ -102,7 +102,7 @@ const Questions = ({ setStep, setActiveStep }) => {
       return answer.question._id === getQuestion()?._id;
     });
     return options;
-  }
+  };
   return (
     <Grid container spacing={2} className="mainquestionscreen">
       <Grid item xs={12} sm={4} className="">
@@ -110,11 +110,11 @@ const Questions = ({ setStep, setActiveStep }) => {
         <img src={MainMobile} className="dummyimg formobile" />
       </Grid>
       <Grid item xs={12} sm={8} className="questionGrid">
-        <div className={classes.main}>
-          <img src={qarrow}  className="qboximg"/>
+        <div className="questionDiv">
+          <img src={qarrow} className="qboximg" />
           <div className="questionBox">
             <h1 className="questiontext">
-              {getQuestion()?.question 
+              {getQuestion()?.question
                 ? getQuestion()?.question
                 : "There's no Question please try again"}
             </h1>
