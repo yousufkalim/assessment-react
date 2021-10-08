@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
+import { toast } from "react-toastify";
 import DialogContent from "@material-ui/core/DialogContent";
 import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import { Checkbox } from "@material-ui/core";
 import close from "../assets/icons/close.png";
 import { Store, UpdateStore } from "../StoreContext";
+import api from "../api";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuDialogContent-root": {
@@ -35,6 +37,22 @@ export default function DialogBox({ open, setOpen }) {
         ...formData,
         [e.target.name]: e.target.value,
       });
+    }
+  };
+  const handleSubmit = async () => {
+    if (phone.length != 10 || phone[0] != 0) {
+      return toast.error(
+        "Le numéro de téléphone doit être composé de 10 chiffres et commencer par 0"
+      );
+    }
+    let res = await api("post", "/users/update", {
+      ...formData,
+      id: user._id,
+    });
+    if (res) {
+      toast.error("Mis à jour avec succés");
+
+      setOpen(false);
     }
   };
   const handleClose = () => {
@@ -116,7 +134,7 @@ export default function DialogBox({ open, setOpen }) {
           </Grid>
         </DialogContent>
         <div className="dialogAction">
-          <button className="modalButon" onClick={handleClose}>
+          <button className="modalButon" onClick={handleSubmit}>
             Envoyer
           </button>
         </div>

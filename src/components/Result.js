@@ -22,7 +22,6 @@ const Result = () => {
     getResult();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  // console.log("history in result", history);
   // get Result from api
   let getResult = async () => {
     setLoading(true);

@@ -227,7 +227,6 @@ const UserForm = ({ setStep, setActiveStep }) => {
       });
     }
   };
-
   // handleSubmit Function
   const handleSubmit = async (e) => {
     e.preventDefault();
