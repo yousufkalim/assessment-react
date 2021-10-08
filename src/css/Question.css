@@ -12,6 +12,12 @@
 .qboximg {
   width: 84%;
 }
+.questionDiv {
+  margin: auto !important;
+  text-align: center !important;
+  margin-top: 5% !important;
+  height: 500px !important;
+}
 
 .questiontext {
   padding-left: 30px;
@@ -102,6 +108,9 @@
     position: relative !important;
     bottom: 19% !important;
     width: 64% !important;
+  }
+  .questionDiv {
+    height: 650px !important;
   }
   .answerGrid {
     padding: 1% 11% 0 14% !important;
