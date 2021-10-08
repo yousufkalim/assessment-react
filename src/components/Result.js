@@ -16,12 +16,13 @@ const Result = () => {
   const updateStore = UpdateStore();
   const { history, user, disc_ans_id, result } = Store();
   const [loading, setLoading] = useState(false);
+  const [flag, setFlag] = useState(false);
   const [resultStep, setresultStep] = useState(0);
   useEffect(() => {
     getResult();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log("history in result", history);
+  // console.log("history in result", history);
   // get Result from api
   let getResult = async () => {
     setLoading(true);
@@ -131,6 +132,8 @@ const Result = () => {
                             ?.type_of_course == type && (
                             <TypeOfCourse
                               type={type}
+                              flag={flag}
+                              setFlag={setFlag}
                               percentage={
                                 getSingleTypeofCourse(type)[0]?.percentage
                               }

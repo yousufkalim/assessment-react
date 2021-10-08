@@ -35,7 +35,6 @@ function DetailofCourses({ courses, open, setOpen }) {
                       : course?.courseId?.selectivity[0]
                       ? course?.courseId?.selectivity[0]
                       : "N/A"}
-                    /5
                   </b>
                 </div>
               </div>
@@ -122,9 +121,26 @@ function DetailofCourses({ courses, open, setOpen }) {
                 <img src={proximate} />
                 <p className="textonmobile">Proximité</p>
                 <div>
-                  {[1, 2, 3, 4, 5].map((item) => (
-                    <StarIcon style={{ width: "12px", height: "20px" }} />
-                  ))}
+                  {course?.distancerating ? (
+                    <>
+                      {[1, 2, 3, 4, 5].map((item) => {
+                        if (course?.distancerating >= item) {
+                          return (
+                            <StarIcon
+                              style={{ width: "12px", height: "20px" }}
+                            />
+                          );
+                        } else
+                          return (
+                            <StarBorderIcon
+                              style={{ width: "12px", height: "20px" }}
+                            />
+                          );
+                      })}
+                    </>
+                  ) : (
+                    "N/A"
+                  )}
                 </div>
               </div>
             </Grid>

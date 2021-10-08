@@ -5,8 +5,9 @@ import search from "../assets/icons/search.png";
 import showhide from "../assets/icons/showhide.png";
 import hide from "../assets/icons/hide.png";
 
-const TypeOfCourse = ({ type, percentage, courses }) => {
+const TypeOfCourse = ({ flag, setFlag, type, percentage, courses }) => {
   const [showDetail, setShowDetail] = useState(false);
+
   const [open, setOpen] = useState(false);
   const getPercentageColor = (percentage) => {
     if (percentage >= 90) {
@@ -26,11 +27,6 @@ const TypeOfCourse = ({ type, percentage, courses }) => {
       return "linear-gradient(#cf865d 0%, #f44336 100%)";
     }
   };
-  useEffect(() => {
-    console.log("showDetail", showDetail);
-    showDetail && setOpen(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showDetail]);
   return (
     <div className="typeOfCourses">
       <Grid
@@ -40,6 +36,11 @@ const TypeOfCourse = ({ type, percentage, courses }) => {
         className="coursediv"
         onClick={() => {
           setShowDetail(!showDetail);
+          !flag &&
+            setTimeout(() => {
+              setOpen(true);
+              setFlag(true);
+            }, 3000);
         }}
       >
         <Grid item xs={4} sm={8} className="courseType">
