@@ -12,7 +12,6 @@ body {
   height: 70px;
 }
 .options {
-  width: 80%;
   text-align: center;
   color: white;
   font-family: revert;
@@ -35,11 +34,11 @@ body {
   padding: 5px;
 }
 .left_area span {
-  color: #19b3d3;
+  color: #9198a5;
 }
 .logout_btn {
   padding: 10px;
-  background: #19b3d3;
+  background: linear-gradient(#ffffff, #bac0d6);
   text-decoration: none;
   float: right;
   margin-top: -22px;
@@ -52,7 +51,7 @@ body {
   transition-property: background;
 }
 .logout_btn:hover {
-  background: #0b87a6;
+  background: #9198a5;
 }
 .sidebar {
   z-index: 1;
@@ -98,7 +97,7 @@ body {
   font-family: "Montserrat', sans-serif";
 }
 .sidebar a:hover {
-  background: #19b3d3;
+  background: #9198a5;
 }
 .sidebar i {
   padding-right: 10px;

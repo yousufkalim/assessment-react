@@ -11,12 +11,12 @@ const SideBar = () => {
       </div>
       <div className="options">
         <Link to="/users">
-          <i class="fas fa-desktop option"></i>
-          <span>All Users</span>
+          {/* <i class="fas fa-desktop option"></i> */}
+          <span style={{ marginRight: "35px" }}>All Users</span>
         </Link>
         <Link to="/results">
-          <i class="fas fa-desktop option"></i>
-          <span>All Results</span>
+          {/* <i class="fas fa-desktop option "></i> */}
+          <span style={{ marginRight: "35px" }}>All Results</span>
         </Link>
       </div>
     </div>
