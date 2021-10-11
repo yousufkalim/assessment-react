@@ -53,8 +53,11 @@ const SingleUserResult = ({}) => {
       <div
         style={{
           marginTop: "80px",
-          marginLeft: "275px",
-          width: "80%",
+          marginLeft: "254px",
+          width: "85%",
+          height: "100vh",
+          background:
+            "radial-gradient(97.47% 66.83% at 50% 50%,#35384e 0%,#000000 100%)",
           textAlign: "center",
         }}
       >
@@ -65,13 +68,13 @@ const SingleUserResult = ({}) => {
               singleUserResults={singleUserResults}
             />
           ) : (
-            <div style={{ padding: "5px" }}>
+            <div style={{ padding: "5px", color: "white" }}>
               {" "}
               <h1>No User Result Available</h1>
             </div>
           )
         ) : (
-          <div style={{ padding: "5px" }}>
+          <div style={{ padding: "5px", color: "white" }}>
             {" "}
             <h1>Loading...</h1>
           </div>

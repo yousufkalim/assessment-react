@@ -144,7 +144,7 @@ const Result = () => {
                       <div className="buttonDiv">
                         <button className="sharebutton">
                           <img src={userimg} />
-                          <b style={{ margin: "12px" }}>Invite un</b>
+                          <b style={{ margin: "12px" }}>Invite un ami</b>
                         </button>
                         <button className="sharebutton">
                           <img src={share} />

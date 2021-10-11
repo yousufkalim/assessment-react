@@ -59,6 +59,16 @@
     #ff29aa 101.84%
   );
 }
+.partiButton:hover {
+  /* margin: 29px 0px 0px 0px;
+  font-size: 15px; */
+  background: linear-gradient(
+    147deg,
+    #f1c31c 0%,
+    #f56410 50.66%,
+    #ec58b1 101.84%
+  );
+}
 .arrowright {
   position: relative;
   top: 4px;

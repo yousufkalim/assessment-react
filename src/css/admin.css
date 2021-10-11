@@ -6,7 +6,7 @@ body {
 .headera {
   z-index: 1;
   position: fixed;
-  background: #22242a;
+  background: #2f323a;
   width: calc(100% - 0%);
   top: 0;
   height: 70px;
@@ -22,9 +22,7 @@ body {
   margin: 0px;
   margin-bottom: 2px;
 }
-.option:hover {
-  background: #4cc1e4;
-}
+
 .left_area h3 {
   color: #fff;
   margin-bottom: -15px;
