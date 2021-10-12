@@ -7,6 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import { Checkbox } from "@material-ui/core";
 import close from "../assets/icons/close.png";
+import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
 import { Store, UpdateStore } from "../StoreContext";
 import api from "../api";
 
@@ -70,7 +71,8 @@ export default function DialogBox({ open, setOpen }) {
           aria-label="close"
           onClick={handleClose}
         >
-          <img src={close} className="closeimg" />
+          <HorizontalRuleIcon fontSize="large" />
+          {/* <img src={close} className="closeimg" /> */}
         </IconButton>
         <DialogContent className="modalcontent">
           <h3 className="dialogHeading">

@@ -45,7 +45,7 @@
 }
 .partiButton {
   border: none;
-  margin: 30px 0px 0px 0px;
+  margin: 30px 0px 0px -20px;
   border-radius: 100px;
   padding: 25px 60px 25px 26px;
   color: white;
@@ -175,11 +175,11 @@
   .partiButton {
     border: none;
     margin: 0px;
-    padding: 15px 35% 15px 35% !important;
+    padding: 15px 37% 15px 38% !important;
   }
   .arrowright {
     right: -19%;
-    top: -39%;
+    top: -45%;
   }
   .vidoSection {
     margin: -80px 0 0 0;

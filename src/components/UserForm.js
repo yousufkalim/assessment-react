@@ -103,9 +103,9 @@ const UserForm = ({ setStep, setActiveStep }) => {
     city: "",
     postal_code: "",
     label: "",
+    label2: "",
   });
   const [loading, setLoading] = useState(false);
-  const [dateType, setDatetype] = useState("text");
   // Destructuring of UserForm State
   const {
     first_name,
@@ -170,7 +170,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
     let res = await axios.get(
       "https://api-adresse.data.gouv.fr/search/?q=" +
         e.target.value +
-        "&type=street&autocomplete=1",
+        "&type=housenumber&autocomplete=1",
       {
         withCredentials: false,
       }
@@ -179,12 +179,18 @@ const UserForm = ({ setStep, setActiveStep }) => {
     if (localStorage.token) {
       axios.defaults.headers.common["x-auth-token"] = localStorage.token;
     }
+    console.log("address res", res);
 
     var addressToSet = []; // //debugger;
     for (var i = 0; i < res?.data?.features?.length; i++) {
       addressToSet.push({
         id: i,
         label: res?.data?.features[i].properties.label,
+        label2: `${
+          res?.data?.features[i].properties.label +
+          "," +
+          res?.data?.features[i].properties.context
+        }`,
         city: res?.data?.features[i].properties.city,
         PostalCode: res?.data?.features[i].properties.postcode,
         lat: res?.data?.features[0].geometry.coordinates[1],
@@ -201,7 +207,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
     if (item.target.textContent) {
       const selectedItem = item.target.textContent;
       for (var i = 0; i < values.length; i++) {
-        if (values[i].label === selectedItem) {
+        if (values[i].label2 === selectedItem) {
           var postal_code = values[i].PostalCode;
           var lat = values[i].lat;
           var lng = values[i].lng;
@@ -209,6 +215,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
           await setAddressValue({
             ...addressValue,
             label: values[i].label,
+            label2: values[i].label2,
             postal_code,
             lat,
             lng,
@@ -264,7 +271,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
     <Grid container spacing={2} className="mainuserform">
       <Grid item xs={12} sm={4} className="dummyGrid">
         <img src={Dummy} className="dummyimg forweb" />
-        <img src={MainMobile} className="dummyimg formobile" />
+        <img src={MainMobile} className=" dummyimgforuserform formobile" />
       </Grid>
       <Grid item xs={12} sm={8} className="responsiveform">
         <form autoComplete="off" onSubmit={handleSubmit} className="userForm">
@@ -322,7 +329,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   PaperComponent={({ children }) => (
                     <Paper style={{ background: "#242635" }}>{children}</Paper>
                   )}
-                  getOptionLabel={(option) => option.label}
+                  getOptionLabel={(option) => option.label2}
                   onChange={SetAddress}
                   hiddenLabel="true"
                   style={{
