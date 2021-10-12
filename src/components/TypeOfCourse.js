@@ -27,6 +27,13 @@ const TypeOfCourse = ({ flag, setFlag, type, percentage, courses }) => {
       return "linear-gradient(#cf865d 0%, #f44336 100%)";
     }
   };
+  useEffect(() => {
+    setTimeout(() => {
+      setOpen(true);
+      setFlag(true);
+    }, 30000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className="typeOfCourses">
       <Grid
@@ -36,11 +43,11 @@ const TypeOfCourse = ({ flag, setFlag, type, percentage, courses }) => {
         className="coursediv"
         onClick={() => {
           setShowDetail(!showDetail);
-          !flag &&
-            setTimeout(() => {
-              setOpen(true);
-              setFlag(true);
-            }, 3000);
+          // !flag &&
+          //   setTimeout(() => {
+          //     setOpen(true);
+          //     setFlag(true);
+          //   }, 30000);
         }}
       >
         <Grid item xs={4} sm={8} className="courseType">

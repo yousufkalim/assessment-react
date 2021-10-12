@@ -31,9 +31,9 @@ function DetailofCourses({ courses, open, setOpen }) {
                 <div>
                   <b style={{ fontSize: "15px" }}>
                     {course?.selectivityrating
-                      ? course?.selectivityrating[0]
+                      ? course?.selectivityrating[0] + "/5"
                       : course?.courseId?.selectivity[0]
-                      ? course?.courseId?.selectivity[0]
+                      ? course?.courseId?.selectivity[0] + "/5"
                       : "N/A"}
                   </b>
                 </div>

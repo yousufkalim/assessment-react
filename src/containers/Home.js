@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import UserForm from "../components/UserForm";
 import Questions from "../components/Questions";
@@ -10,9 +10,31 @@ import Stepper from "../components/Stepper";
 const Home = () => {
   const [activeStep, setActiveStep] = useState(1);
   const [step, setStep] = useState(0);
+  const [statetextforscroll, setStatetextforscroll] = useState("");
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 115,
+      behavior: "smooth",
+    });
+  };
+  const scrollToTopforComment = () => {
+    window.scrollTo({
+      top: 850,
+      behavior: "smooth",
+    });
+  };
+  useEffect(() => {
+    statetextforscroll == "Accueil" && scrollToTop();
+    statetextforscroll == "Comment" && scrollToTopforComment();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [step]);
   return (
     <>
-      <Header />
+      <Header
+        step={step}
+        setStep={setStep}
+        setStatetextforscroll={setStatetextforscroll}
+      />
       {step === 0 && <Landing step={step} setStep={setStep} />}
       <div className="mainbody">
         {step >= 1 && (

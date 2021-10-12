@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Store, UpdateStore } from "../StoreContext";
 import Card from "../components/dashboard/Card";
+import TypeOfCourse from "../components/TypeOfCourse";
 import api from "../api";
 
 const Result = () => {
@@ -10,6 +11,7 @@ const Result = () => {
   const { singleUserResult } = Store();
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
+  const [flag, setFlag] = useState(true);
   //   Single Result of User
   useEffect(() => {
     getUserResult();
@@ -32,33 +34,43 @@ const Result = () => {
   };
 
   return (
-    <>
+    <div
+      style={{
+        height: "100vh",
+        background:
+          "radial-gradient(97.47% 66.83% at 50% 50%,#35384e 0%,#000000 100%)",
+      }}
+    >
       <div
         style={{
-          marginTop: "80px",
+          paddingTop: "5%",
           marginLeft: "275px",
           width: "80%",
           textAlign: "center",
+          color: "white",
         }}
       >
         <h2>Domain:{singleUserResult?.domain}</h2>
         <h3>Job-Exapmle:{singleUserResult?.example_of_job}</h3>
       </div>
-      <div>
+      <div style={{}}>
         {!loading ? (
-          <div style={{ padding: "5px" }}>
+          <div style={{ padding: "5px", marginLeft: "10%" }}>
             {singleUserResult?.courses &&
-              singleUserResult?.courses.length >= 1 ? (
-              <div className="cardflex">
+            singleUserResult?.courses.length >= 1 ? (
+              <div className="">
                 {typeOfCourses.map((type) => (
                   <>
                     {getSingleTypeofCourse(type)[0]?.courseId?.type_of_course ==
                       type && (
-                        <div>
-                          <h3>Type of Course : {type}</h3>
-                          <Card courses={getSingleTypeofCourse(type)} />
-                        </div>
-                      )}
+                      <TypeOfCourse
+                        type={type}
+                        flag={flag}
+                        setFlag={setFlag}
+                        percentage={getSingleTypeofCourse(type)[0]?.percentage}
+                        courses={getSingleTypeofCourse(type)}
+                      />
+                    )}
                   </>
                 ))}
                 {/* {singleUserResult?.courses.map((course) => (
@@ -66,20 +78,20 @@ const Result = () => {
                 ))} */}
               </div>
             ) : (
-              <div className="cardflex">
+              <div className="cardflex" style={{ color: "white" }}>
                 {" "}
                 <h1>No Course Available</h1>
               </div>
             )}
           </div>
         ) : (
-          <div className="cardflex">
+          <div className="cardflex" style={{ color: "white" }}>
             {" "}
             <h1>Loading...</h1>
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

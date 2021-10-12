@@ -22,6 +22,7 @@
     #ff6d1a 50.66%,
     #ff29aa 101.84%
   ) !important;
+  color: white !important;
   position: relative;
   bottom: 20px;
   height: 44px;
@@ -77,9 +78,12 @@
   font-weight: 900;
   border: none;
   border-radius: 100px;
-  background: linear-gradient(#ffffff, #bac0d6);
+  background: linear-gradient(180deg, #ffffff -24.17%, #bac0d6 100%);
   padding: 13px 30px;
   margin: 20px;
+}
+.modalButon:hover {
+  background: linear-gradient(1deg, #ffffff -24.17%, #bac0d6 100%);
 }
 .popupcheckbox {
   display: flex !important;

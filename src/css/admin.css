@@ -6,13 +6,12 @@ body {
 .headera {
   z-index: 1;
   position: fixed;
-  background: #22242a;
+  background: #2f323a;
   width: calc(100% - 0%);
   top: 0;
   height: 70px;
 }
 .options {
-  width: 80%;
   text-align: center;
   color: white;
   font-family: revert;
@@ -23,9 +22,7 @@ body {
   margin: 0px;
   margin-bottom: 2px;
 }
-.option:hover {
-  background: #4cc1e4;
-}
+
 .left_area h3 {
   color: #fff;
   margin-bottom: -15px;
@@ -35,11 +32,11 @@ body {
   padding: 5px;
 }
 .left_area span {
-  color: #19b3d3;
+  color: #9198a5;
 }
 .logout_btn {
   padding: 10px;
-  background: #19b3d3;
+  background: linear-gradient(#ffffff, #bac0d6);
   text-decoration: none;
   float: right;
   margin-top: -22px;
@@ -52,7 +49,7 @@ body {
   transition-property: background;
 }
 .logout_btn:hover {
-  background: #0b87a6;
+  background: #9198a5;
 }
 .sidebar {
   z-index: 1;
@@ -98,7 +95,7 @@ body {
   font-family: "Montserrat', sans-serif";
 }
 .sidebar a:hover {
-  background: #19b3d3;
+  background: #9198a5;
 }
 .sidebar i {
   padding-right: 10px;

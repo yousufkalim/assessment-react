@@ -61,34 +61,40 @@ const Login = () => {
     getLogin(formData);
   };
   return (
-    <div className={classes.main}>
-      <h1> Login form</h1>
-      <form className={classes.root} autoComplete="off" onSubmit={handleSubmit}>
-        <TextField
-          label="email"
-          variant="outlined"
-          size="small"
-          name="email"
-          value={email}
-          onChange={onChange}
-          required
-        />
-        <br />
-        <TextField
-          label="Password"
-          variant="outlined"
-          type="password"
-          size="small"
-          name="password"
-          value={password}
-          onChange={onChange}
-          required
-        />
-        <br />
-        <Button variant="contained" color="primary" size="large" type="submit">
-          {loading ? "Loading..." : "Login"}
-        </Button>
-      </form>
+    <div style={{ height: "100vh" }}>
+      <div className="loginMain">
+        <h1> Login Form</h1>
+        <form
+          className={classes.root}
+          autoComplete="off"
+          onSubmit={handleSubmit}
+        >
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={onChange}
+            placeholder="E-mail"
+            className="inputField"
+            required
+          />
+          <br />
+          <input
+            type="password"
+            name="password"
+            value={password}
+            onChange={onChange}
+            placeholder="Password"
+            className="inputField"
+            required
+          />
+
+          <br />
+          <Button size="" className="loginButton" type="submit">
+            {loading ? "Loading..." : "Login"}
+          </Button>
+        </form>
+      </div>
     </div>
   );
 };

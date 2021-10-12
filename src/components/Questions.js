@@ -107,7 +107,7 @@ const Questions = ({ setStep, setActiveStep }) => {
     <Grid container spacing={2} className="mainquestionscreen">
       <Grid item xs={12} sm={4} className="">
         <img src={Dummy} className="dummyimgQuestion forweb" />
-        <img src={MainMobile} className="dummyimg formobile" />
+        <img src={MainMobile} className="dummyimgforQuestion formobile" />
       </Grid>
       <Grid item xs={12} sm={8} className="questionGrid">
         <div className="questionDiv">

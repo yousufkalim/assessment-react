@@ -52,7 +52,7 @@ const Result = () => {
         <Grid container spacing={2} className="mainresultscreen">
           <Grid item xs={12} sm={4} className="">
             <img src={Dummy} className="dummyimgResult forweb" />
-            <img src={MainMobile} className="dummyimg formobile" />
+            <img src={MainMobile} className="dummyimgforResult formobile" />
           </Grid>
           <Grid item xs={12} sm={8} className="">
             <div className="resultBox">
@@ -144,7 +144,7 @@ const Result = () => {
                       <div className="buttonDiv">
                         <button className="sharebutton">
                           <img src={userimg} />
-                          <b style={{ margin: "12px" }}>Invite un</b>
+                          <b style={{ margin: "12px" }}>Invite un ami</b>
                         </button>
                         <button className="sharebutton">
                           <img src={share} />

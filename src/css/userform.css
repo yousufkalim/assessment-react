@@ -17,6 +17,24 @@
   height: 80% !important;
   margin: 25px auto auto 20% !important;
 }
+.dummyimgforuserform {
+  height: 100% !important;
+
+  margin: 10px auto auto 20% !important;
+  margin-left: 20px !important;
+}
+.dummyimgforQuestion {
+  height: 100% !important;
+
+  margin: 10px auto auto 20% !important;
+  margin-left: 20px !important;
+}
+.dummyimgforResult {
+  height: 100% !important;
+
+  margin: 10px auto auto 20% !important;
+  margin-left: 20px !important;
+}
 .dummyimgQuestion {
   height: 75%;
   margin: auto auto auto 20%;
@@ -185,6 +203,9 @@
   padding: 13px 0px 13px 0px;
   cursor: pointer;
 }
+.formbackbutton:hover {
+  background: linear-gradient(1deg, #ffffff -24.17%, #bac0d6 100%);
+}
 .formSubmitButton {
   background: linear-gradient(
     265.05deg,
@@ -200,6 +221,14 @@
   color: white;
   margin: 20px 20px 20px 20px;
   padding: 16px 25px 16px 25px;
+}
+.formSubmitButton:hover {
+  background: linear-gradient(
+    147deg,
+    #f1c31c 0%,
+    #f56410 50.66%,
+    #ec58b1 101.84%
+  );
 }
 .circulardiv {
   padding: 0px 48px 0px 36px;
@@ -280,7 +309,7 @@
   }
   .dummyGrid {
     text-align: center !important;
-    margin-top: 6% !important;
+    /* margin-top: 6% !important; */
   }
   .dummyimg {
     height: auto;
