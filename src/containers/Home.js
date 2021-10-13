@@ -11,31 +11,22 @@ const Home = () => {
   const [activeStep, setActiveStep] = useState(1);
   const [step, setStep] = useState(0);
   const [statetextforscroll, setStatetextforscroll] = useState("");
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 115,
-      behavior: "smooth",
-    });
-  };
-  const scrollToTopforComment = () => {
-    window.scrollTo({
-      top: 850,
-      behavior: "smooth",
-    });
-  };
-  useEffect(() => {
-    statetextforscroll == "Accueil" && scrollToTop();
-    statetextforscroll == "Comment" && scrollToTopforComment();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [step]);
+
   return (
     <>
       <Header
         step={step}
         setStep={setStep}
+        setActiveStep={setActiveStep}
         setStatetextforscroll={setStatetextforscroll}
       />
-      {step === 0 && <Landing step={step} setStep={setStep} />}
+      {step === 0 && (
+        <Landing
+          step={step}
+          setStep={setStep}
+          statetextforscroll={statetextforscroll}
+        />
+      )}
       <div className="mainbody">
         {step >= 1 && (
           <Grid spacing={1} className="stepper">

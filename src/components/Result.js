@@ -8,7 +8,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import TypeOfCourse from "./TypeOfCourse";
 import userimg from "../assets/icons/user.png";
 import share from "../assets/icons/share.png";
-import Loading from "./Loading";
+import Dialog from "./Dialog";
 
 const Result = () => {
   let typeOfCourses = ["BTS", "BUT", "CPGE", "Ecole Post-Bac", "Licence"];
@@ -16,12 +16,17 @@ const Result = () => {
   const updateStore = UpdateStore();
   const { history, user, disc_ans_id, result } = Store();
   const [loading, setLoading] = useState(false);
-  const [flag, setFlag] = useState(false);
   const [resultStep, setresultStep] = useState(0);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
+    if (resultStep == 1) {
+      setTimeout(() => {
+        setOpen(true);
+      }, 30000);
+    }
     getResult();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [resultStep]);
   // get Result from api
   let getResult = async () => {
     setLoading(true);
@@ -29,7 +34,6 @@ const Result = () => {
     let lastAnswerId = history?.find(
       (his) => his.next_question == "61111167760c9840b8d2c9d2"
     );
-
     const userData = {
       disc_answers: disc_ans_id,
       user_id: user?._id,
@@ -46,6 +50,7 @@ const Result = () => {
     result.courses.filter(
       (course) => type === course?.courseId?.type_of_course
     );
+
   return (
     <>
       {resultStep == 0 && (
@@ -118,62 +123,61 @@ const Result = () => {
         </Grid>
       )}
       {resultStep == 1 && (
-        <Grid container spacing={1} className="mainresultscreen">
-          <Grid item xs={12} sm={12} className="">
-            <div>
-              {!loading ? (
-                <div>
-                  {result?.courses && result?.courses.length >= 1 ? (
-                    <div>
-                      {typeOfCourses.map((type) => (
-                        <>
-                          {getSingleTypeofCourse(type)[0]?.courseId
-                            ?.type_of_course == type && (
-                            <TypeOfCourse
-                              type={type}
-                              flag={flag}
-                              setFlag={setFlag}
-                              percentage={
-                                getSingleTypeofCourse(type)[0]?.percentage
-                              }
-                              courses={getSingleTypeofCourse(type)}
-                            />
-                          )}
-                        </>
-                      ))}
-                      <div className="buttonDiv">
-                        <button className="sharebutton">
-                          <img src={userimg} />
-                          <b style={{ margin: "12px" }}>Invite un ami</b>
-                        </button>
-                        <button className="sharebutton">
-                          <img src={share} />
-                          <b style={{ margin: "12px" }}> Partager </b>
-                        </button>
+        <>
+          <Dialog open={open} setOpen={setOpen} />
+          <Grid container spacing={1} className="mainresultscreen">
+            <Grid item xs={12} sm={12} className="">
+              <div>
+                {!loading ? (
+                  <div>
+                    {result?.courses && result?.courses.length >= 1 ? (
+                      <div>
+                        {typeOfCourses.map((type) => (
+                          <>
+                            {getSingleTypeofCourse(type)[0]?.courseId
+                              ?.type_of_course == type && (
+                              <TypeOfCourse
+                                type={type}
+                                percentage={
+                                  getSingleTypeofCourse(type)[0]?.percentage
+                                }
+                                courses={getSingleTypeofCourse(type)}
+                              />
+                            )}
+                          </>
+                        ))}
+                        <div className="buttonDiv">
+                          <button className="sharebutton">
+                            <img src={userimg} />
+                            <b style={{ margin: "12px" }}>Invite un ami</b>
+                          </button>
+                          <button className="sharebutton">
+                            <img src={share} />
+                            <b style={{ margin: "12px" }}> Partager </b>
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div
-                      className=""
-                      style={{ margin: "10px", textAlign: "center" }}
-                    >
-                      <h1> Désolé pas de cours disponible</h1>
-                      {/* <img src={Dummy} style={{}} /> */}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <div
-                  className=""
-                  style={{ margin: "10%", textAlign: "center" }}
-                >
-                  <h1>Chargement en cours...</h1>
-                  <Loading />
-                </div>
-              )}
-            </div>
+                    ) : (
+                      <div
+                        className=""
+                        style={{ margin: "10px", textAlign: "center" }}
+                      >
+                        <h1> Désolé pas de cours disponible</h1>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div
+                    className=""
+                    style={{ margin: "10%", textAlign: "center" }}
+                  >
+                    <h1>Chargement en cours...</h1>
+                  </div>
+                )}
+              </div>
+            </Grid>
           </Grid>
-        </Grid>
+        </>
       )}
     </>
   );

@@ -43,36 +43,8 @@ let education = [
   "Terminale STHR",
   "Terminale STAV",
 ];
-const useStyles = makeStyles({
-  customTextField: {
-    "& input::placeholder": {
-      color: "white",
-    },
-  },
-  option: {
-    background: "#242635 ",
 
-    color: "white",
-    "&:hover": {
-      backgroundColor: "#9198a5 !important",
-    },
-  },
-  noOptions: {
-    color: "white",
-  },
-  select: {
-    background: "#242635",
-    color: "#9198a5",
-    "&:before": {
-      borderColor: "red",
-    },
-    "&:after": {
-      borderColor: "yellow",
-    },
-  },
-});
 const UserForm = ({ setStep, setActiveStep }) => {
-  const classes = useStyles();
   // initialize ContextStore
   const updateStore = UpdateStore();
   const { institutes } = Store();
@@ -96,7 +68,10 @@ const UserForm = ({ setStep, setActiveStep }) => {
     newsletter: false,
     accept_condition: false,
   });
+  // state for address options list
+  const [values, setValues] = useState([]);
 
+  // state for address details
   const [addressValue, setAddressValue] = useState({
     lat: "",
     lng: "",
@@ -106,6 +81,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
     label2: "",
   });
   const [loading, setLoading] = useState(false);
+
   // Destructuring of UserForm State
   const {
     first_name,
@@ -126,6 +102,35 @@ const UserForm = ({ setStep, setActiveStep }) => {
     getSchoolData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const useStyles = makeStyles({
+    customTextField: {
+      "& input::placeholder": {
+        color: "white",
+      },
+    },
+    option: {
+      background: "#242635 ",
+      color: "white",
+      "&:hover": {
+        backgroundColor: "#9198a5 !important",
+      },
+    },
+    noOptions: {
+      display: `${values.length <= 0 ? "none" : "inherit"}`,
+      color: "white",
+    },
+    select: {
+      background: "#242635",
+      color: "#9198a5",
+      "&:before": {
+        borderColor: "red",
+      },
+      "&:after": {
+        borderColor: "yellow",
+      },
+    },
+  });
+  const classes = useStyles();
 
   // onChange Function for Input Field
   const onChange = (e) => {
@@ -152,13 +157,12 @@ const UserForm = ({ setStep, setActiveStep }) => {
   const handleChangeSchool = (event, value) => {
     setFormData({ ...formData, institute: value?._id });
   };
-  // fordate
+  // function for Date select
   const onChangeDate = (date) => {
     setFormData({ ...formData, date_of_birth: date });
   };
 
   // Get All Address in drop down List from API
-  const [values, setValues] = useState([]);
   const getAllAdress = async (e) => {
     setFormData({
       ...formData,
@@ -179,7 +183,6 @@ const UserForm = ({ setStep, setActiveStep }) => {
     if (localStorage.token) {
       axios.defaults.headers.common["x-auth-token"] = localStorage.token;
     }
-    console.log("address res", res);
 
     var addressToSet = []; // //debugger;
     for (var i = 0; i < res?.data?.features?.length; i++) {
@@ -201,7 +204,6 @@ const UserForm = ({ setStep, setActiveStep }) => {
       setValues(addressToSet);
     }
   };
-
   // Set Address in  setAddressValue State
   const SetAddress = async (item) => {
     if (item.target.textContent) {
@@ -368,6 +370,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   name="phone"
                   value={phone}
                   onChange={onChange}
+                  maxlength="10"
                   placeholder="Numéro de téléphone"
                   className="inputField"
                   required
