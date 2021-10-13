@@ -5,7 +5,7 @@ import search from "../assets/icons/search.png";
 import showhide from "../assets/icons/showhide.png";
 import hide from "../assets/icons/hide.png";
 
-const TypeOfCourse = ({ flag, setFlag, type, percentage, courses }) => {
+const TypeOfCourse = ({ type, percentage, courses }) => {
   const [showDetail, setShowDetail] = useState(false);
 
   const [open, setOpen] = useState(false);
@@ -30,8 +30,7 @@ const TypeOfCourse = ({ flag, setFlag, type, percentage, courses }) => {
   useEffect(() => {
     setTimeout(() => {
       setOpen(true);
-      setFlag(true);
-    }, 30000);
+    }, 1000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
@@ -43,11 +42,6 @@ const TypeOfCourse = ({ flag, setFlag, type, percentage, courses }) => {
         className="coursediv"
         onClick={() => {
           setShowDetail(!showDetail);
-          // !flag &&
-          //   setTimeout(() => {
-          //     setOpen(true);
-          //     setFlag(true);
-          //   }, 30000);
         }}
       >
         <Grid item xs={4} sm={8} className="courseType">

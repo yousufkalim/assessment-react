@@ -4,8 +4,8 @@
 .questionBox {
   color: white;
   position: relative;
-  bottom: 23%;
-  width: 74% !important;
+  bottom: 28%;
+  width: 76% !important;
   margin: auto !important;
   text-align: left !important;
 }
@@ -106,8 +106,11 @@
   .questionBox {
     color: white !important;
     position: relative !important;
-    bottom: 19% !important;
+    bottom: 22% !important;
     width: 64% !important;
+  }
+  .questiontext {
+    padding-left: 60px;
   }
   .questionDiv {
     height: 650px !important;

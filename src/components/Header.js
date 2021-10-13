@@ -20,7 +20,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header({ step, setStep, setStatetextforscroll }) {
+export default function Header({
+  step,
+  setStep,
+  setActiveStep,
+  setStatetextforscroll,
+}) {
   const classes = useStyles();
   const [flag, setFlag] = useState(false);
   // Show navbar when page is scorlled upto given distance
@@ -88,6 +93,7 @@ export default function Header({ step, setStep, setStatetextforscroll }) {
             onClick={() => {
               flag && scrollToTop();
               step != 0 && setStep(0);
+              step != 0 && setActiveStep(1);
               step != 0 && setStatetextforscroll("Accueil");
             }}
           >
@@ -103,6 +109,7 @@ export default function Header({ step, setStep, setStatetextforscroll }) {
             onClick={() => {
               flag && scrollToTopforComment();
               step != 0 && setStep(0);
+              step != 0 && setActiveStep(1);
               step != 0 && setStatetextforscroll("Comment");
             }}
           >
