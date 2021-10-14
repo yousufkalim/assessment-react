@@ -1,0 +1,11 @@
+.FooterDiv {
+  background-color: rgb(20 20 26);
+  padding: 10px;
+  color: white;
+}
+.cguBar {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: auto;
+}
