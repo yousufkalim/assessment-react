@@ -1,0 +1,17 @@
+.cguHeading {
+  padding: 10% 20px 20px 20px;
+  font-size: 38px;
+}
+.boldText {
+  font-weight: 900 !important;
+  margin-bottom: 0px;
+}
+.purplecolor {
+  color: rgb(226, 44, 226);
+}
+.colorgreen {
+  color: rgb(25, 219, 25);
+}
+.pmargin {
+  margin-top: 0px;
+}

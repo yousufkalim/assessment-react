@@ -9,17 +9,18 @@ import f1 from "../assets/img/f1.png";
 import f2 from "../assets/img/f2.png";
 import f3 from "../assets/img/f3.png";
 import arrowright from "../assets/img/arrow.png";
+import Footer from "./Footer";
 
 const Landing = ({ step, setStep, statetextforscroll }) => {
   const scrollToTop = () => {
     window.scrollTo({
-      top: 115,
+      top: 11,
       behavior: "smooth",
     });
   };
   const scrollToTopforComment = () => {
     window.scrollTo({
-      top: 850,
+      top: 800,
       behavior: "smooth",
     });
   };
@@ -79,6 +80,7 @@ const Landing = ({ step, setStep, statetextforscroll }) => {
           </Grid>
         </Grid>
       </div>
+      <Footer />
     </>
   );
 };
