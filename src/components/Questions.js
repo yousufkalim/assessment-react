@@ -106,10 +106,6 @@ const Questions = ({ setStep, setActiveStep }) => {
   return (
     <Grid container spacing={2} className="mainquestionscreen">
       <Grid item xs={12} sm={4} className="">
-        <h1 className="questiontext">
-          {console.log("facila", getQuestion()?.facialExpression)}
-        </h1>
-        <span>{getQuestion()?.facialExpression}</span>
         <img src={Dummy} className="dummyimgQuestion forweb" />
         <img src={MainMobile} className="dummyimgforQuestion formobile" />
       </Grid>
