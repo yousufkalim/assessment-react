@@ -45,6 +45,7 @@ let education = [
 ];
 
 const UserForm = ({ setStep, setActiveStep }) => {
+  const [data,setData] = useState()
   // initialize ContextStore
   const updateStore = UpdateStore();
   const { institutes } = Store();
@@ -55,12 +56,12 @@ const UserForm = ({ setStep, setActiveStep }) => {
       updateStore({ institutes: res?.data?.institute });
     }
   };
+  // const [data, setData] = React.useState()
   // initialize States
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
     date_of_birth: "",
-    institute: "",
     address: "",
     education_level: "Classe",
     phone: "",
@@ -239,35 +240,38 @@ const UserForm = ({ setStep, setActiveStep }) => {
   // handleSubmit Function
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (institute == "") {
-      return toast.error("Veuillez entrer votre institut");
-    }
-    if (addressValue?.city == "") {
-      return toast.error("Veuillez entrer votre adresse");
-    }
-    if (phone.length != 10 || phone[0] != 0) {
-      return toast.error(
-        "Le numéro de téléphone doit être composé de 10 chiffres et commencer par 0"
-      );
-    }
-    if (!accept_condition) {
-      return toast.error("Veuillez accepter les termes et conditions");
-    }
-    setLoading(true);
-    let res = await api("post", "/users/create", {
-      ...formData,
-      address: addressValue,
-    });
-    if (res.status === 200) {
-      updateStore({
-        questions: res?.data?.questions,
-        answers: res?.data?.answers,
-        user: res?.data?.user,
-      });
-      setStep(2);
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    }
-    setLoading(false);
+console.log("state is ",formData)
+setFormData({first_name:"",last_name:"",email:"",date_of_birth:"",address:"",phone:"",})
+setStep(2)
+    // if (institute == "") {
+    //   return toast.error("Veuillez entrer votre institut");
+    // }
+    // if (addressValue?.city == "") {
+    //   return toast.error("Veuillez entrer votre adresse");
+    // }
+    // if (phone.length != 10 || phone[0] != 0) {
+    //   return toast.error(
+    //     "Le numéro de téléphone doit être composé de 10 chiffres et commencer par 0"
+    //   );
+    // }
+    // if (!accept_condition) {
+    //   return toast.error("Veuillez accepter les termes et conditions");
+    // }
+    // setLoading(true);
+    // let res = await api("post", "/users/create", {
+    //   ...formData,
+    //   address: addressValue,
+    // });
+    // if (res.status === 200) {
+    //   updateStore({
+    //     questions: res?.data?.questions,
+    //     answers: res?.data?.answers,
+    //     user: res?.data?.user,
+    //   });
+    //   setStep(2);
+    //   setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    // }
+    // setLoading(false);
   };
   return (
     <Grid container spacing={2} className="mainuserform">
@@ -280,15 +284,14 @@ const UserForm = ({ setStep, setActiveStep }) => {
           <Grid container className="userformgrid">
             <Grid item xs={12} sm={12} className="">
               <h3 className="formheading">
-                Pour mieux te conseiller, j’ai besoin <br className="br" />
-                d’en savoir davantage sur toi !
+              Contact Us
               </h3>
             </Grid>
             <Grid container spacing={2} className="inputgrid1">
               <Grid item xs={12} sm={6} className="inputGrid">
                 <input
                   name="first_name"
-                  placeholder="Prénom"
+                  placeholder="Name"
                   className="inputField"
                   value={first_name}
                   onChange={onChange}
@@ -300,7 +303,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   name="last_name"
                   value={last_name}
                   onChange={onChange}
-                  placeholder="Nom"
+                  placeholder="Last Name"
                   className="inputField"
                   required
                 />
@@ -316,39 +319,19 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   className="inputField"
                   value={date_of_birth}
                   autoComplete="off"
-                  placeholderText="Date de naissance"
+                  placeholderText="Date of birth"
                   openToDate={new Date("1999/01/01")}
                   required
                 />
               </Grid>
               <Grid item xs={12} sm={6} className="inputGrid">
-                <Autocomplete
-                  options={values}
-                  classes={{
-                    option: classes.option,
-                    noOptions: classes.noOptions,
-                  }}
-                  PaperComponent={({ children }) => (
-                    <Paper style={{ background: "#242635" }}>{children}</Paper>
-                  )}
-                  getOptionLabel={(option) => option.label2}
-                  onChange={SetAddress}
-                  hiddenLabel="true"
-                  style={{
-                    width: "91%",
-                    margin: "auto",
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      classes={{ root: classes.customTextField }}
-                      {...params}
-                      placeholder="Adresse"
-                      style={{ color: "white" }}
-                      variant="outlined"
-                      onChange={getAllAdress}
-                      value={address}
-                    />
-                  )}
+                <input
+                  name="address"
+                  value={address}
+                  onChange={onChange}
+                  placeholder="Address"
+                  className="inputField"
+                  required
                 />
               </Grid>
             </Grid>
@@ -371,82 +354,13 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   value={phone}
                   onChange={onChange}
                   maxlength="10"
-                  placeholder="Numéro de téléphone"
+                  placeholder="Enter your Phone"
                   className="inputField"
                   required
                 />
               </Grid>
             </Grid>
-            <Grid container spacing={2} className="">
-              <Grid item xs={12} sm={6} className="inputGrid">
-                <FormControl variant="outlined" className="selectformControl">
-                  {/* <InputLabel id="demo-simple-select-outlined-label">
-                    {education_level ? "" : " classe "}
-                  </InputLabel> */}
-                  <Select
-                    labelId="demo-simple-select-outlined-label"
-                    id="demo-simple-select-outlined"
-                    name="education_level"
-                    value={education_level}
-                    defaultValue={education_level}
-                    onChange={onChange}
-                    className={classes.select}
-                    className="selectforeducation"
-                  >
-                    <MenuItem
-                      value="Classe"
-                      disabled
-                      style={{ textAlign: "left !important" }}
-                    >
-                      <em>Classe</em>
-                    </MenuItem>
-                    {education.map((edu) => (
-                      <MenuItem value={edu}>{edu}</MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12} sm={6} className="inputGrid">
-                <Autocomplete
-                  classes={{
-                    option: classes.option,
-                  }}
-                  PaperComponent={({ children }) => (
-                    <Paper style={{ background: "#242635" }}>{children}</Paper>
-                  )}
-                  options={
-                    education_level == "Quatrième" ||
-                    education_level == "Troisième"
-                      ? institutes?.filter(
-                          (institute) => institute.type == "College"
-                        )
-                      : institutes?.filter(
-                          (institute) => institute.type == "School"
-                        )
-                  }
-                  freeSolo
-                  getOptionLabel={(option) => option.name}
-                  onChange={handleChangeSchool}
-                  style={{
-                    width: "91%",
-                    margin: "auto",
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      classes={{ root: classes.customTextField }}
-                      {...params}
-                      placeholder="Établissement actuel"
-                      variant="outlined"
-                      value={institute}
-                      name="institute"
-                      onChange={onChange}
-                    />
-                  )}
-                  value={!education_level && ""}
-                  disabled={!education_level || education_level == "Classe"}
-                />
-              </Grid>
-            </Grid>
+         
             <Grid container spacing={1} className="termsandconditionGrid">
               <Checkbox
                 inputProps={{ "aria-label": "secondary checkbox" }}
@@ -456,7 +370,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                 onChange={onChange}
               />
               <span className="termsandcondition">
-                J’accepte les termes et les conditions
+                I Accept the terms and condition
               </span>
             </Grid>
             <Grid container spacing={2} className="formbuttonsGrid">
@@ -467,7 +381,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   onClick={() => setStep(0)}
                 >
                   <img src={arrowleft} className="arrowleft" />
-                  <b> Retour</b>
+                  <b> Back</b>
                 </div>
               </Grid>
 
@@ -489,10 +403,11 @@ const UserForm = ({ setStep, setActiveStep }) => {
                         <CircularProgress size={20} className="" />
                       </div>
                     ) : (
-                      "Commencer le test"
+                      "Form Submit"
                     )}
                   </b>
                 </button>
+                <h1>{data}</h1>
               </Grid>
             </Grid>
           </Grid>

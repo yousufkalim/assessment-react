@@ -30,6 +30,7 @@ export function StoreProvider({ children }) {
     answers: [],
     institutes: [],
     history: [],
+    allAn: [],
     disc_ans_id: [],
     result: {},
   });

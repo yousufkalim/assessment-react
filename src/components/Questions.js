@@ -5,18 +5,21 @@ import Dummy from "../assets/img/dummy.png";
 import MainMobile from "../assets/img/mobileform.png";
 import qarrow from "../assets/icons/qarrow.png";
 import Grid from "@material-ui/core/Grid";
+import Ans from "./dashboard/Ans";
+import Quiz from "./dashboard/Quiz";
 
 const Questions = ({ setStep, setActiveStep }) => {
   // init context
   const updateStore = UpdateStore();
-  const { questions, answers, history, disc_ans_id } = Store();
+  const { questions, answers, history, disc_ans_id, allAn } = Store();
   // state init
   const [nextQuestionId, setNextQuestionId] = useState("first");
   const [prevQuestion, setprevQuestion] = useState([]);
+  const [allAns, setAllAns] = useState([])
   const [currentAnswer, setCurrentAnswer] = useState(null);
 
   useEffect(() => {
-    currentans();
+    // currentans();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prevQuestion]);
   // stlyes
@@ -43,12 +46,14 @@ const Questions = ({ setStep, setActiveStep }) => {
     if (ans?.question?.questionType === "discriminating") {
       updateStore({ disc_ans_id: [...disc_ans_id, ans?._id] });
     }
+    setAllAns([ans,...allAns])
     setNextQuestionId(ans?.next_question);
     updateStore({ history: [...history, ans] });
+    updateStore({ allAn: [...allAns, ans] });
     setprevQuestion([]);
     setCurrentAnswer(null);
   };
-
+console.log("Store Arry", allAn)
   // when Click on Previous Button it get previous question
   // by match nextquestion from history saved with current question and remove from history
   // if Q is discriminating it pop from disc_ans_id
@@ -91,15 +96,15 @@ const Questions = ({ setStep, setActiveStep }) => {
       return;
     }
     if (nextQuestionId === "first") {
-      return questions?.find((question) => question.isFirst);
+      return Quiz?.find((Quiz) => Quiz.isFirst);
     } else {
-      return questions?.find((question) => question._id === nextQuestionId);
+      return Quiz?.find((Quiz) => Quiz._id === nextQuestionId);
     }
   };
   // it show the options of question by filter answer on the base of question id
   const getOptions = (answers) => {
     let options = answers?.filter((answer) => {
-      return answer.question._id === getQuestion()?._id;
+      return answer.question === getQuestion()?._id;
     });
     return options;
   };
@@ -117,25 +122,27 @@ const Questions = ({ setStep, setActiveStep }) => {
               {getQuestion()?.question
                 ? getQuestion()?.question
                 : "There's no Question please try again"}
+                {/* {console.log("sadam",Quiz)}
+                questionis */}
             </h1>
           </div>
           <Grid container spacing={3} className="answerGrid">
-            {answers &&
-              getOptions(answers)?.map((ans) => (
+          
+         
+           {/* {console.log("Khan",getOptions(Ans))} */}
+            {Ans &&
+              getOptions(Ans)?.map((ans) => (
                 <Grid
                   item
                   xs={12}
                   sm={5}
-                  className={
-                    currentAnswer?.answer === ans?.answer
-                      ? "selectedOption"
-                      : "option"
-                  }
+                  className="option"
                   onClick={() => handleSelectOption(ans)}
                 >
-                  {ans?.answer}
+                  {console.log("ansis",ans)}
+                   {ans?.answer}
                 </Grid>
-              ))}
+              ))} 
           </Grid>
           {/* {history.length >= 1 && (
             <Button

@@ -4,9 +4,11 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-import logo from "../assets/img/logo.png";
+import logo from "../assets/img/sk1.png";
 import Navicon from "../assets/icons/navicon.png";
 import Closeicon from "../assets/icons/closeicon.png";
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -75,7 +77,7 @@ export default function Header({
           <img
             src={logo}
             width="90%"
-            className="logoImage"
+            className="logoImage" style={{marginTop:"15px", borderRadius:"5px"}}
             onClick={() => window.location.reload()}
           />
         </div>
@@ -97,7 +99,7 @@ export default function Header({
               step != 0 && setStatetextforscroll("Accueil");
             }}
           >
-            Accueil
+            Home
           </Typography>
         </AnchorLink>
         <AnchorLink
@@ -113,7 +115,7 @@ export default function Header({
               step != 0 && setStatetextforscroll("Comment");
             }}
           >
-            Comment ça marche ?
+            How it works ?
           </Typography>
         </AnchorLink>
       </Toolbar>
