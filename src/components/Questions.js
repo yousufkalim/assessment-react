@@ -18,12 +18,6 @@ const Questions = ({ setStep, setActiveStep }) => {
   const [nextQuestionId, setNextQuestionId] = useState("first");
   const [prevQuestion, setprevQuestion] = useState([]);
   const [allAns,setAllAns]=useState([]);
-  const [currentAnswer, setCurrentAnswer] = useState();
-
-  useEffect(() => {
-    currentans();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  },);
   // stlyes
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -54,45 +48,10 @@ const Questions = ({ setStep, setActiveStep }) => {
     updateStore({ allanswer: [...allanswer, ans] });
 
     setprevQuestion([]);
-    setCurrentAnswer(null);
+    // setCurrentAnswer(null);
   };
   console.log("Ans is", allAns);
   console.log("Store is", allanswer);
-
-
-  // when Click on Previous Button it get previous question
-  // by match nextquestion from history saved with current question and remove from history
-  // if Q is discriminating it pop from disc_ans_id
-  // it set next question id that is basically previous one which will show
-  // create previous q array to get seleceted
-  const handlePrev = () => {
-    const getprev = history?.find(
-      (his) => his?.next_question === getQuestion()?._id
-    );
-    if (getprev) {
-      if (getprev?.Question?.questionType === "discriminating") {
-        const disans = [...disc_ans_id];
-        disans.pop();
-        updateStore({
-          disc_ans_id: disans,
-        });
-      }
-      updateStore({
-        history: history.slice(0, history.length - 1),
-      });
-      setNextQuestionId(getprev?.Question?._id);
-      setprevQuestion([...prevQuestion, getprev]);
-    }
-  };
-  //it set the current answer which will be selected
-  const currentans = () => {
-    let currentans = prevQuestion?.find(
-      (answer) => answer.Ans === getQuestion()?._id
-    );
-    if (currentans !== undefined) {
-      setCurrentAnswer(currentans);
-    }
-  };
   // if show the questions by filteron the base of nextquestionId
   const getQuestion = () => {
     if (nextQuestionId == null) {
@@ -139,11 +98,7 @@ const Questions = ({ setStep, setActiveStep }) => {
                   item
                   xs={12}
                   sm={5}
-                  className={
-                    currentAnswer?.answer === ans?.answer
-                      ? "selectedOption"
-                      : "option"
-                  }
+                  className= "option"
                   onClick={() => handleSelectOption(ans)}
                 >
                   {ans?.answer}

@@ -17,50 +17,12 @@ import MainMobile from "../assets/img/mobileform.png";
 import arrowleft from "../assets/img/arrow2.png";
 import scrollToTop from "../utils/ScrollTop";
 import DatePicker from "react-datepicker";
-// import Questions from "./Questions";
-// import Answer from "./Answer";
 
-let education = [
-  // "Quatrième",
-  // "Troisième",
-  // "Seconde Générale",
-  // "Première Générale",
-  // "Première STL",
-  // "Première STI2D",
-  // "Première STD2A",
-  // "Première STMG",
-  // "Première ST2S",
-  // "Première S2TMD",
-  // "Première STHR",
-  // "Première STAV",
-  // "Terminale Générale",
-  // "Terminale STL",
-  // "Terminale STI2D",
-  // "Terminale STD2A",
-  // "Terminale STMG",
-  // "Terminale ST2S",
-  // "Terminale S2TMD",
-  // "Terminale STHR",
-  // "Terminale STAV",
-  "React.js",
-  "Node.js",
-  "Mongodb",
-  "Express",
-  "React Native",
-  ".Net",
-];
+
 
 const UserForm = ({ setStep, setActiveStep }) => {
   // initialize ContextStore
   const updateStore = UpdateStore();
-
-  // let getSchoolData = async () => {
-  //   let res = await api("get", "/institute");
-  //   if (res) {
-  //     updateStore({ institutes: res?.data?.institute });
-  //   }
-  // };
-  // initialize States
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
