@@ -4,21 +4,26 @@ import { Store, UpdateStore } from "../StoreContext";
 import Dummy from "../assets/img/dummy.png";
 import MainMobile from "../assets/img/mobileform.png";
 import qarrow from "../assets/icons/qarrow.png";
+
 import Grid from "@material-ui/core/Grid";
+import Button from '@mui/material/Button';
+import Question from "./data/Question";
+import Ans from "./data/Ans";
 
 const Questions = ({ setStep, setActiveStep }) => {
   // init context
   const updateStore = UpdateStore();
-  const { questions, answers, history, disc_ans_id } = Store();
+  const { questions, answers, history, disc_ans_id, allanswer } = Store();
   // state init
   const [nextQuestionId, setNextQuestionId] = useState("first");
   const [prevQuestion, setprevQuestion] = useState([]);
-  const [currentAnswer, setCurrentAnswer] = useState(null);
+  const [allAns,setAllAns]=useState([]);
+  const [currentAnswer, setCurrentAnswer] = useState();
 
   useEffect(() => {
     currentans();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [prevQuestion]);
+  },);
   // stlyes
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -43,11 +48,17 @@ const Questions = ({ setStep, setActiveStep }) => {
     if (ans?.question?.questionType === "discriminating") {
       updateStore({ disc_ans_id: [...disc_ans_id, ans?._id] });
     }
+    setAllAns([ans, ...allAns])
     setNextQuestionId(ans?.next_question);
     updateStore({ history: [...history, ans] });
+    updateStore({ allanswer: [...allanswer, ans] });
+
     setprevQuestion([]);
     setCurrentAnswer(null);
   };
+  console.log("Ans is", allAns);
+  console.log("Store is", allanswer);
+
 
   // when Click on Previous Button it get previous question
   // by match nextquestion from history saved with current question and remove from history
@@ -59,7 +70,7 @@ const Questions = ({ setStep, setActiveStep }) => {
       (his) => his?.next_question === getQuestion()?._id
     );
     if (getprev) {
-      if (getprev?.question?.questionType === "discriminating") {
+      if (getprev?.Question?.questionType === "discriminating") {
         const disans = [...disc_ans_id];
         disans.pop();
         updateStore({
@@ -69,14 +80,14 @@ const Questions = ({ setStep, setActiveStep }) => {
       updateStore({
         history: history.slice(0, history.length - 1),
       });
-      setNextQuestionId(getprev?.question?._id);
+      setNextQuestionId(getprev?.Question?._id);
       setprevQuestion([...prevQuestion, getprev]);
     }
   };
   //it set the current answer which will be selected
   const currentans = () => {
     let currentans = prevQuestion?.find(
-      (q) => q.question?._id === getQuestion()?._id
+      (answer) => answer.Ans === getQuestion()?._id
     );
     if (currentans !== undefined) {
       setCurrentAnswer(currentans);
@@ -91,18 +102,19 @@ const Questions = ({ setStep, setActiveStep }) => {
       return;
     }
     if (nextQuestionId === "first") {
-      return questions?.find((question) => question.isFirst);
+      return Question?.find((Question) => Question.isFirst);
     } else {
-      return questions?.find((question) => question._id === nextQuestionId);
+      return Question?.find((Question) => Question._id === nextQuestionId);
     }
   };
   // it show the options of question by filter answer on the base of question id
   const getOptions = (answers) => {
     let options = answers?.filter((answer) => {
-      return answer.question._id === getQuestion()?._id;
+      return answer.question === getQuestion()?._id;
     });
     return options;
   };
+
   return (
     <Grid container spacing={2} className="mainquestionscreen">
       <Grid item xs={12} sm={4} className="">
@@ -117,11 +129,12 @@ const Questions = ({ setStep, setActiveStep }) => {
               {getQuestion()?.question
                 ? getQuestion()?.question
                 : "There's no Question please try again"}
+              {console.log("saad",Question)}
             </h1>
           </div>
           <Grid container spacing={3} className="answerGrid">
-            {answers &&
-              getOptions(answers)?.map((ans) => (
+            {Ans &&
+              getOptions(Ans)?.map((ans) => (
                 <Grid
                   item
                   xs={12}

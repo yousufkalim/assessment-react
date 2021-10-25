@@ -4,7 +4,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-import logo from "../assets/img/logo.png";
+import logo from "../assets/img/logoo.png";
 import Navicon from "../assets/icons/navicon.png";
 import Closeicon from "../assets/icons/closeicon.png";
 
@@ -97,7 +97,7 @@ export default function Header({
               step != 0 && setStatetextforscroll("Accueil");
             }}
           >
-            Accueil
+           Home
           </Typography>
         </AnchorLink>
         <AnchorLink
@@ -113,7 +113,7 @@ export default function Header({
               step != 0 && setStatetextforscroll("Comment");
             }}
           >
-            Comment ça marche ?
+           How it works ?
           </Typography>
         </AnchorLink>
       </Toolbar>
