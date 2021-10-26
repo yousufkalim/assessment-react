@@ -6,18 +6,18 @@ import MainMobile from "../assets/img/mobileform.png";
 import qarrow from "../assets/icons/qarrow.png";
 
 import Grid from "@material-ui/core/Grid";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import Question from "./data/Question";
 import Ans from "./data/Ans";
 
-const Questions = ({ setStep, setActiveStep }) => {
+const Questions = ({ step,setStep, setActiveStep }) => {
   // init context
   const updateStore = UpdateStore();
   const { questions, answers, history, disc_ans_id, allanswer } = Store();
   // state init
   const [nextQuestionId, setNextQuestionId] = useState("first");
   const [prevQuestion, setprevQuestion] = useState([]);
-  const [allAns,setAllAns]=useState([]);
+  const [allAns, setAllAns] = useState([]);
   // stlyes
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,7 +42,7 @@ const Questions = ({ setStep, setActiveStep }) => {
     if (ans?.question?.questionType === "discriminating") {
       updateStore({ disc_ans_id: [...disc_ans_id, ans?._id] });
     }
-    setAllAns([ans, ...allAns])
+    setAllAns([ans, ...allAns]);
     setNextQuestionId(ans?.next_question);
     updateStore({ history: [...history, ans] });
     updateStore({ allanswer: [...allanswer, ans] });
@@ -51,10 +51,13 @@ const Questions = ({ setStep, setActiveStep }) => {
     // setCurrentAnswer(null);
   };
   console.log("Ans is", allAns);
+  console.log("n is in step quest ", step);
   console.log("Store is", allanswer);
   // if show the questions by filteron the base of nextquestionId
   const getQuestion = () => {
+    // console.log("n is ", nextQuestionId);
     if (nextQuestionId == null) {
+      // console.log("n is in step 3 ", nextQuestionId);
       setStep(3);
       // setActiveStep((prevActiveStep) => prevActiveStep + 1);
       setActiveStep(3);
@@ -86,9 +89,10 @@ const Questions = ({ setStep, setActiveStep }) => {
           <div className="questionBox">
             <h1 className="questiontext">
               {getQuestion()?.question
-                ? getQuestion()?.question
-                : "There's no Question please try again"}
-              {console.log("saad",Question)}
+                //  getQuestion()?.question
+                // : "you reached the end of the quiz"
+              }
+              {console.log("Questions is", Question)}
             </h1>
           </div>
           <Grid container spacing={3} className="answerGrid">
@@ -98,7 +102,7 @@ const Questions = ({ setStep, setActiveStep }) => {
                   item
                   xs={12}
                   sm={5}
-                  className= "option"
+                  className="option"
                   onClick={() => handleSelectOption(ans)}
                 >
                   {ans?.answer}

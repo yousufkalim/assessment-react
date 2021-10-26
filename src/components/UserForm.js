@@ -17,8 +17,7 @@ import MainMobile from "../assets/img/mobileform.png";
 import arrowleft from "../assets/img/arrow2.png";
 import scrollToTop from "../utils/ScrollTop";
 import DatePicker from "react-datepicker";
-
-
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 const UserForm = ({ setStep, setActiveStep }) => {
   // initialize ContextStore
@@ -27,9 +26,22 @@ const UserForm = ({ setStep, setActiveStep }) => {
     first_name: "",
     last_name: "",
     date_of_birth: "",
-    address: "",
-    phone: "",
-    email: "",
+    // address: "",
+    // phone: "",
+    // email: "",
+    martial: "",
+    post: "",
+    skills: "",
+    learned: "",
+    Religious_sect: "",
+    experience: "",
+    related_experience: "",
+    expected_date: "",
+    current_employeer: "",
+    current_salary: "",
+    expected_salary: "",
+    optionsState: "",
+    text_area:"",
     newsletter: false,
     accept_condition: false,
   });
@@ -52,10 +64,22 @@ const UserForm = ({ setStep, setActiveStep }) => {
     first_name,
     last_name,
     date_of_birth,
-    address,
-    phone,
-    email,
+    // address,
+    // phone,
+    // email,
+    martial,
+    post,
+    skills,
+    learned,
+    Religious_sect,
+    experience,
     accept_condition,
+    related_experience,
+    expected_date,
+    current_employeer,
+    current_salary,
+    expected_salary,
+    text_area,
   } = formData;
 
   // Get institutes data from API
@@ -105,7 +129,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
       if (e.target.name === "" && e.target.value === "") {
         setFormData({
           ...formData,
-        //  institute: "",
+          //  institute: "",
           // expertise: "",
         });
       } else
@@ -123,24 +147,72 @@ const UserForm = ({ setStep, setActiveStep }) => {
   const onChangeDate = (date) => {
     setFormData({ ...formData, date_of_birth: date });
   };
+  const onChangeeDate = (eDate) => {
+    setFormData({ ...formData, expected_date: eDate });
+  };
 
-  
   // handleSubmit Function
   const handleSubmit = async (e) => {
     e.preventDefault();
     //form data on console
-    console.log('state is', formData)
-    if (phone.length != 11 || phone[0] != 0) {
-      return toast.error(
-        "The phone number must be 11 digits and start with 0"
-      );
+    console.log("state is", formData);
+    // if (phone.length != 11 || phone[0] != 0) {
+    //   return toast.error(
+    //     "The phone number must be 11 digits and start with 0"
+    //   );
+    // }
+    if (first_name == "") {
+      return toast.error("Please enter first name");
+    }
+    if (last_name == "") {
+      return toast.error("Please enter last name");
+    }
+     if(date_of_birth==""){
+      return toast.error("Please enter date of birth")
+    }
+    if(martial==""){
+      return toast.error("Please enter martial status")
+    }
+    if(post==""){
+      return toast.error("Please enter post name")
+    }
+    if(skills==""){
+      return toast.error("Please enter your skills")
+    }
+    if(Religious_sect==""){
+      return toast.error("Please enter your religious sect")
+    }
+    if(learned==""){
+      return toast.error("Please enter where you have learned about the vacancy")
+    }
+    if(experience==""){
+      return toast.error("Please enter your proffesional experience")
+    }
+    if(related_experience==""){
+      return toast.error("Please enter your experience related to post")
+    }
+    if(expected_date==""){
+      return toast.error("Please enter your expected date of joining")
+    }
+    if(current_employeer==""){
+      return toast.error("please enter your current employer")
+    }
+    if(current_salary==""){
+      return toast.error("Please your current salary")
+    }
+    if(expected_salary==""){
+      return toast.error("please enter your expected salary")
+    }
+    if(text_area==""){
+      return toast.error("Please specify reason")
     }
     if (!accept_condition) {
       return toast.error("Please accept the terms and conditions");
     }
-    setFormData({first_name:"", last_name:"", email:"",date_of_birth:"", address:"", phone:""})
-    setStep(2)
-   };
+     setFormData({first_name:"", last_name:"", email:"",date_of_birth:"", martial:"", post:"", skills:"",Religious_sect:"",learned:"", experience:"", related_experience:"", expected_date:"", current_employeer:"", current_salary:"", expected_salary:"", text_area:"",})
+    setStep(2);
+    setActiveStep(2);
+  };
   return (
     <Grid container spacing={2} className="mainuserform">
       <Grid item xs={12} sm={4} className="dummyGrid">
@@ -164,7 +236,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   className="inputField"
                   value={first_name}
                   onChange={onChange}
-                  required
+                  // required
                 />
               </Grid>
               <Grid item xs={12} sm={6} className="inputGrid">
@@ -174,7 +246,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   onChange={onChange}
                   placeholder="Last name"
                   className="inputField"
-                  required
+                  // required
                 />
               </Grid>
             </Grid>
@@ -190,45 +262,154 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   autoComplete="off"
                   placeholderText="Date of birth"
                   openToDate={new Date("1999/01/01")}
-                  required
                 />
               </Grid>
               <Grid item xs={12} sm={6} className="inputGrid">
                 <input
-                  name="address"
-                  value={address}
+                  type="text"
+                  name="martial"
+                  value={martial}
                   onChange={onChange}
-                  placeholder="Address"
+                  placeholder="Martial status"
                   className="inputField"
-                  required
+                  // required
                 />
               </Grid>
             </Grid>
             <Grid container spacing={2} className="">
               <Grid item xs={12} sm={6} className="inputGrid">
                 <input
-                  type="email"
-                  name="email"
-                  value={email}
+                  type="text"
+                  name="post"
+                  value={post}
                   onChange={onChange}
-                  placeholder="E-mail"
+                  placeholder="Applying for the post"
                   className="inputField"
-                  required
+                  // required
                 />
               </Grid>
               <Grid item xs={12} sm={6} className="inputGrid">
                 <input
-                  type="tel"
-                  name="phone"
-                  value={phone}
+                  type="text"
+                  name="skills"
+                  value={skills}
                   onChange={onChange}
-                  maxlength="11"
-                  placeholder="Contact no"
+                  placeholder="Skills"
                   className="inputField"
-                  required
+                  // required
                 />
               </Grid>
             </Grid>
+            <Grid container spacing={2} className="">
+              <Grid item xs={12} sm={6} className="inputGrid">
+                <input
+                  type="text"
+                  name="Religious_sect"
+                  value={Religious_sect}
+                  onChange={onChange}
+                  placeholder="Religious sect"
+                  className="inputField"
+                  // required
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} className="inputGrid">
+                <input
+                  type="text"
+                  name="learned"
+                  value={learned}
+                  onChange={onChange}
+                  // maxlength="11"
+                  placeholder="How you learned about the vacancy"
+                  className="inputField"
+                  // required
+                />
+              </Grid>
+            </Grid>
+            <Grid container spacing={2} className="">
+              <Grid item xs={12} sm={6} className="inputGrid">
+                <input
+                  type="text"
+                  name="experience"
+                  value={experience}
+                  onChange={onChange}
+                  placeholder="Total professional experience"
+                  className="inputField"
+                  // required
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} className="inputGrid">
+                <input
+                  type="text"
+                  name="related_experience"
+                  value={related_experience}
+                  onChange={onChange}
+                  // maxlength="11"
+                  placeholder="Experience related to the post"
+                  className="inputField"
+                  // required
+                />
+              </Grid>
+            </Grid>
+            <Grid container spacing={2} className="inputgrid1">
+              <Grid item xs={12} sm={6} className="inputGrid">
+                <DatePicker
+                  selected={expected_date}
+                  // locale={selectedDateLang}
+                  dateFormat="dd/MM/yyyy"
+                  onChange={onChangeeDate}
+                  className="inputField"
+                  value={expected_date}
+                  autoComplete="off"
+                  placeholderText="Expected date of joining"
+                  openToDate={new Date("2021/01/01")}
+                  // required
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} className="inputGrid">
+                <input
+                  name="current_employeer"
+                  value={current_employeer}
+                  onChange={onChange}
+                  placeholder="Current employer"
+                  className="inputField"
+                  // required
+                />
+              </Grid>
+            </Grid>
+            <Grid container spacing={2} className="">
+              <Grid item xs={12} sm={6} className="inputGrid">
+                <input
+                  type="text"
+                  name="current_salary"
+                  value={current_salary}
+                  onChange={onChange}
+                  placeholder="Current salary"
+                  className="inputField"
+                  // required
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} className="inputGrid">
+                <input
+                  type="text"
+                  name="expected_salary"
+                  value={expected_salary}
+                  onChange={onChange}
+                  // maxlength="11"
+                  placeholder="Expected salary"
+                  className="inputField"
+                  // required
+                />
+              </Grid>
+            </Grid>
+            <TextareaAutosize
+              aria-label="minimum height"
+              minRows={4}
+              onChange={onChange}
+              value={text_area}
+              name="text_area"
+              placeholder="Reason for leaving current job"
+              style={{ width: 648,padding:"15px",color: "#9198a5", background:"#242635", marginLeft:"20px", marginTop:"20px", borderRadius:"10px", border:"none", outline:"none", marginBottom:"10px"} }
+            />
             <Grid container spacing={1} className="termsandconditionGrid">
               <Checkbox
                 inputProps={{ "aria-label": "secondary checkbox" }}
@@ -271,7 +452,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                         <CircularProgress size={20} className="" />
                       </div>
                     ) : (
-                      "Submit"
+                      "Proceed To Assessment"
                     )}
                   </b>
                 </button>

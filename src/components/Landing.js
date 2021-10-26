@@ -43,8 +43,8 @@ const Landing = ({ step, setStep, statetextforscroll }) => {
           <Grid item xs={12} sm={9} className="body-rectangleGrid2">
             <h3 className="h3">Let's start the Assessment!</h3>
             <p className="p1">
-             At the end of this questionnaire, a proposal of wishes for
-              journey will be formulated for you!
+              At the end of this questionnaire, a proposal of wishes for journey
+              will be formulated for you!
             </p>
           </Grid>
           <Grid item xs={12} sm={3} className="body-rectangleGrid3">
@@ -74,9 +74,7 @@ const Landing = ({ step, setStep, statetextforscroll }) => {
           <Grid item xs={12} sm={4}>
             <img src={f3} className="footerimg" />
             <h4 className="h4">Step 3</h4>
-            <p className="p3">
-              This offers you a wishlist for your journey!
-            </p>
+            <p className="p3">This offers you a wishlist for your journey!</p>
           </Grid>
         </Grid>
       </div>

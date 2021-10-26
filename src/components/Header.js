@@ -85,7 +85,7 @@ export default function Header({
           style={{
             textDecoration: "none",
             color: "white",
-            padding: "15px 25px 0 0",
+            padding: "32px 25px 0 0",
           }}
         >
           <Typography
@@ -102,7 +102,7 @@ export default function Header({
         </AnchorLink>
         <AnchorLink
           href={`${!flag ? "#comment" : ""}`}
-          style={{ textDecoration: "none", color: "white", paddingTop: "15px" }}
+          style={{ textDecoration: "none", color: "white", paddingTop: "32px" }}
         >
           <Typography
             className={flag ? "title b" : "hidetitle b"}

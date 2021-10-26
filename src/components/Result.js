@@ -19,12 +19,13 @@ const Result = () => {
   const [resultStep, setresultStep] = useState(0);
   const [open, setOpen] = useState(false);
   useEffect(() => {
-    if (resultStep == 1) {
-      setTimeout(() => {
-        setOpen(true);
-      }, 30000);
-    }
-    getResult();
+    console.log("result page render")
+    // if (resultStep == 1) {
+    //   setTimeout(() => {
+    //     setOpen(true);
+    //   }, 30000);
+    // }
+    // getResult();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resultStep]);
   // get Result from api
@@ -63,7 +64,7 @@ const Result = () => {
             <div className="resultBox">
               <div className="resultBoxText">
                 <h1 className="resultHeading" style={{ textAlign: "center" }}>
-                  Bravo ! Tu as répondu à toutes les questions !
+                  Well done ! You answered all the questions!
                 </h1>
                 {loading ? (
                   <p className="resultText">
@@ -73,8 +74,8 @@ const Result = () => {
                   <p className="resultText">
                     <span style={{ color: "#9198A5" }}>
                       {" "}
-                      D'après tes réponses, je pense que ton profil est tourné
-                      vers
+                     From your answers I think your profile is turned
+                      toward
                     </span>
                     <br />
                     <b>
@@ -104,8 +105,8 @@ const Result = () => {
                 )}
                 <p className="resultText">
                   <span style={{ color: "#9198A5" }}>
-                    Je te propose une liste de voeux Parcoursup qui
-                    correspondrait à ton profil.
+                    I offer you a Parcoursup wishlist that
+                    would match your profile.
                   </span>
                 </p>
               </div>
@@ -114,7 +115,7 @@ const Result = () => {
                   className="resultButton"
                   onClick={() => setresultStep(1)}
                 >
-                  <b> Ma liste Parcoursup</b>
+                  <b> My Answers list</b>
                 </button>
               </div>
             </div>
@@ -149,11 +150,11 @@ const Result = () => {
                         <div className="buttonDiv">
                           <button className="sharebutton">
                             <img src={userimg} />
-                            <b style={{ margin: "12px" }}>Invite un ami</b>
+                            <b style={{ margin: "12px" }}>Invite a friend</b>
                           </button>
                           <button className="sharebutton">
                             <img src={share} />
-                            <b style={{ margin: "12px" }}> Partager </b>
+                            <b style={{ margin: "12px" }}>To share </b>
                           </button>
                         </div>
                       </div>
@@ -162,7 +163,7 @@ const Result = () => {
                         className=""
                         style={{ margin: "10px", textAlign: "center" }}
                       >
-                        <h1> Désolé pas de cours disponible</h1>
+                        <h1> Sorry no classes available</h1>
                       </div>
                     )}
                   </div>
@@ -171,7 +172,7 @@ const Result = () => {
                     className=""
                     style={{ margin: "10%", textAlign: "center" }}
                   >
-                    <h1>Chargement en cours...</h1>
+                    <h1>Loading...</h1>
                   </div>
                 )}
               </div>
