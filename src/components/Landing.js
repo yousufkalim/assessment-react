@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
-import Main from "../assets/img/draw.png";
+import Main from "../assets/img/online_test.svg";
 import MainMobile from "../assets/img/mainmobile.png";
-import VideoImage from "../assets/img/videoimg.png";
+import VideoImage from "../assets/img/media_player.svg";
 import scrollToTop from "../utils/ScrollTop";
 
 import f1 from "../assets/img/f1.png";
