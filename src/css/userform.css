@@ -354,4 +354,14 @@
   .steplabel {
     display: none;
   }
+  .dummyimgforuserform {
+    height: 100% !important;
+  
+    margin: 10px auto auto 20% !important;
+    /* margin-left: 20px !important; */
+  }
+  .userForm {
+    padding: 30px;
+    margin-top: 93px;
+}
 }

@@ -9,12 +9,8 @@
   width: 67%;
   margin: auto;
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (min-width: 400px) and (max-device-width: 612px){
   .cguBar {
-    display: flex;
-    justify-content: space-between;
-    width: 67%;
-    margin: auto;
     flex-direction: column;
     align-items: center;
   }
