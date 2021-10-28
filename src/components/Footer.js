@@ -8,7 +8,7 @@ const Footer = () => {
     <>
       <div className="FooterDiv">
         <div className="cguBar">
-          <h3 style={{ display:"flex", justifyContent:"space-between", textDecoration: "none" }}>
+          <h3 style={{ display:"flex", justifyContent:"space-between", textDecoration: "none",textAlign: "left" }}>
             <AnchorLink
               href="#top"
               style={{
@@ -19,7 +19,7 @@ const Footer = () => {
               Home
             </AnchorLink>
           </h3>
-          <p style={{ textAlign: "center", paddingTop:"8px"}}>
+          <p style={{ textAlign: "center", paddingTop:"4px", paddingLeft: "12px"}}>
             Developed By
             <a
               href="https:www.falconconsulting.fr"
