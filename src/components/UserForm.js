@@ -343,7 +343,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
               </Grid>
             </Grid>
             <Grid container spacing={2} className="inputGrid1">
-              <Grid item xs={12} sm={6} className="inputGrid">
+              <Grid item xs={12} sm={6} className="inputGrid dateGrid">
                 <DatePicker
                   selected={date_of_birth}
                   // locale={selectedDateLang}
@@ -357,31 +357,19 @@ const UserForm = ({ setStep, setActiveStep }) => {
                 />
               </Grid>
               <Grid item xs={12} sm={6} className="inputGrid">
-                <FormControl className="selectformControl input_met" variant="outlined"
-                // style={{width:"50px"}}
-                >
-                  {/* <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                    Age
-                  </InputLabel> */}
-                  
-                  <Select
-                  
-                    // className={classes.select}
-                    className="selectforeducation input_met"
-                    defaultValue="Martial_Status"
-                    // className="inputGrid"
-                    // inputProps={{
-                    //   name: "Martial_Status",
-                    //   id: "uncontrolled-native",
-                    // }}
-                  >
-                    <MenuItem value="Martial_Status" disbaled>
-                      Martial Status
-                    </MenuItem>
-                    <MenuItem value="Married">Married</MenuItem>
-                    <MenuItem value="Unmarried">Unmarried</MenuItem>
-                  </Select>
-                </FormControl>
+                <input
+                  type="text"
+                  name="Religious_sect"
+                  value={Religious_sect}
+                  onChange={onChange}
+                  placeholder="Religious sect"
+                  className="inputField"
+                  // required
+                />
+                
+                {/* <span className="note">
+                 
+                </span> */}
               </Grid>
             </Grid>
             <Grid container spacing={2} className="">
@@ -486,25 +474,39 @@ const UserForm = ({ setStep, setActiveStep }) => {
               </Grid>
             </Grid>
             <Grid container spacing={2} className="inputgrid1">
-              <Grid item xs={12} sm={6} className="inputGrid">
-                <input
-                  type="text"
-                  name="Religious_sect"
-                  value={Religious_sect}
-                  onChange={onChange}
-                  placeholder="Religious sect"
-                  className="inputField"
-                  // required
-                />
+            <Grid item xs={12} sm={6} className="inputGrid">
+                <FormControl className="selectformControl input_met" variant="outlined"
+                // style={{width:"50px"}}
+                >
+                  {/* <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                    Age
+                  </InputLabel> */}
+                  
+                  <Select
+                  
+                    // className={classes.select}
+                    className="selectforeducation input_met"
+                    defaultValue="Martial_Status"
+                    // className="inputGrid"
+                    // inputProps={{
+                    //   name: "Martial_Status",
+                    //   id: "uncontrolled-native",
+                    // }}
+                  >
+                    <MenuItem value="Martial_Status" disbaled>
+                      Martial Status
+                    </MenuItem>
+                    <MenuItem value="Married">Married</MenuItem>
+                    <MenuItem value="Unmarried">Unmarried</MenuItem>
+                  </Select>
+                </FormControl>
                 <FormHelperText style={{padding: "12px 27px 0px 25px"}}>
                   Note:There is no discrimination based on sect and religion.
                   This information is just to know about the specific
                   holidays/leaves you might require.
                 </FormHelperText>
-                {/* <span className="note">
-                 
-                </span> */}
               </Grid>
+              
               <Grid item xs={12} sm={6} className="inputGrid">
                 <FormControl
                   sx={{ m: 3 }}
@@ -647,6 +649,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                 Accept terms and conditions
               </span>
             </Grid> */}
+            
             <Grid container spacing={2} className="formbuttonsGrid">
               <Grid xs={12} sm={4}>
                 <div
@@ -677,7 +680,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                         <CircularProgress size={20} className="" />
                       </div>
                     ) : (
-                      "Proceed To Assessment"
+                      "submit"
                     )}
                   </b>
                 </button>

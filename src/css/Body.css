@@ -252,3 +252,14 @@
 
 }
   }
+
+
+
+@media only screen and (min-device-width: 600px) and (max-device-width: 800px) {
+    .MuiGrid-grid-sm-9{
+    flex-grow: 0;
+    max-width: 103%;
+    flex-basis: 100%;
+    /* width: 100%; */
+}
+  }
