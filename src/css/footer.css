@@ -6,6 +6,9 @@
 .cguBar {
   display: flex;
   justify-content: space-between;
-  width: 50%;
+  width: 67%;
   margin: auto;
+}
+@media only screen and (max-width: 400px) {
+  
 }

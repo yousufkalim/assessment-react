@@ -167,22 +167,32 @@
     width: 25%;
   }
   .h3 {
-    font-size: 23px;
+    font-size: 20px;
     text-align: center;
     margin: 0px;
   }
   .p1 {
-    font-size: 12px;
+    font-size: 10px;
     text-align: center;
   }
   .partiButton {
-    border: none;
+    /* border: none;
     margin: 0px;
-    padding: 15px 37% 15px 38% !important;
+    padding: 15px 37% 15px 38% !important; */
+    border: none;
+    margin: 4px;
+    padding: 17px 30%  15px 13% !important;
+    margin-top: 16px;
   }
   .arrowright {
-    right: -19%;
-    top: -45%;
+    /* right: -19%;
+    top: -45%; */
+    /* right: -24%;
+    top: -39%; */
+  
+      right: 23%;
+      top: 6%;
+
   }
   .vidoSection {
     margin: -80px 0 0 0;

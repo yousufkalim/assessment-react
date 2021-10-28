@@ -42,7 +42,7 @@
   margin-right: 20px;
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 812px) {
+@media only screen and (max-width: 400px) {
   .showToolbar {
     display: block !important;
     margin: 0px !important;
@@ -83,13 +83,19 @@
     cursor: pointer;
   }
   .logoImage {
-    margin: 11px 0px 0px 18%;
+    /* margin: 11px 0px 0px 18%;
     width: 125px;
+    margin: auto */
+    margin: 11px 34% 0px auto;
   }
   .navicon {
     width: 30px;
     height: 30px;
   }
+  .arrowright {
+    right: 23%;
+    top: 6%;
+}
 }
 /* for mbile */
 
