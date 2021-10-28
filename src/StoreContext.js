@@ -28,6 +28,7 @@ export function StoreProvider({ children }) {
     user: {},
     questions: [],
     answers: [],
+    allanswer: [],
     institutes: [],
     history: [],
     disc_ans_id: [],
