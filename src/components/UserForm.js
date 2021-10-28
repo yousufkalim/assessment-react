@@ -357,14 +357,19 @@ const UserForm = ({ setStep, setActiveStep }) => {
                 />
               </Grid>
               <Grid item xs={12} sm={6} className="inputGrid">
-                <FormControl className="selectformControl" variant="outlined">
+                <FormControl className="selectformControl input_met" variant="outlined"
+                // style={{width:"50px"}}
+                >
                   {/* <InputLabel variant="standard" htmlFor="uncontrolled-native">
                     Age
                   </InputLabel> */}
+                  
                   <Select
+                  
                     // className={classes.select}
-                    className="selectforeducation"
+                    className="selectforeducation "
                     defaultValue="Martial_Status"
+                    // className="inputGrid"
                     // inputProps={{
                     //   name: "Martial_Status",
                     //   id: "uncontrolled-native",
@@ -491,7 +496,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   className="inputField"
                   // required
                 />
-                <FormHelperText>
+                <FormHelperText style={{padding: "12px 27px 0px 25px"}}>
                   Note:There is no discrimination based on sect and religion.
                   This information is just to know about the specific
                   holidays/leaves you might require.
@@ -609,6 +614,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
               </Grid>
             </Grid>
             <TextareaAutosize
+            className="texta"
               aria-label="minimum height"
               minRows={4}
               onChange={onChange}
@@ -616,11 +622,12 @@ const UserForm = ({ setStep, setActiveStep }) => {
               name="text_area"
               placeholder="Reason for leaving current job"
               style={{
-                width: 648,
+                width: "90%",
                 padding: "15px",
                 color: "#9198a5",
                 background: "#242635",
-                marginLeft: "20px",
+                // marginLeft: "20px",
+                margin:"auto",
                 marginTop: "20px",
                 borderRadius: "10px",
                 border: "none",
