@@ -234,3 +234,16 @@
     font-weight: 100;
   }
 }
+
+@media only screen and (min-device-width: 600px) and (max-device-width: 780px) {
+  .arrowright {
+    right: -25%;
+    top: -38%;
+}
+  }
+@media only screen and (min-device-width: 800px) and (max-device-width: 1000px) {
+  .arrowright {
+    right: -19%;
+    top: -32%;
+}
+  }
