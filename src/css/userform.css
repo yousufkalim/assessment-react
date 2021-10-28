@@ -291,7 +291,7 @@
 
 /* for mbile */
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 812px) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 612px) {
   * {
     /* overflow-x: hidden;  */
     width: auto;
@@ -361,7 +361,10 @@
     /* margin-left: 20px !important; */
   }
   .userForm {
-    padding: 30px;
-    margin-top: 93px;
+   
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    margin-top: 30px;
 }
 }
