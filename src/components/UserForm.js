@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { toast } from "react-toastify";
+// import validate from 'react-joi-validation';
+import Joi from "joi";
 import "react-datepicker/dist/react-datepicker.css";
-import { TextField, Checkbox, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 import { Store, UpdateStore } from "../StoreContext";
 import Grid from "@material-ui/core/Grid";
 import Dummy from "../assets/img/dummy.png";
@@ -17,47 +16,39 @@ import MainMobile from "../assets/img/mobileform.png";
 import arrowleft from "../assets/img/arrow2.png";
 import scrollToTop from "../utils/ScrollTop";
 import DatePicker from "react-datepicker";
-import Box from "@mui/material/Box";
-import NativeSelect from "@mui/material/NativeSelect";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
-import FormLabel from "@mui/material/FormLabel";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormHelperText from "@mui/material/FormHelperText";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import { styled } from "@mui/material/styles";
+
+// import MenuItem from "@material-ui/core/MenuItem";
 // import Checkbox from '@mui/material/Checkbox';
 
 const UserForm = ({ setStep, setActiveStep }) => {
   // initialize ContextStore
   const updateStore = UpdateStore();
   const [formData, setFormData] = useState({
-    first_name: "",
-    contact: "",
-    last_name: "",
-    date_of_birth: "",
-    Martial_status: "",
-    Address: "",
-    // phone: "",
+    name: "",
+    contact_no: "",
+    dob: "",
+    address: "",
     email: "",
-    martial: "",
     post: "",
-    skills: "",
-    learned: "",
-    Religious_sect: "",
-    experience: "",
-    related_experience: "",
-    expected_date: "",
-    current_employeer: "",
+    vacancy_source: "",
+    sect: "",
+    total_experience: "",
+    post_experience: "",
+    current_employer: "",
     current_salary: "",
     expected_salary: "",
-    optionsState: "",
-    text_area: "",
-    newsletter: false,
-    accept_condition: false,
+    joining_time: "",
+    marital_status: "",
+    skills: "",
+    leaving_reason: "",
   });
-  // state for address options list
+  // // state for address options list
   const [values, setValues] = useState([]);
 
-  // state for address details
+  // // state for address details
   const [addressValue, setAddressValue] = useState({
     lat: "",
     lng: "",
@@ -70,59 +61,68 @@ const UserForm = ({ setStep, setActiveStep }) => {
 
   // Destructuring of UserForm State
   const {
-    first_name,
-    contact,
-    last_name,
-    date_of_birth,
-    Address,
-
-    // phone,
+    name,
+    contact_no,
+    dob,
+    address,
     email,
-    Martial_status,
+    marital_status,
     post,
-    skills,
-    learned,
-    Religious_sect,
-    experience,
-    accept_condition,
-    related_experience,
-    expected_date,
-    current_employeer,
+    vacancy_source,
+    sect,
+    total_experience,
+    post_experience,
+    joining_time,
+    current_employer,
     current_salary,
     expected_salary,
-    text_area,
+    leaving_reason,
   } = formData;
 
-  const [state, setState] = useState({
-    MERN: false,
-    React: false,
-    Node: false,
-    Mongodb: false,
-    Express: false,
-    DotNet: false,
-    Django: false,
-  });
-  const handleChange = (event) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.checked,
-    });
+  const ITEM_HEIGHT = 80;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 20,
+      },
+    },
   };
-  const {
-    MERN,
-    React,
-    Node,
-    Mongodb,
-    Express,
-    DotNet,
-    Django,
-    ReactNative,
-    FireBase,
-  } = state;
-  const error =
-    [MERN, React, Node, Mongodb, Express, DotNet, Django, FireBase].filter(
-      (v) => v
-    ).length !== 2;
+  //Skills dropdown
+
+  const names = [
+    "React.js",
+    "Node.js",
+    "Mongodb/Express",
+    "React Native",
+    ".Net",
+    "Django",
+  ];
+
+  const [skills, setSkills] = useState([]);
+
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setSkills(
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+  //tooltip for
+  const CustomWidthTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))({
+    [`& .${tooltipClasses.tooltip}`]: {
+      maxWidth: 500,
+    },
+  });
+  const longText = `
+Note:There is no discrimination based on sect and religion.
+This information is just to know about the specific
+holidays/leaves you might require.
+`;
 
   // Get institutes data from API
   useEffect(() => {
@@ -158,7 +158,6 @@ const UserForm = ({ setStep, setActiveStep }) => {
       },
     },
   });
-  const classes = useStyles();
 
   // onChange Function for Input Field
   const onChange = (e) => {
@@ -181,73 +180,52 @@ const UserForm = ({ setStep, setActiveStep }) => {
         });
     }
   };
-  // onChange Function for Select institute
-  // const handleChangeSchool = (event, value) => {
-  //   setFormData({ ...formData, institute: value?._id });
-  // };
   // function for Date select
   const onChangeDate = (date) => {
-    setFormData({ ...formData, date_of_birth: date });
+    setFormData({ ...formData, dob: date });
   };
   const onChangeeDate = (eDate) => {
-    setFormData({ ...formData, expected_date: eDate });
+    setFormData({ ...formData, joining_time: eDate });
   };
 
   // handleSubmit Function
   const handleSubmit = async (e) => {
     e.preventDefault();
     //form data on console
-    console.log("state is", formData);
-    // if (phone.length != 11 || phone[0] != 0) {
-    //   return toast.error(
-    //     "The phone number must be 11 digits and start with 0"
-    //   );
-    // }
-    if (first_name == "") {
+
+    let newformdata = { ...formData, skills };
+    console.log("form", newformdata);
+
+    if (name == "") {
       return toast.error("Please enter name");
     }
-    // if (last_name == "") {
-    //   return toast.error("Please enter last name");
-    // }
-    if (date_of_birth == "") {
-      return toast.error("Please enter date of birth");
-    }
-      if (contact.length != 11 || contact[0] != 0) {
-      return toast.error(
-        "Contact no must start from 0 and of 11 digits"
-      );
+    if (contact_no.length != 11 || contact_no[0] != 0) {
+      return toast.error("Contact no must start from 0 and of 11 digits");
     }
     if (email == "") {
       return toast.error("Please enter email");
     }
-    
-    // if (Martial_status == "") {
-    //   return toast.error("Please enter martial status");
-    // }
+    if (vacancy_source == "") {
+      return toast.error(
+        "Please enter where you have learned about the vacancy"
+      );
+    }
+    if (dob == "") {
+      return toast.error("Please enter date of birth");
+    }
     if (post == "") {
       return toast.error("Please enter post name");
     }
-    // if (skills == "") {
-    //   return toast.error("Please enter your skills");
-    // }
-    if (Religious_sect == "") {
-      return toast.error("Please enter your religious sect");
-    }
-    // if (learned == "") {
-    //   return toast.error(
-    //     "Please enter where you have learned about the vacancy"
-    //   );
-    // }
-    if (experience == "") {
+    if (total_experience == "") {
       return toast.error("Please enter your proffesional experience");
     }
-    if (related_experience == "") {
+    if (post_experience == "") {
       return toast.error("Please enter your experience related to post");
     }
-    if (expected_date == "") {
+    if (joining_time == "") {
       return toast.error("Please enter your expected date of joining");
     }
-    if (current_employeer == "") {
+    if (current_employer == "") {
       return toast.error("please enter your current employer");
     }
     if (current_salary == "") {
@@ -256,29 +234,31 @@ const UserForm = ({ setStep, setActiveStep }) => {
     if (expected_salary == "") {
       return toast.error("please enter your expected salary");
     }
-    if (text_area == "") {
-      return toast.error("Please specify reason");
+
+    if (sect == "") {
+      return toast.error("Please enter your religious sect");
     }
-    // if (!accept_condition) {
-    //   return toast.error("Please accept the terms and conditions");
-    // }
+    if (skills == "") {
+      return toast.error("Please enter your skills");
+    }
+
     setFormData({
-      first_name: "",
-      last_name: "",
+      name: "",
+      contact_no: "",
       email: "",
-      date_of_birth: "",
-      martial: "",
+      dob: "",
+      marital_status: "",
       post: "",
       skills: "",
       Religious_sect: "",
-      learned: "",
-      experience: "",
-      related_experience: "",
-      expected_date: "",
-      current_employeer: "",
+      vacancy_source: "",
+      total_experience: "",
+      post_experience: "",
+      joining_time: "",
+      current_employer: "",
       current_salary: "",
       expected_salary: "",
-      text_area: "",
+      leaving_reason: "",
     });
     setStep(2);
     setActiveStep(2);
@@ -293,26 +273,25 @@ const UserForm = ({ setStep, setActiveStep }) => {
         <form autoComplete="off" onSubmit={handleSubmit} className="userForm">
           <Grid container className="userformgrid">
             <Grid item xs={12} sm={12} className="">
-              <h3 className="formheading">
-                To better advise you, I need <br className="br" />
-                to know more about you!
-              </h3>
+              <h3 className="formheading">Performa</h3>
             </Grid>
             <Grid container spacing={2} className="inputgrid1">
               <Grid item xs={12} sm={6} className="inputGrid">
                 <input
-                  name="first_name"
+                  name="name"
+                  type="String"
                   placeholder="Full name"
                   className="inputField"
-                  value={first_name}
+                  value={name}
                   onChange={onChange}
                   // required
                 />
               </Grid>
               <Grid item xs={12} sm={6} className="inputGrid">
                 <input
-                  name="contact"
-                  value={contact}
+                  name="contact_no"
+                  type="String"
+                  value={contact_no}
                   onChange={onChange}
                   placeholder="Contact no"
                   className="inputField"
@@ -323,6 +302,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
             <Grid container spacing={2} className="inputgrid1">
               <Grid item xs={12} sm={6} className="inputGrid">
                 <input
+                  type="String"
                   name="email"
                   placeholder="Email"
                   className="inputField"
@@ -333,8 +313,8 @@ const UserForm = ({ setStep, setActiveStep }) => {
               </Grid>
               <Grid item xs={12} sm={6} className="inputGrid">
                 <input
-                  name="learned"
-                  value={learned}
+                  name="vacancy_source"
+                  value={vacancy_source}
                   onChange={onChange}
                   placeholder="How you learned about the vacancy"
                   className="inputField"
@@ -345,44 +325,34 @@ const UserForm = ({ setStep, setActiveStep }) => {
             <Grid container spacing={2} className="inputGrid1">
               <Grid item xs={12} sm={6} className="inputGrid">
                 <DatePicker
-                  selected={date_of_birth}
+                  selected={dob}
                   // locale={selectedDateLang}
                   dateFormat="dd/MM/yyyy"
                   onChange={onChangeDate}
                   className="inputField"
-                  value={date_of_birth}
+                  name="dob"
+                  value={dob}
                   autoComplete="off"
                   placeholderText="Date of birth"
                   openToDate={new Date("1999/01/01")}
                 />
               </Grid>
               <Grid item xs={12} sm={6} className="inputGrid">
-                <FormControl className="selectformControl" variant="outlined">
-                  {/* <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                    Age
-                  </InputLabel> */}
-                  <Select
-                    // className={classes.select}
-                    className="selectforeducation"
-                    defaultValue="Martial_Status"
-                    // inputProps={{
-                    //   name: "Martial_Status",
-                    //   id: "uncontrolled-native",
-                    // }}
-                  >
-                    <MenuItem value="Martial_Status" disbaled>
-                      Martial Status
-                    </MenuItem>
-                    <MenuItem value="Married">Married</MenuItem>
-                    <MenuItem value="Unmarried">Unmarried</MenuItem>
-                  </Select>
-                </FormControl>
+                <input
+                  type="text"
+                  name="address"
+                  value={address}
+                  onChange={onChange}
+                  placeholder="Address"
+                  className="inputField"
+                  // required
+                />
               </Grid>
             </Grid>
             <Grid container spacing={2} className="">
               <Grid item xs={12} sm={6} className="inputGrid">
                 <input
-                  type="text"
+                  type="String"
                   name="post"
                   value={post}
                   onChange={onChange}
@@ -391,25 +361,28 @@ const UserForm = ({ setStep, setActiveStep }) => {
                   // required
                 />
               </Grid>
+
               <Grid item xs={12} sm={6} className="inputGrid">
-                <input
-                  type="text"
-                  name="Address"
-                  value={Address}
-                  onChange={onChange}
-                  placeholder="Address"
-                  className="inputField"
-                  // required
-                />
+                <Tooltip title={longText}>
+                  <input
+                    type="text"
+                    name="sect"
+                    value={sect}
+                    onChange={onChange}
+                    placeholder="Religious sect"
+                    className="inputField"
+                    // required
+                  />
+                </Tooltip>
               </Grid>
             </Grid>
 
             <Grid container spacing={2} className="">
               <Grid item xs={12} sm={6} className="inputGrid">
                 <input
-                  type="text"
-                  name="experience"
-                  value={experience}
+                  type="String"
+                  name="total_experience"
+                  value={total_experience}
                   onChange={onChange}
                   placeholder="Total professional experience"
                   className="inputField"
@@ -418,9 +391,9 @@ const UserForm = ({ setStep, setActiveStep }) => {
               </Grid>
               <Grid item xs={12} sm={6} className="inputGrid">
                 <input
-                  type="text"
-                  name="related_experience"
-                  value={related_experience}
+                  type="String"
+                  name="post_experience"
+                  value={post_experience}
                   onChange={onChange}
                   // maxlength="11"
                   placeholder="Experience related to the post"
@@ -432,12 +405,13 @@ const UserForm = ({ setStep, setActiveStep }) => {
             <Grid container spacing={2} className="inputgrid1">
               <Grid item xs={12} sm={6} className="inputGrid">
                 <DatePicker
-                  selected={expected_date}
+                  selected={joining_time}
                   // locale={selectedDateLang}
                   dateFormat="dd/MM/yyyy"
                   onChange={onChangeeDate}
                   className="inputField"
-                  value={expected_date}
+                  name="joining_time"
+                  value={joining_time}
                   autoComplete="off"
                   placeholderText="Expected date of joining"
                   openToDate={new Date("2021/01/01")}
@@ -446,8 +420,8 @@ const UserForm = ({ setStep, setActiveStep }) => {
               </Grid>
               <Grid item xs={12} sm={6} className="inputGrid">
                 <input
-                  name="current_employeer"
-                  value={current_employeer}
+                  name="current_employer"
+                  value={current_employer}
                   onChange={onChange}
                   placeholder="Current employer"
                   className="inputField"
@@ -458,7 +432,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
             <Grid container spacing={2} className="inputgrid1">
               <Grid item xs={12} sm={6} className="inputGrid">
                 <input
-                  type="text"
+                  type="number"
                   name="current_salary"
                   value={current_salary}
                   onChange={onChange}
@@ -469,7 +443,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
               </Grid>
               <Grid item xs={12} sm={6} className="inputGrid">
                 <input
-                  type="text"
+                  type="number"
                   name="expected_salary"
                   value={expected_salary}
                   onChange={onChange}
@@ -482,129 +456,57 @@ const UserForm = ({ setStep, setActiveStep }) => {
             </Grid>
             <Grid container spacing={2} className="inputgrid1">
               <Grid item xs={12} sm={6} className="inputGrid">
-                <input
-                  type="text"
-                  name="Religious_sect"
-                  value={Religious_sect}
-                  onChange={onChange}
-                  placeholder="Religious sect"
-                  className="inputField"
-                  // required
-                />
-                <FormHelperText>
-                  Note:There is no discrimination based on sect and religion.
-                  This information is just to know about the specific
-                  holidays/leaves you might require.
-                </FormHelperText>
-                {/* <span className="note">
-                 
-                </span> */}
+                <FormControl
+                  className="selectformControl"
+                  variant="outlined"
+                  name="marital_status"
+                  value="marital_status"
+                >
+                  <Select
+                    className="selectforeducation"
+                    defaultValue="marital_status"
+                  >
+                    <MenuItem value="marital_status" disabled>
+                      Marital Status
+                    </MenuItem>
+                    <MenuItem value="Married">Married</MenuItem>
+                    <MenuItem value="Unmarried">Unmarried</MenuItem>
+                  </Select>
+                </FormControl>
               </Grid>
               <Grid item xs={12} sm={6} className="inputGrid">
-                <FormControl
-                  sx={{ m: 3 }}
-                  component="fieldset"
-                  variant="standard"
-                >
-                  <FormLabel sx={{ color: "#9198a5", fontSize: "15px" }}>
-                    Skills
-                  </FormLabel>
-                  <FormGroup>
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={DotNet}
-                          onChange={handleChange}
-                          name="DotNet"
-                        />
+                <FormControl className="selectformControl">
+                  <Select
+                    className="selectforeducation"
+                    variant="outlined"
+                    multiple
+                    displayEmpty
+                    name="skills"
+                    value={skills}
+                    onChange={handleChange}
+                    // input={<OutlinedInput />}
+                    style={{
+                      color: "#9198a5",
+                      textAlign: "left",
+                    }}
+                    renderValue={(selected) => {
+                      if (selected.length === 0) {
+                        return <em>Skills</em>;
                       }
-                      label=".Net"
-                    />
 
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={Django}
-                          onChange={handleChange}
-                          name="Django"
-                        />
-                      }
-                      label="Django"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={ReactNative}
-                          onChange={handleChange}
-                          name="ReactNative"
-                        />
-                      }
-                      label="React Native"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={Mongodb}
-                          onChange={handleChange}
-                          name="Mongodb"
-                        />
-                      }
-                      label="Mongodb"
-                    />
-                  </FormGroup>
-                </FormControl>
-                <FormControl
-                  required
-                  error={error}
-                  component="fieldset"
-                  sx={{ m: 3 }}
-                  variant="standard"
-                >
-                  <FormLabel sx={{ color: "#9198a5", fontSize: "15px" }}>
-                    Pick multiples
-                  </FormLabel>
-                  <FormGroup>
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={React}
-                          onChange={handleChange}
-                          name="React"
-                        />
-                      }
-                      label="React.js"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={Node}
-                          onChange={handleChange}
-                          name="Node"
-                        />
-                      }
-                      label="Node.js"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={Express}
-                          onChange={handleChange}
-                          name="Express"
-                        />
-                      }
-                      label="Express"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={FireBase}
-                          onChange={handleChange}
-                          name="FireBase"
-                        />
-                      }
-                      label="Fire Base"
-                    />
-                  </FormGroup>
+                      return selected.join(", ");
+                    }}
+                    MenuProps={MenuProps}
+                  >
+                    <MenuItem disabled value="">
+                      <em>Skills</em>
+                    </MenuItem>
+                    {names.map((skills) => (
+                      <MenuItem key={skills} value={skills}>
+                        {skills}
+                      </MenuItem>
+                    ))}
+                  </Select>
                 </FormControl>
               </Grid>
             </Grid>
@@ -612,8 +514,8 @@ const UserForm = ({ setStep, setActiveStep }) => {
               aria-label="minimum height"
               minRows={4}
               onChange={onChange}
-              value={text_area}
-              name="text_area"
+              value={leaving_reason}
+              name="leaving_reason"
               placeholder="Reason for leaving current job"
               style={{
                 width: 648,
@@ -628,18 +530,6 @@ const UserForm = ({ setStep, setActiveStep }) => {
                 marginBottom: "10px",
               }}
             />
-            {/* <Grid container spacing={1} className="termsandconditionGrid">
-              <Checkbox
-                inputProps={{ "aria-label": "secondary checkbox" }}
-                style={{ color: "white" }}
-                name="accept_condition"
-                value={accept_condition}
-                onChange={onChange}
-              />
-              <span className="termsandcondition">
-                Accept terms and conditions
-              </span>
-            </Grid> */}
             <Grid container spacing={2} className="formbuttonsGrid">
               <Grid xs={12} sm={4}>
                 <div
