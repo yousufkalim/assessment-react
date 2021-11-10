@@ -13,29 +13,30 @@ const Footer = () => {
               href="#top"
               style={{
                 color: "white",
-                textDecoration:"none"
+                textDecoration:"none",
+                
               }}
             >
               Home
             </AnchorLink>
           </h3>
-          <p style={{ textAlign: "center", paddingTop:"8px"}}>
+          <p style={{ textAlign: "center", paddingTop:"5px"}}>
             Developed By
             <a
               href="https:www.falconconsulting.fr"
               target="_blank"
-              style={{ textDecoration: "none", color: " gray", margin: "5px"}}
+              style={{ textDecoration: "none", color: " gray", margin: "10px"}}
             >
               {" "}
               Falcon IT Consulting
             </a>{" "}
             2021. All Rights Reserved
           </p>
-          <h3 style={{ textAlign: "center" }}>
+          {/* <h3 style={{ textAlign: "center" }}>
             <Link to="/CGU" style={{ color: "white", textDecoration:"none"}}>
               Terms and conditions
             </Link>
-          </h3>
+          </h3> */}
         </div>
       </div>
     </>

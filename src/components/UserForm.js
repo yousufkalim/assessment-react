@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import CustomizedDialogs from "../components/CirclerTimer";
+
 // import validate from 'react-joi-validation';
 import Joi from "joi";
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,6 +13,8 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { Store, UpdateStore } from "../StoreContext";
 import Grid from "@material-ui/core/Grid";
+import Checkbox from "@mui/material/Checkbox";
+import ListItemText from "@mui/material/ListItemText";
 import Dummy from "../assets/img/dummy.png";
 import MainMobile from "../assets/img/mobileform.png";
 import arrowleft from "../assets/img/arrow2.png";
@@ -18,7 +22,12 @@ import scrollToTop from "../utils/ScrollTop";
 import DatePicker from "react-datepicker";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import OutlinedInput from '@mui/material/OutlinedInput';
 import { styled } from "@mui/material/styles";
+import moment from "moment";
+import Moment from "react-moment";
+
+import renderTime from "../components/CirclerTimer";
 
 // import MenuItem from "@material-ui/core/MenuItem";
 // import Checkbox from '@mui/material/Checkbox';
@@ -47,7 +56,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
   });
   // // state for address options list
   const [values, setValues] = useState([]);
-
+  const [open, setOpen] = React.useState(false);
   // // state for address details
   const [addressValue, setAddressValue] = useState({
     lat: "",
@@ -79,13 +88,13 @@ const UserForm = ({ setStep, setActiveStep }) => {
     leaving_reason,
   } = formData;
 
-  const ITEM_HEIGHT = 80;
+  const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
   const MenuProps = {
     PaperProps: {
       style: {
         maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-        width: 20,
+        width: 250,
       },
     },
   };
@@ -106,9 +115,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
     const {
       target: { value },
     } = event;
-    setSkills(
-      typeof value === "string" ? value.split(",") : value
-    );
+    setSkills(typeof value === "string" ? value.split(",") : value);
   };
   //tooltip for
   const CustomWidthTooltip = styled(({ className, ...props }) => (
@@ -191,11 +198,10 @@ holidays/leaves you might require.
   // handleSubmit Function
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //form data on console
 
+    //form data on console
     let newformdata = { ...formData, skills };
     console.log("form", newformdata);
-
     if (name == "") {
       return toast.error("Please enter name");
     }
@@ -241,6 +247,14 @@ holidays/leaves you might require.
     if (skills == "") {
       return toast.error("Please enter your skills");
     }
+    if (leaving_reason == "") {
+      return toast.error("Please enter reason for leaving previous job");
+    }
+    setOpen(true);
+    // setTimeout(() => {
+    //   setStep(2);
+    //   setActiveStep(2);
+    // }, 10000);
 
     setFormData({
       name: "",
@@ -260,316 +274,314 @@ holidays/leaves you might require.
       expected_salary: "",
       leaving_reason: "",
     });
-    setStep(2);
-    setActiveStep(2);
   };
   return (
-    <Grid container spacing={2} className="mainuserform">
-      <Grid item xs={12} sm={4} className="dummyGrid">
-        <img src={Dummy} className="dummyimg forweb" />
-        <img src={MainMobile} className=" dummyimgforuserform formobile" />
-      </Grid>
-      <Grid item xs={12} sm={8} className="responsiveform">
-        <form autoComplete="off" onSubmit={handleSubmit} className="userForm">
-          <Grid container className="userformgrid">
-            <Grid item xs={12} sm={12} className="">
-              <h3 className="formheading">Performa</h3>
-            </Grid>
-            <Grid container spacing={2} className="inputgrid1">
-              <Grid item xs={12} sm={6} className="inputGrid">
-                <input
-                  name="name"
-                  type="String"
-                  placeholder="Full name"
-                  className="inputField"
-                  value={name}
-                  onChange={onChange}
-                  // required
-                />
+    <>
+      <Grid container spacing={2} className="mainuserform">
+        <Grid item xs={12} sm={4} className="dummyGrid">
+          <img src={Dummy} className="dummyimg forweb" />
+          <img src={MainMobile} className=" dummyimgforuserform formobile" />
+        </Grid>
+        <Grid item xs={12} sm={8} className="responsiveform">
+          <form autoComplete="off" onSubmit={handleSubmit} className="userForm">
+            <Grid container className="userformgrid">
+              <Grid item xs={12} sm={12} className="">
+                <h3 className="formheading">Performa</h3>
               </Grid>
-              <Grid item xs={12} sm={6} className="inputGrid">
-                <input
-                  name="contact_no"
-                  type="String"
-                  value={contact_no}
-                  onChange={onChange}
-                  placeholder="Contact no"
-                  className="inputField"
-                  // required
-                />
-              </Grid>
-            </Grid>
-            <Grid container spacing={2} className="inputgrid1">
-              <Grid item xs={12} sm={6} className="inputGrid">
-                <input
-                  type="String"
-                  name="email"
-                  placeholder="Email"
-                  className="inputField"
-                  value={email}
-                  onChange={onChange}
-                  // required
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} className="inputGrid">
-                <input
-                  name="vacancy_source"
-                  value={vacancy_source}
-                  onChange={onChange}
-                  placeholder="How you learned about the vacancy"
-                  className="inputField"
-                  // required
-                />
-              </Grid>
-            </Grid>
-            <Grid container spacing={2} className="inputGrid1">
-              <Grid item xs={12} sm={6} className="inputGrid">
-                <DatePicker
-                  selected={dob}
-                  // locale={selectedDateLang}
-                  dateFormat="dd/MM/yyyy"
-                  onChange={onChangeDate}
-                  className="inputField"
-                  name="dob"
-                  value={dob}
-                  autoComplete="off"
-                  placeholderText="Date of birth"
-                  openToDate={new Date("1999/01/01")}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} className="inputGrid">
-                <input
-                  type="text"
-                  name="address"
-                  value={address}
-                  onChange={onChange}
-                  placeholder="Address"
-                  className="inputField"
-                  // required
-                />
-              </Grid>
-            </Grid>
-            <Grid container spacing={2} className="">
-              <Grid item xs={12} sm={6} className="inputGrid">
-                <input
-                  type="String"
-                  name="post"
-                  value={post}
-                  onChange={onChange}
-                  placeholder="Applying for the post"
-                  className="inputField"
-                  // required
-                />
-              </Grid>
-
-              <Grid item xs={12} sm={6} className="inputGrid">
-                <Tooltip title={longText}>
+              <Grid container spacing={2} className="inputgrid1">
+                <Grid item xs={12} sm={6} className="inputGrid">
                   <input
-                    type="text"
-                    name="sect"
-                    value={sect}
+                    name="name"
+                    type="String"
+                    placeholder="Full name"
+                    className="inputField"
+                    value={name}
                     onChange={onChange}
-                    placeholder="Religious sect"
+                    // required
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6} className="inputGrid">
+                  <input
+                    name="contact_no"
+                    type="String"
+                    value={contact_no}
+                    onChange={onChange}
+                    placeholder="Contact no"
                     className="inputField"
                     // required
                   />
-                </Tooltip>
+                </Grid>
               </Grid>
-            </Grid>
+              <Grid container spacing={2} className="inputgrid1">
+                <Grid item xs={12} sm={6} className="inputGrid">
+                  <input
+                    type="String"
+                    name="email"
+                    placeholder="Email"
+                    className="inputField"
+                    value={email}
+                    onChange={onChange}
+                    // required
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6} className="inputGrid">
+                  <input
+                    name="vacancy_source"
+                    value={vacancy_source}
+                    onChange={onChange}
+                    placeholder="How you learned about the vacancy"
+                    className="inputField"
+                    // required
+                  />
+                </Grid>
+              </Grid>
+              <Grid container spacing={2} className="inputGrid1">
+                <Grid item xs={12} sm={6} className="inputGrid">
+                  <DatePicker
+                    selected={dob}
+                    // locale={selectedDateLang}
+                    dateFormat="dd/MM/yyyy"
+                    onChange={onChangeDate}
+                    className="inputField"
+                    name="dob"
+                    value={dob}
+                    autoComplete="off"
+                    placeholderText="Date of birth"
+                    openToDate={new Date("1999/01/01")}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6} className="inputGrid">
+                  <input
+                    type="text"
+                    name="address"
+                    value={address}
+                    onChange={onChange}
+                    placeholder="Address"
+                    className="inputField"
+                    // required
+                  />
+                </Grid>
+              </Grid>
+              <Grid container spacing={2} className="">
+                <Grid item xs={12} sm={6} className="inputGrid">
+                  <input
+                    type="String"
+                    name="post"
+                    value={post}
+                    onChange={onChange}
+                    placeholder="Applying for the post"
+                    className="inputField"
+                    // required
+                  />
+                </Grid>
 
-            <Grid container spacing={2} className="">
-              <Grid item xs={12} sm={6} className="inputGrid">
-                <input
-                  type="String"
-                  name="total_experience"
-                  value={total_experience}
-                  onChange={onChange}
-                  placeholder="Total professional experience"
-                  className="inputField"
-                  // required
-                />
+                <Grid item xs={12} sm={6} className="inputGrid">
+                  <Tooltip title={longText}>
+                    <input
+                      type="text"
+                      name="sect"
+                      value={sect}
+                      onChange={onChange}
+                      placeholder="Religious sect"
+                      className="inputField"
+                      // required
+                    />
+                  </Tooltip>
+                </Grid>
               </Grid>
-              <Grid item xs={12} sm={6} className="inputGrid">
-                <input
-                  type="String"
-                  name="post_experience"
-                  value={post_experience}
-                  onChange={onChange}
-                  // maxlength="11"
-                  placeholder="Experience related to the post"
-                  className="inputField"
-                  // required
-                />
+
+              <Grid container spacing={2} className="">
+                <Grid item xs={12} sm={6} className="inputGrid">
+                  <input
+                    type="String"
+                    name="total_experience"
+                    value={total_experience}
+                    onChange={onChange}
+                    placeholder="Total professional experience"
+                    className="inputField"
+                    // required
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6} className="inputGrid">
+                  <input
+                    type="String"
+                    name="post_experience"
+                    value={post_experience}
+                    onChange={onChange}
+                    // maxlength="11"
+                    placeholder="Experience related to the post"
+                    className="inputField"
+                    // required
+                  />
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid container spacing={2} className="inputgrid1">
-              <Grid item xs={12} sm={6} className="inputGrid">
-                <DatePicker
-                  selected={joining_time}
-                  // locale={selectedDateLang}
-                  dateFormat="dd/MM/yyyy"
-                  onChange={onChangeeDate}
-                  className="inputField"
-                  name="joining_time"
-                  value={joining_time}
-                  autoComplete="off"
-                  placeholderText="Expected date of joining"
-                  openToDate={new Date("2021/01/01")}
-                  // required
-                />
+              <Grid container spacing={2} className="inputgrid1">
+                <Grid item xs={12} sm={6} className="inputGrid">
+                  <DatePicker
+                    selected={joining_time}
+                    // locale={selectedDateLang}
+                    dateFormat="dd/MM/yyyy"
+                    onChange={onChangeeDate}
+                    className="inputField"
+                    name="joining_time"
+                    value={joining_time}
+                    autoComplete="off"
+                    placeholderText="Expected date of joining"
+                    minDate={moment().toDate()}
+                    openToDate={new Date()}
+                    // required
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6} className="inputGrid">
+                  <input
+                    name="current_employer"
+                    value={current_employer}
+                    onChange={onChange}
+                    placeholder="Current employer"
+                    className="inputField"
+                    // required
+                  />
+                </Grid>
               </Grid>
-              <Grid item xs={12} sm={6} className="inputGrid">
-                <input
-                  name="current_employer"
-                  value={current_employer}
-                  onChange={onChange}
-                  placeholder="Current employer"
-                  className="inputField"
-                  // required
-                />
+              <Grid container spacing={2} className="inputgrid1">
+                <Grid item xs={12} sm={6} className="inputGrid">
+                  <input
+                    type="number"
+                    name="current_salary"
+                    value={current_salary}
+                    onChange={onChange}
+                    placeholder="Current salary"
+                    className="inputField"
+                    // required
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6} className="inputGrid">
+                  <input
+                    type="number"
+                    name="expected_salary"
+                    value={expected_salary}
+                    onChange={onChange}
+                    // maxlength="11"
+                    placeholder="Expected salary"
+                    className="inputField"
+                    // required
+                  />
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid container spacing={2} className="inputgrid1">
-              <Grid item xs={12} sm={6} className="inputGrid">
-                <input
-                  type="number"
-                  name="current_salary"
-                  value={current_salary}
-                  onChange={onChange}
-                  placeholder="Current salary"
-                  className="inputField"
-                  // required
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} className="inputGrid">
-                <input
-                  type="number"
-                  name="expected_salary"
-                  value={expected_salary}
-                  onChange={onChange}
-                  // maxlength="11"
-                  placeholder="Expected salary"
-                  className="inputField"
-                  // required
-                />
-              </Grid>
-            </Grid>
-            <Grid container spacing={2} className="inputgrid1">
-              <Grid item xs={12} sm={6} className="inputGrid">
-                <FormControl
-                  className="selectformControl"
-                  variant="outlined"
-                  name="marital_status"
-                  value="marital_status"
-                >
-                  <Select
-                    className="selectforeducation"
-                    defaultValue="marital_status"
-                  >
-                    <MenuItem value="marital_status" disabled>
-                      Marital Status
-                    </MenuItem>
-                    <MenuItem value="Married">Married</MenuItem>
-                    <MenuItem value="Unmarried">Unmarried</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12} sm={6} className="inputGrid">
-                <FormControl className="selectformControl">
-                  <Select
-                    className="selectforeducation"
+              <Grid container spacing={2} className="inputgrid1">
+                <Grid item xs={12} sm={6} className="inputGrid">
+                  <FormControl
+                    className="selectformControl"
                     variant="outlined"
-                    multiple
-                    displayEmpty
-                    name="skills"
-                    value={skills}
-                    onChange={handleChange}
-                    // input={<OutlinedInput />}
-                    style={{
-                      color: "#9198a5",
-                      textAlign: "left",
-                    }}
-                    renderValue={(selected) => {
-                      if (selected.length === 0) {
-                        return <em>Skills</em>;
-                      }
-
-                      return selected.join(", ");
-                    }}
-                    MenuProps={MenuProps}
+                    name="marital_status"
+                    value="marital_status"
                   >
-                    <MenuItem disabled value="">
-                      <em>Skills</em>
-                    </MenuItem>
-                    {names.map((skills) => (
-                      <MenuItem key={skills} value={skills}>
-                        {skills}
+                    <Select
+                      className="selectforeducation"
+                      defaultValue="marital_status"
+                    >
+                      <MenuItem value="marital_status" disabled>
+                        Marital Status
                       </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
+                      <MenuItem value="Married">Married</MenuItem>
+                      <MenuItem value="Unmarried">Unmarried</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12} sm={6} className="inputGrid">
+                  <FormControl className="selectformControl" variant="outlined">
+                    <InputLabel id="demo-multiple-checkbox-label">
+                      Skills
+                    </InputLabel>
+                    <Select
+                      labelId="demo-multiple-checkbox-label"
+                      id="demo-multiple-checkbox"
+                      className="selectforeducation"
+                      multiple
+                      value={skills}
+                      name="skills"
+                      onChange={handleChange}
+                      // input={<OutlinedInput label="skills" />}
+                      renderValue={(selected) => selected.join(", ")}
+                      MenuProps={MenuProps}
+                    >
+                      {names.map((name) => (
+                        <MenuItem key={name} value={name}>
+                          <Checkbox checked={skills.indexOf(name) > -1} />
+                          <ListItemText primary={name} />
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Grid>
+              </Grid>
+              <TextareaAutosize
+                aria-label="minimum height"
+                minRows={4}
+                onChange={onChange}
+                value={leaving_reason}
+                name="leaving_reason"
+                placeholder="Reason for leaving current job"
+                style={{
+                  width: 580,
+                  padding: "15px",
+                  color: "#9198a5",
+                  background: "#242635",
+                  marginLeft: "14px",
+                  marginTop: "20px",
+                  borderRadius: "10px",
+                  border: "none",
+                  outline: "none",
+                  marginBottom: "10px",
+                }}
+              />
+              <Grid container spacing={2} className="formbuttonsGrid">
+                <Grid xs={12} sm={4}>
+                  <div
+                    size="large"
+                    className="formbackbutton"
+                    onClick={() => setStep(0)}
+                  >
+                    <img src={arrowleft} className="arrowleft" />
+                    <b>Previous</b>
+                  </div>
+                </Grid>
+
+                <Grid xs={12} sm={4}></Grid>
+
+                <Grid xs={12} sm={4}>
+                  <button
+                    variant="contained"
+                    className="formSubmitButton"
+                    size="large"
+                    type="submit"
+                    disabled={loading}
+                    style={{ opacity: `${loading ? "0.5" : "1"}` }}
+                  >
+                    <b>
+                      {" "}
+                      {loading ? (
+                        <div className="circulardiv">
+                          <CircularProgress size={20} className="" />
+                        </div>
+                      ) : (
+                        "Proceed to Assessment"
+                      )}
+                    </b>
+                  </button>
+                </Grid>
               </Grid>
             </Grid>
-            <TextareaAutosize
-              aria-label="minimum height"
-              minRows={4}
-              onChange={onChange}
-              value={leaving_reason}
-              name="leaving_reason"
-              placeholder="Reason for leaving current job"
-              style={{
-                width: 648,
-                padding: "15px",
-                color: "#9198a5",
-                background: "#242635",
-                marginLeft: "20px",
-                marginTop: "20px",
-                borderRadius: "10px",
-                border: "none",
-                outline: "none",
-                marginBottom: "10px",
-              }}
-            />
-            <Grid container spacing={2} className="formbuttonsGrid">
-              <Grid xs={12} sm={4}>
-                <div
-                  size="large"
-                  className="formbackbutton"
-                  onClick={() => setStep(0)}
-                >
-                  <img src={arrowleft} className="arrowleft" />
-                  <b>Previous</b>
-                </div>
-              </Grid>
-
-              <Grid xs={12} sm={4}></Grid>
-
-              <Grid xs={12} sm={4}>
-                <button
-                  variant="contained"
-                  className="formSubmitButton"
-                  size="large"
-                  type="submit"
-                  disabled={loading}
-                  style={{ opacity: `${loading ? "0.5" : "1"}` }}
-                >
-                  <b>
-                    {" "}
-                    {loading ? (
-                      <div className="circulardiv">
-                        <CircularProgress size={20} className="" />
-                      </div>
-                    ) : (
-                      "Proceed To Assessment"
-                    )}
-                  </b>
-                </button>
-              </Grid>
-            </Grid>
-          </Grid>
-        </form>
+          </form>
+        </Grid>
       </Grid>
-    </Grid>
+      <CustomizedDialogs
+        open={open}
+        setOpen={setOpen}
+        setStep={setStep}
+        setActiveStep={setActiveStep}
+      />
+    </>
   );
 };
 export default UserForm;
