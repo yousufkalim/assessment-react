@@ -228,7 +228,7 @@
   text-align: center;
   color: white;
   margin: 20px 20px 20px 20px;
-  padding: 16px 25px 16px 25px;
+  padding: 16px 25px 16px 15px;
 }
 .formSubmitButton:hover {
   background: linear-gradient(
@@ -239,7 +239,7 @@
   );
 }
 .circulardiv {
-  padding: 0px 48px 0px 36px;
+  padding: 0px 48px 0px px;
 }
 
 /* for big screens */

@@ -6,6 +6,7 @@ import Result from "../components/Result";
 import Landing from "../components/Landing";
 import Header from "../components/Header";
 import Stepper from "../components/Stepper";
+import CustomizedDialogs from "../components/CirclerTimer";
 
 const Home = () => {
   const [activeStep, setActiveStep] = useState(1);
