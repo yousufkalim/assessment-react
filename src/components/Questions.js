@@ -9,6 +9,11 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@mui/material/Button";
 import Question from "./data/Question";
 import Ans from "./data/Ans";
+import QuestionsTimer from "./QuestionsTimer";
+import TimerDialog from "./TimerDialoge";
+
+
+// const [key, setKey] = useState(0);
 
 const Questions = ({ step,setStep, setActiveStep }) => {
   // init context
@@ -17,6 +22,7 @@ const Questions = ({ step,setStep, setActiveStep }) => {
   // state init
   const [nextQuestionId, setNextQuestionId] = useState("first");
   const [prevQuestion, setprevQuestion] = useState([]);
+  const [open, setOpen] = React.useState(false);
   const [allAns, setAllAns] = useState([]);
   // stlyes
   const useStyles = makeStyles((theme) => ({
@@ -78,11 +84,15 @@ const Questions = ({ step,setStep, setActiveStep }) => {
   };
 
   return (
+    <>
+    
     <Grid container spacing={2} className="mainquestionscreen">
+  
       <Grid item xs={12} sm={4} className="">
         <img src={Dummy} className="dummyimgQuestion forweb" />
         <img src={MainMobile} className="dummyimgforQuestion formobile" />
       </Grid>
+     
       <Grid item xs={12} sm={8} className="questionGrid">
         <div className="questionDiv">
           <img src={qarrow} className="qboximg" />
@@ -109,6 +119,7 @@ const Questions = ({ step,setStep, setActiveStep }) => {
                 </Grid>
               ))}
           </Grid>
+         
           {/* {history.length >= 1 && (
             <Button
               variant="contained"
@@ -121,7 +132,20 @@ const Questions = ({ step,setStep, setActiveStep }) => {
           )} */}
         </div>
       </Grid>
+      <QuestionsTimer 
+       setStep={setStep}
+       setActiveStep={setActiveStep}
+       setOpen={setOpen}
+       open={open}
+       />
+      <TimerDialog
+      open={open}
+      setOpen={setOpen}
+      setStep={setStep}
+      setActiveStep={setActiveStep}
+      />
     </Grid>
+    </>
   );
 };
 

@@ -109,7 +109,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
     "Django",
   ];
 
-  const [skills, setSkills] = useState([]);
+  const [skills, setSkills] = useState(["skills"]);
 
   const handleChange = (event) => {
     const {
@@ -490,8 +490,8 @@ holidays/leaves you might require.
                 </Grid>
                 <Grid item xs={12} sm={6} className="inputGrid">
                   <FormControl className="selectformControl" variant="outlined">
-                    <InputLabel id="demo-multiple-checkbox-label">
-                      Skills
+                    <InputLabel >
+                      
                     </InputLabel>
                     <Select
                       labelId="demo-multiple-checkbox-label"
@@ -499,12 +499,18 @@ holidays/leaves you might require.
                       className="selectforeducation"
                       multiple
                       value={skills}
+                      defaultValue={skills[0]}
                       name="skills"
                       onChange={handleChange}
                       // input={<OutlinedInput label="skills" />}
                       renderValue={(selected) => selected.join(", ")}
                       MenuProps={MenuProps}
                     >
+                      {/* <MenuItem
+                      value={skills[0]}
+                      disabled
+                      >
+                      </MenuItem> */}
                       {names.map((name) => (
                         <MenuItem key={name} value={name}>
                           <Checkbox checked={skills.indexOf(name) > -1} />
@@ -523,7 +529,7 @@ holidays/leaves you might require.
                 name="leaving_reason"
                 placeholder="Reason for leaving current job"
                 style={{
-                  width: 580,
+                  width: 537,
                   padding: "15px",
                   color: "#9198a5",
                   background: "#242635",

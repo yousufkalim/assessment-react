@@ -21,6 +21,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
+
 const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props;
 
@@ -97,7 +98,7 @@ export default function CustomizedDialogs({ open, setOpen, setStep, setActiveSte
           <div className="timer-wrapper">
             <CountdownCircleTimer
               isPlaying
-              duration={10}
+              duration={2}
               colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
               onComplete={() => [true, 1000]}
             >
