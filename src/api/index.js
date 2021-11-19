@@ -7,21 +7,17 @@ const api = async (method = "get", uri, body) => {
     axios.defaults.withCredentials = true;
   }
   // axios.defaults.baseURL = "http://localhost:5000/api/";
-  axios.defaults.withCredentials = true;
 
   return axios[method](uri, body)
-    .then((res) => res)
+    .then((res) => res.data)
     .catch((err) => {
-      {
-        console.log("API Error ---1-----> ", err.response);
-        if (err.response?.status === 403) {
-          window.location = "/login";
-        }
-        return toast.error(
-          err?.response?.data ? err.response.data : err?.message
-        );
+      console.log("API Error --------> ", { ...err });
+      if (err.response?.status === 403) {
+        window.location = "/login";
       }
+      return toast.error(
+        err?.response?.data ? err.response.data : err?.message
+      );
     });
 };
-
 export default api;

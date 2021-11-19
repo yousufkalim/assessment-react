@@ -8,24 +8,29 @@ const Footer = () => {
     <>
       <div className="FooterDiv">
         <div className="cguBar">
-          <h3 style={{ display:"flex", justifyContent:"space-between", textDecoration: "none" }}>
+          <h3
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              textDecoration: "none",
+            }}
+          >
             <AnchorLink
               href="#top"
               style={{
                 color: "white",
-                textDecoration:"none",
-                
+                textDecoration: "none",
               }}
             >
               Home
             </AnchorLink>
           </h3>
-          <p style={{ textAlign: "center", paddingTop:"5px"}}>
+          <p style={{ textAlign: "center", paddingTop: "5px" }}>
             Developed By
             <a
               href="https:www.falconconsulting.fr"
               target="_blank"
-              style={{ textDecoration: "none", color: " gray", margin: "10px"}}
+              style={{ textDecoration: "none", color: " gray", margin: "10px" }}
             >
               {" "}
               Falcon IT Consulting

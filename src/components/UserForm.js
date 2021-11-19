@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import CustomizedDialogs from "../components/CirclerTimer";
-
+import axios from "axios";
 // import validate from 'react-joi-validation';
 import Joi from "joi";
 import "react-datepicker/dist/react-datepicker.css";
@@ -22,12 +22,12 @@ import scrollToTop from "../utils/ScrollTop";
 import DatePicker from "react-datepicker";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
-import OutlinedInput from '@mui/material/OutlinedInput';
+import OutlinedInput from "@mui/material/OutlinedInput";
 import { styled } from "@mui/material/styles";
 import moment from "moment";
-import Moment from "react-moment";
-
+import api from "../api/index.js";
 import renderTime from "../components/CirclerTimer";
+import Questions from "./Questions";
 
 // import MenuItem from "@material-ui/core/MenuItem";
 // import Checkbox from '@mui/material/Checkbox';
@@ -51,7 +51,6 @@ const UserForm = ({ setStep, setActiveStep }) => {
     expected_salary: "",
     joining_time: "",
     marital_status: "",
-    skills: "",
     leaving_reason: "",
   });
   // // state for address options list
@@ -75,9 +74,9 @@ const UserForm = ({ setStep, setActiveStep }) => {
     dob,
     address,
     email,
-    marital_status,
     post,
     vacancy_source,
+    marital_status,
     sect,
     total_experience,
     post_experience,
@@ -101,22 +100,25 @@ const UserForm = ({ setStep, setActiveStep }) => {
   //Skills dropdown
 
   const names = [
-    "React.js",
-    "Node.js",
-    "Mongodb/Express",
-    "React Native",
-    ".Net",
-    "Django",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "React",
+    "Node",
+    "dotNet",
+    "Native",
+    "Express",
   ];
 
-  const [skills, setSkills] = useState(["skills"]);
+  const [skills, setSkills] = useState([]);
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setSkills(typeof value === "string" ? value.split(",") : value);
+    setSkills(typeof value === "string" ? value.split(", ") : value);
   };
+
   //tooltip for
   const CustomWidthTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} classes={{ popper: className }} />
@@ -194,14 +196,17 @@ holidays/leaves you might require.
   const onChangeeDate = (eDate) => {
     setFormData({ ...formData, joining_time: eDate });
   };
-
+  const onChangeMStatus = (mstatus) => {
+    setFormData({ ...formData, marital_status: mstatus.target.value });
+  };
   // handleSubmit Function
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     //form data on console
-    let newformdata = { ...formData, skills };
+    let newformdata = { ...formData, skills: skills.join(", ") };
     console.log("form", newformdata);
+    console.log("CHECKSKILLS========", skills);
     if (name == "") {
       return toast.error("Please enter name");
     }
@@ -211,16 +216,14 @@ holidays/leaves you might require.
     if (email == "") {
       return toast.error("Please enter email");
     }
-    if (vacancy_source == "") {
-      return toast.error(
-        "Please enter where you have learned about the vacancy"
-      );
-    }
     if (dob == "") {
       return toast.error("Please enter date of birth");
     }
     if (post == "") {
       return toast.error("Please enter post name");
+    }
+    if (sect == "") {
+      return toast.error("Please enter your religious sect");
     }
     if (total_experience == "") {
       return toast.error("Please enter your proffesional experience");
@@ -231,26 +234,36 @@ holidays/leaves you might require.
     if (joining_time == "") {
       return toast.error("Please enter your expected date of joining");
     }
-    if (current_employer == "") {
-      return toast.error("please enter your current employer");
-    }
-    if (current_salary == "") {
-      return toast.error("Please your current salary");
-    }
-    if (expected_salary == "") {
-      return toast.error("please enter your expected salary");
-    }
-
-    if (sect == "") {
-      return toast.error("Please enter your religious sect");
+    if (marital_status == "") {
+      return toast.error("Please enter your marital status");
     }
     if (skills == "") {
       return toast.error("Please enter your skills");
     }
-    if (leaving_reason == "") {
-      return toast.error("Please enter reason for leaving previous job");
-    }
+
+    let data = await api("post", "/users", newformdata);
     setOpen(true);
+    console.log("------------>", data);
+    const questions = [];
+    const answers = [];
+    data?.questions?.map((item) => {
+      questions.push(...item.data);
+    });
+    data?.answers?.map((item) => {
+      answers.push(...item.data);
+    });
+    console.log("QUESTIONSSSSS--------", questions);
+    console.log("AAAAAANSWERS--------", answers);
+    if (data.status === 200) {
+      updateStore({
+        questions,
+        answers,
+        user: data?.user,
+      });
+      setStep(2);
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    }
+
     // setTimeout(() => {
     //   setStep(2);
     //   setActiveStep(2);
@@ -274,7 +287,10 @@ holidays/leaves you might require.
       expected_salary: "",
       leaving_reason: "",
     });
+
+    setLoading(false);
   };
+
   return (
     <>
       <Grid container spacing={2} className="mainuserform">
@@ -308,6 +324,7 @@ holidays/leaves you might require.
                     onChange={onChange}
                     placeholder="Contact no"
                     className="inputField"
+                    maxLength="11"
                     // required
                   />
                 </Grid>
@@ -315,7 +332,7 @@ holidays/leaves you might require.
               <Grid container spacing={2} className="inputgrid1">
                 <Grid item xs={12} sm={6} className="inputGrid">
                   <input
-                    type="String"
+                    type="email"
                     name="email"
                     placeholder="Email"
                     className="inputField"
@@ -393,7 +410,7 @@ holidays/leaves you might require.
               <Grid container spacing={2} className="">
                 <Grid item xs={12} sm={6} className="inputGrid">
                   <input
-                    type="String"
+                    type="Number"
                     name="total_experience"
                     value={total_experience}
                     onChange={onChange}
@@ -404,7 +421,7 @@ holidays/leaves you might require.
                 </Grid>
                 <Grid item xs={12} sm={6} className="inputGrid">
                   <input
-                    type="String"
+                    type="Number"
                     name="post_experience"
                     value={post_experience}
                     onChange={onChange}
@@ -474,35 +491,34 @@ holidays/leaves you might require.
                     className="selectformControl"
                     variant="outlined"
                     name="marital_status"
-                    value="marital_status"
+                    value={marital_status}
                   >
                     <Select
                       className="selectforeducation"
                       defaultValue="marital_status"
+                      onChange={onChangeMStatus}
                     >
                       <MenuItem value="marital_status" disabled>
                         Marital Status
                       </MenuItem>
                       <MenuItem value="Married">Married</MenuItem>
                       <MenuItem value="Unmarried">Unmarried</MenuItem>
+                      <MenuItem value="Divorced">Divorced</MenuItem>
+                      <MenuItem value="Widow">Widow</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={6} className="inputGrid">
                   <FormControl className="selectformControl" variant="outlined">
-                    <InputLabel >
-                      
-                    </InputLabel>
+                    <InputLabel>Skills</InputLabel>
                     <Select
-                      labelId="demo-multiple-checkbox-label"
                       id="demo-multiple-checkbox"
                       className="selectforeducation"
                       multiple
                       value={skills}
-                      defaultValue={skills[0]}
+                      // defaultValue={skills[2]}
                       name="skills"
                       onChange={handleChange}
-                      // input={<OutlinedInput label="skills" />}
                       renderValue={(selected) => selected.join(", ")}
                       MenuProps={MenuProps}
                     >
@@ -514,7 +530,7 @@ holidays/leaves you might require.
                       {names.map((name) => (
                         <MenuItem key={name} value={name}>
                           <Checkbox checked={skills.indexOf(name) > -1} />
-                          <ListItemText primary={name} />
+                          {name}
                         </MenuItem>
                       ))}
                     </Select>

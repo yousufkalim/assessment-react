@@ -48,7 +48,7 @@ const Home = () => {
             setActiveStep={setActiveStep}
           />
         )}
-        {console.log("step is ",step )}
+        {console.log("step is ", step)}
         {step === 3 && <Result />}
       </div>
     </>

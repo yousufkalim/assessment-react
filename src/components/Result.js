@@ -64,7 +64,7 @@ const Result = () => {
             <div className="resultBox">
               <div className="resultBoxText">
                 <h1 className="resultHeading" style={{ textAlign: "center" }}>
-                  Well done ! You answered all the questions!
+                  Well done ! You have completed your Assessment!
                 </h1>
                 {loading ? (
                   <p className="resultText">
@@ -103,21 +103,15 @@ const Result = () => {
                     </span>
                   </p>
                 )}
-                <p className="resultText">
-                  <span style={{ color: "#9198A5" }}>
-                    I offer you a Parcoursup wishlist that
-                    would match your profile.
-                  </span>
-                </p>
               </div>
-              <div className="resultButtondiv">
+              {/* <div className="resultButtondiv">
                 <button
                   className="resultButton"
                   onClick={() => setresultStep(1)}
                 >
                   <b> My Answers list</b>
                 </button>
-              </div>
+              </div> */}
             </div>
             <div></div>
           </Grid>
