@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Store } from "../StoreContext";
+import scrollToTop from "../utils/ScrollTop";
 import api from "../api";
 import Grid from "@material-ui/core/Grid";
 import Dummy from "../assets/img/dummy.png";
@@ -13,6 +14,7 @@ const Result = () => {
 
   useEffect(() => {
     getResult();
+    scrollToTop();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

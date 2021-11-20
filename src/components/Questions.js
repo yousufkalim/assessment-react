@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Store, UpdateStore } from "../StoreContext";
+import scrollToTop from "../utils/ScrollTop";
 import Dummy from "../assets/img/dummy.png";
 import MainMobile from "../assets/img/mobileform.png";
 import qarrow from "../assets/icons/qarrow.png";
@@ -19,6 +20,10 @@ const Questions = ({ step, setStep, setActiveStep }) => {
 
   const [open, setOpen] = React.useState(false);
   const [duration, setDuration] = useState(10);
+
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   // styles
   const useStyles = makeStyles((theme) => ({
