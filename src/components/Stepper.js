@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ["Departure!", "Who am I ?", "My test", "My results"];
+  return ["Greetings", "Performa", "My test", "Result"];
 }
 
 export default function CustomizedSteppers({ activeStep, setActiveStep }) {
