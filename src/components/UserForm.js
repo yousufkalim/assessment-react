@@ -200,39 +200,39 @@ const UserForm = ({ setStep, setActiveStep }) => {
     //form data on console
     let newformdata = { ...formData, skills: skills.join(", ") };
 
-    if (name == "") {
-      return toast.error("Please enter name");
-    }
-    if (contact_no.length != 11 || contact_no[0] != 0) {
-      return toast.error("Contact no must start from 0 and of 11 digits");
-    }
-    if (email == "") {
-      return toast.error("Please enter email");
-    }
-    if (dob == "") {
-      return toast.error("Please enter date of birth");
-    }
-    if (post == "") {
-      return toast.error("Please enter post name");
-    }
-    if (sect == "") {
-      return toast.error("Please enter your religious sect");
-    }
-    if (total_experience == "") {
-      return toast.error("Please enter your professional experience");
-    }
-    if (post_experience == "") {
-      return toast.error("Please enter your experience related to post");
-    }
-    if (joining_time == "") {
-      return toast.error("Please enter your expected date of joining");
-    }
-    if (marital_status == "") {
-      return toast.error("Please enter your marital status");
-    }
-    if (skills == "") {
-      return toast.error("Please enter your skills");
-    }
+    // if (name == "") {
+    //   return toast.error("Please enter name");
+    // }
+    // if (contact_no.length != 11 || contact_no[0] != 0) {
+    //   return toast.error("Contact no must start from 0 and of 11 digits");
+    // }
+    // if (email == "") {
+    //   return toast.error("Please enter email");
+    // }
+    // if (dob == "") {
+    //   return toast.error("Please enter date of birth");
+    // }
+    // if (post == "") {
+    //   return toast.error("Please enter post name");
+    // }
+    // if (sect == "") {
+    //   return toast.error("Please enter your religious sect");
+    // }
+    // if (total_experience == "") {
+    //   return toast.error("Please enter your professional experience");
+    // }
+    // if (post_experience == "") {
+    //   return toast.error("Please enter your experience related to post");
+    // }
+    // if (joining_time == "") {
+    //   return toast.error("Please enter your expected date of joining");
+    // }
+    // if (marital_status == "") {
+    //   return toast.error("Please enter your marital status");
+    // }
+    // if (skills == "") {
+    //   return toast.error("Please enter your skills");
+    // }
 
     let data = await api("post", "/users", newformdata);
 
@@ -398,7 +398,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
               <Grid container spacing={2} className="">
                 <Grid item xs={12} sm={6} className="inputGrid">
                   <input
-                    type="Number"
+                    type="text"
                     name="total_experience"
                     value={total_experience}
                     onChange={onChange}
@@ -409,7 +409,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                 </Grid>
                 <Grid item xs={12} sm={6} className="inputGrid">
                   <input
-                    type="Number"
+                    type="text"
                     name="post_experience"
                     value={post_experience}
                     onChange={onChange}
@@ -451,7 +451,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
               <Grid container spacing={2} className="inputgrid1">
                 <Grid item xs={12} sm={6} className="inputGrid">
                   <input
-                    type="number"
+                    type="text"
                     name="current_salary"
                     value={current_salary}
                     onChange={onChange}
@@ -462,7 +462,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                 </Grid>
                 <Grid item xs={12} sm={6} className="inputGrid">
                   <input
-                    type="number"
+                    type="text"
                     name="expected_salary"
                     value={expected_salary}
                     onChange={onChange}
@@ -533,18 +533,20 @@ const UserForm = ({ setStep, setActiveStep }) => {
                 name="leaving_reason"
                 placeholder="Reason for leaving current job"
                 style={{
-                  width: 537,
+                  width: "91.7%",
                   padding: "15px",
                   color: "#9198a5",
                   background: "#242635",
                   marginLeft: "14px",
-                  marginTop: "20px",
+                  marginTop: "10px",
                   borderRadius: "10px",
                   border: "none",
                   outline: "none",
                   marginBottom: "10px",
+                  fontSize: "16px",
                 }}
               />
+
               <Grid container spacing={2} className="formbuttonsGrid">
                 <Grid xs={12} sm={4}>
                   <div
