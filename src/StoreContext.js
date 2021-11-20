@@ -26,6 +26,7 @@ export function StoreProvider({ children }) {
     singleUserResult: null,
     results: null,
     user: {},
+    answerIds: [],
     questions: [],
     answers: [],
     allanswer: [],
