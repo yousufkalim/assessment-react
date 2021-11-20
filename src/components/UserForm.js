@@ -56,15 +56,6 @@ const UserForm = ({ setStep, setActiveStep }) => {
   // // state for address options list
   const [values, setValues] = useState([]);
   const [open, setOpen] = React.useState(false);
-  // // state for address details
-  const [addressValue, setAddressValue] = useState({
-    lat: "",
-    lng: "",
-    city: "",
-    postal_code: "",
-    label: "",
-    label2: "",
-  });
   const [loading, setLoading] = useState(false);
 
   // Destructuring of UserForm State
@@ -128,9 +119,9 @@ const UserForm = ({ setStep, setActiveStep }) => {
     },
   });
   const longText = `
-Note:There is no discrimination based on sect and religion.
-This information is just to know about the specific
-holidays/leaves you might require.
+    Note:There is no discrimination based on sect and religion.
+    This information is just to know about the specific
+    holidays/leaves you might require.
 `;
 
   // Get institutes data from API
@@ -189,24 +180,26 @@ holidays/leaves you might require.
         });
     }
   };
+
   // function for Date select
   const onChangeDate = (date) => {
     setFormData({ ...formData, dob: date });
   };
+
   const onChangeeDate = (eDate) => {
     setFormData({ ...formData, joining_time: eDate });
   };
   const onChangeMStatus = (mstatus) => {
     setFormData({ ...formData, marital_status: mstatus.target.value });
   };
+
   // handleSubmit Function
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     //form data on console
     let newformdata = { ...formData, skills: skills.join(", ") };
-    console.log("form", newformdata);
-    console.log("CHECKSKILLS========", skills);
+
     if (name == "") {
       return toast.error("Please enter name");
     }
@@ -226,7 +219,7 @@ holidays/leaves you might require.
       return toast.error("Please enter your religious sect");
     }
     if (total_experience == "") {
-      return toast.error("Please enter your proffesional experience");
+      return toast.error("Please enter your professional experience");
     }
     if (post_experience == "") {
       return toast.error("Please enter your experience related to post");
@@ -242,32 +235,27 @@ holidays/leaves you might require.
     }
 
     let data = await api("post", "/users", newformdata);
+
     setOpen(true);
-    console.log("------------>", data);
+
     const questions = [];
     const answers = [];
+
     data?.questions?.map((item) => {
       questions.push(...item.data);
     });
     data?.answers?.map((item) => {
       answers.push(...item.data);
     });
-    console.log("QUESTIONSSSSS--------", questions);
-    console.log("AAAAAANSWERS--------", answers);
-    if (data.status === 200) {
-      updateStore({
-        questions,
-        answers,
-        user: data?.user,
-      });
-      setStep(2);
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    }
 
-    // setTimeout(() => {
-    //   setStep(2);
-    //   setActiveStep(2);
-    // }, 10000);
+    updateStore({
+      questions,
+      answers,
+      user: data?.user,
+    });
+
+    // setStep(2);
+    // setActiveStep((prevActiveStep) => prevActiveStep + 1);
 
     setFormData({
       name: "",
@@ -565,7 +553,7 @@ holidays/leaves you might require.
                     onClick={() => setStep(0)}
                   >
                     <img src={arrowleft} className="arrowleft" />
-                    <b>Previous</b>
+                    <b>Back</b>
                   </div>
                 </Grid>
 
@@ -587,7 +575,7 @@ holidays/leaves you might require.
                           <CircularProgress size={20} className="" />
                         </div>
                       ) : (
-                        "Proceed to Assessment"
+                        "Submit"
                       )}
                     </b>
                   </button>

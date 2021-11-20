@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import PropTypes from "prop-types";
 import Button from "@mui/material/Button";
@@ -20,7 +19,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }));
-
 
 const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props;
@@ -50,14 +48,12 @@ BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
   onClose: PropTypes.func.isRequired,
 };
-const renderTime = ( remainingTime, setStep, setActiveStep ) => {
-    // console.log("remainingTime",remainingTime, setStep, setActiveStep)
+const renderTime = (remainingTime, setStep, setActiveStep) => {
+  // console.log("remainingTime",remainingTime, setStep, setActiveStep)
   if (remainingTime === 0) {
-       setStep(2);
+    setStep(2);
     setActiveStep(2);
     // return <div className="timer">Too late...</div>;
-  
-    
   }
 
   return (
@@ -68,7 +64,12 @@ const renderTime = ( remainingTime, setStep, setActiveStep ) => {
     </div>
   );
 };
-export default function CustomizedDialogs({ open, setOpen, setStep, setActiveStep }) {
+export default function CustomizedDialogs({
+  open,
+  setOpen,
+  setStep,
+  setActiveStep,
+}) {
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -98,13 +99,14 @@ export default function CustomizedDialogs({ open, setOpen, setStep, setActiveSte
           <div className="timer-wrapper">
             <CountdownCircleTimer
               isPlaying
-              duration={2}
+              duration={10}
               colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
               onComplete={() => [true, 1000]}
             >
-               {({ remainingTime }) => renderTime(remainingTime, setStep, setActiveStep)}
+              {({ remainingTime }) =>
+                renderTime(remainingTime, setStep, setActiveStep)
+              }
             </CountdownCircleTimer>
-            
           </div>
         </DialogActions>
         <DialogContent>
