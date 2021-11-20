@@ -28,14 +28,16 @@ const Footer = () => {
           <p style={{ textAlign: "center", paddingTop: "5px" }}>
             Developed By
             <a
-              href="https:www.falconconsulting.fr"
+              href="https//falconconsulting.fr"
               target="_blank"
-              style={{ textDecoration: "none", color: " gray", margin: "10px" }}
+              style={{
+                textDecoration: "none",
+                color: "lightgray",
+              }}
             >
-              {" "}
-              Falcon IT Consulting
-            </a>{" "}
-            2021. All Rights Reserved
+              &nbsp;Falcon IT Consulting&nbsp;
+            </a>
+            &nbsp;-&nbsp; All Rights Reserved
           </p>
           {/* <h3 style={{ textAlign: "center" }}>
             <Link to="/CGU" style={{ color: "white", textDecoration:"none"}}>
