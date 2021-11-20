@@ -1,16 +1,31 @@
 .mainquestionscreen {
   height: 100vh !important;
 }
-.questionBox {
-  color: white;
-  position: relative;
-  bottom: 28%;
-  width: 76% !important;
-  margin: auto !important;
-  text-align: left !important;
+
+.questionDiv {
+  width: 830px !important;
 }
+
+.questionBox {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.question-container {
+  height: 172px;
+  width: 830px;
+  position: relative;
+}
+
 .qboximg {
-  width: 84%;
+  width: 100% !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 .questionDiv {
   margin: auto !important;
@@ -20,10 +35,12 @@
 }
 
 .questiontext {
-  padding-left: 30px;
+  padding-left: 40px;
+  width: 85%;
 }
 .answerGrid {
   padding: 1% 6% 0 12% !important;
+  margin-top: 50px !important;
 }
 .selectedOption {
   width: 50% !important;
@@ -98,7 +115,7 @@
 }
 
 /* for big screens */
-@media only screen and (min-device-width: 1500px) and (max-device-width: 1900px) {
+/* @media only screen and (min-device-width: 1500px) and (max-device-width: 1900px) {
   .qboximg {
     width: auto;
     margin-top: auto;
@@ -118,4 +135,4 @@
   .answerGrid {
     padding: 1% 11% 0 14% !important;
   }
-}
+} */

@@ -97,12 +97,15 @@ const Questions = ({ step, setStep, setActiveStep }) => {
 
         <Grid item xs={12} sm={8} className="questionGrid">
           <div className="questionDiv">
-            <img src={qarrow} className="qboximg" />
-            <div className="questionBox">
-              <h1 className="questiontext">
-                {questions[nextQuestionNo].question}
-              </h1>
+            <div className="question-container">
+              <img src={qarrow} className="qboximg" />
+              <div className="questionBox">
+                <h2 className="questiontext">
+                  {questions[nextQuestionNo].question}
+                </h2>
+              </div>
             </div>
+
             <Grid container spacing={3} className="answerGrid">
               {answers &&
                 getOptions(answers)?.map((ans) => (
