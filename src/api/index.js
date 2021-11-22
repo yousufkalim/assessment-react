@@ -16,7 +16,7 @@ const api = async (method = "get", uri, body) => {
         window.location = "/login";
       }
       return toast.error(
-        err?.response?.data ? err.response.data : err?.message
+        err?.response?.data ? err.response.data.message : err?.message
       );
     });
 };
