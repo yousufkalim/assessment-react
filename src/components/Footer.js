@@ -8,34 +8,42 @@ const Footer = () => {
     <>
       <div className="FooterDiv">
         <div className="cguBar">
-          <h3 style={{ display:"flex", justifyContent:"space-between", textDecoration: "none" }}>
+          <h3
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              textDecoration: "none",
+            }}
+          >
             <AnchorLink
               href="#top"
               style={{
                 color: "white",
-                textDecoration:"none"
+                textDecoration: "none",
               }}
             >
               Home
             </AnchorLink>
           </h3>
-          <p style={{ textAlign: "center", paddingTop:"8px"}}>
+          <p style={{ textAlign: "center", paddingTop: "5px" }}>
             Developed By
             <a
-              href="https:www.falconconsulting.fr"
+              href="https//falconconsulting.fr"
               target="_blank"
-              style={{ textDecoration: "none", color: " gray", margin: "5px"}}
+              style={{
+                textDecoration: "none",
+                color: "lightgray",
+              }}
             >
-              {" "}
-              Falcon IT Consulting
-            </a>{" "}
-            2021. All Rights Reserved
+              &nbsp;Falcon IT Consulting&nbsp;
+            </a>
+            &nbsp;-&nbsp; All Rights Reserved
           </p>
-          <h3 style={{ textAlign: "center" }}>
+          {/* <h3 style={{ textAlign: "center" }}>
             <Link to="/CGU" style={{ color: "white", textDecoration:"none"}}>
               Terms and conditions
             </Link>
-          </h3>
+          </h3> */}
         </div>
       </div>
     </>

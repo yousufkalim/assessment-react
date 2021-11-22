@@ -1,24 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Store, UpdateStore } from "../StoreContext";
+import scrollToTop from "../utils/ScrollTop";
 import Dummy from "../assets/img/dummy.png";
 import MainMobile from "../assets/img/mobileform.png";
 import qarrow from "../assets/icons/qarrow.png";
-
 import Grid from "@material-ui/core/Grid";
 import Button from "@mui/material/Button";
-import Question from "./data/Question";
-import Ans from "./data/Ans";
+import QuestionsTimer from "./QuestionsTimer";
+import TimerDialog from "./TimerDialoge";
 
-const Questions = ({ step,setStep, setActiveStep }) => {
+const Questions = ({ step, setStep, setActiveStep }) => {
   // init context
   const updateStore = UpdateStore();
-  const { questions, answers, history, disc_ans_id, allanswer } = Store();
+  const { questions, answers, answerIds } = Store();
   // state init
-  const [nextQuestionId, setNextQuestionId] = useState("first");
-  const [prevQuestion, setprevQuestion] = useState([]);
-  const [allAns, setAllAns] = useState([]);
-  // stlyes
+  const [nextQuestionNo, setNextQuestionNo] = useState(0);
+  const [lastQuestionIndex] = useState(questions.length - 1);
+
+  const [open, setOpen] = React.useState(false);
+  const [duration, setDuration] = useState(10);
+
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+
+  // styles
   const useStyles = makeStyles((theme) => ({
     root: {
       "& > *": {
@@ -36,92 +43,103 @@ const Questions = ({ step,setStep, setActiveStep }) => {
       margin: "auto",
     },
   }));
-  const classes = useStyles();
-  // when  select any option it will set next Q id ,update history , if Q type is discriminating update disc_ans_id
-  const handleSelectOption = (ans) => {
-    if (ans?.question?.questionType === "discriminating") {
-      updateStore({ disc_ans_id: [...disc_ans_id, ans?._id] });
-    }
-    setAllAns([ans, ...allAns]);
-    setNextQuestionId(ans?.next_question);
-    updateStore({ history: [...history, ans] });
-    updateStore({ allanswer: [...allanswer, ans] });
 
-    setprevQuestion([]);
-    // setCurrentAnswer(null);
-  };
-  console.log("Ans is", allAns);
-  console.log("n is in step quest ", step);
-  console.log("Store is", allanswer);
-  // if show the questions by filteron the base of nextquestionId
-  const getQuestion = () => {
-    // console.log("n is ", nextQuestionId);
-    if (nextQuestionId == null) {
-      // console.log("n is in step 3 ", nextQuestionId);
-      setStep(3);
-      // setActiveStep((prevActiveStep) => prevActiveStep + 1);
-      setActiveStep(3);
-      return;
-    }
-    if (nextQuestionId === "first") {
-      return Question?.find((Question) => Question.isFirst);
-    } else {
-      return Question?.find((Question) => Question._id === nextQuestionId);
-    }
-  };
-  // it show the options of question by filter answer on the base of question id
+  // Getting all options according to the answer
   const getOptions = (answers) => {
     let options = answers?.filter((answer) => {
-      return answer.question === getQuestion()?._id;
+      return (
+        answer.question === questions[nextQuestionNo].question_number &&
+        answer.technology === questions[nextQuestionNo].technology
+      );
     });
-    return options;
+
+    let randomSort = options.sort(() => Math.random() - 0.5);
+
+    randomSort.find((option, index) => {
+      if (option.answer === "false") {
+        randomSort.splice(index, 1);
+        randomSort.splice(randomSort.length, 0, option);
+      }
+
+      if (option.answer === "All of these") {
+        randomSort.splice(index, 1);
+        randomSort.splice(randomSort.length, 0, option);
+      }
+
+      if (option.answer === "None of these") {
+        randomSort.splice(index, 1);
+        randomSort.splice(randomSort.length, 0, option);
+      }
+    });
+
+    return randomSort;
+  };
+
+  // When user click on an option
+  const handleSelectOption = async (ans) => {
+    updateStore({ answerIds: [...answerIds, ans._id] });
+
+    if (lastQuestionIndex !== nextQuestionNo) {
+      setNextQuestionNo(nextQuestionNo + 1);
+    } else {
+      setStep(3);
+      setActiveStep(3);
+    }
   };
 
   return (
-    <Grid container spacing={2} className="mainquestionscreen">
-      <Grid item xs={12} sm={4} className="">
-        <img src={Dummy} className="dummyimgQuestion forweb" />
-        <img src={MainMobile} className="dummyimgforQuestion formobile" />
-      </Grid>
-      <Grid item xs={12} sm={8} className="questionGrid">
-        <div className="questionDiv">
-          <img src={qarrow} className="qboximg" />
-          <div className="questionBox">
-            <h1 className="questiontext">
-              {getQuestion()?.question
-                //  getQuestion()?.question
-                // : "you reached the end of the quiz"
-              }
-              {console.log("Questions is", Question)}
-            </h1>
+    <>
+      <Grid container spacing={2} className="mainquestionscreen">
+        <Grid item xs={12} sm={4} className="">
+          <img src={Dummy} className="dummyimgQuestion forweb" />
+          <img src={MainMobile} className="dummyimgforQuestion formobile" />
+        </Grid>
+
+        <Grid item xs={12} sm={8} className="questionGrid">
+          <div className="questionDiv">
+            <div className="question-container">
+              <img src={qarrow} className="qboximg" />
+              <div className="questionBox">
+                <h2 className="questiontext">
+                  {questions[nextQuestionNo].question}
+                </h2>
+              </div>
+            </div>
+
+            <Grid container spacing={3} className="answerGrid">
+              {answers &&
+                getOptions(answers)?.map((ans) => (
+                  <Grid
+                    item
+                    xs={12}
+                    sm={5}
+                    className="option"
+                    onClick={() => handleSelectOption(ans)}
+                  >
+                    {ans?.answer}
+                  </Grid>
+                ))}
+            </Grid>
           </div>
-          <Grid container spacing={3} className="answerGrid">
-            {Ans &&
-              getOptions(Ans)?.map((ans) => (
-                <Grid
-                  item
-                  xs={12}
-                  sm={5}
-                  className="option"
-                  onClick={() => handleSelectOption(ans)}
-                >
-                  {ans?.answer}
-                </Grid>
-              ))}
-          </Grid>
-          {/* {history.length >= 1 && (
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              onClick={handlePrev}
-            >
-              {"Previous"}
-            </Button>
-          )} */}
-        </div>
+        </Grid>
+        {/* <QuestionsTimer
+          setStep={setStep}
+          setActiveStep={setActiveStep}
+          setOpen={setOpen}
+          open={open}
+          duration={duration}
+          setDuration={setDuration}
+        />
+        <TimerDialog
+          open={open}
+          setOpen={setOpen}
+          setStep={setStep}
+          setActiveStep={setActiveStep}
+          duration={duration}
+          setDuration={setDuration}
+        /> */}
       </Grid>
-    </Grid>
+    </>
   );
 };
 

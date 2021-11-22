@@ -25,7 +25,6 @@ const Landing = ({ step, setStep, statetextforscroll }) => {
     });
   };
   useEffect(() => {
-    console.log("statetextforscroll", statetextforscroll);
     scrollToTop();
     statetextforscroll == "Accueil" && scrollToTop();
     statetextforscroll == "Comment" &&
@@ -64,17 +63,17 @@ const Landing = ({ step, setStep, statetextforscroll }) => {
           <Grid item xs={12} sm={4}>
             <img src={f1} className="footerimg" />
             <h4 className="h4">Step 1</h4>
-            <p className="p3">Tell the examinee who you are</p>
+            <p className="p3">Submit you employee form</p>
           </Grid>
           <Grid item xs={12} sm={4}>
             <img src={f2} className="footerimg" />
             <h4 className="h4">Step 2</h4>
-            <p className="p3">Answer Assessment questions.</p>
+            <p className="p3">You have to take an assessment test</p>
           </Grid>
           <Grid item xs={12} sm={4}>
             <img src={f3} className="footerimg" />
             <h4 className="h4">Step 3</h4>
-            <p className="p3">This offers you a wishlist for your journey!</p>
+            <p className="p3">We will check your test</p>
           </Grid>
         </Grid>
       </div>

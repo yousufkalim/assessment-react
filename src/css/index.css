@@ -8,6 +8,11 @@
 @import url("./login.css");
 @import url("./footer.css");
 @import url("./cgu.css");
+@import url("./CircleTimer.css");
+@import url("./QuestionsTimer.css");
+
+
+
 body {
   font-family: "lato", sans-serif !important;
   overflow-x: hidden;

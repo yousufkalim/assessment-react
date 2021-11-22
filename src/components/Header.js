@@ -97,7 +97,7 @@ export default function Header({
               step != 0 && setStatetextforscroll("Accueil");
             }}
           >
-           Home
+            Home
           </Typography>
         </AnchorLink>
         <AnchorLink
@@ -113,7 +113,7 @@ export default function Header({
               step != 0 && setStatetextforscroll("Comment");
             }}
           >
-           How it works ?
+            How it works ?
           </Typography>
         </AnchorLink>
       </Toolbar>

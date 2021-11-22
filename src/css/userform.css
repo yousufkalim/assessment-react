@@ -227,8 +227,8 @@
   /* width: 55%; */
   text-align: center;
   color: white;
-  margin: 20px 20px 20px 20px;
-  padding: 16px 25px 16px 25px;
+  margin: 20px 20px 20px 10px;
+  padding: 20px 20px 20px 15px;
 }
 .formSubmitButton:hover {
   background: linear-gradient(
@@ -239,7 +239,7 @@
   );
 }
 .circulardiv {
-  padding: 0px 48px 0px 36px;
+  padding: 0px 48px 0px px;
 }
 
 /* for big screens */
@@ -269,9 +269,9 @@
     margin: 22px 0px 10px 0px;
     padding: 10px;
   }
-  .selectformControl {
+  /* .selectformControl {
     width: 87% !important;
-  }
+  } */
   /* education level placeholder */
   .MuiInputLabel-outlined {
     margin: 0px 0 0 0 !important;
