@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Store, UpdateStore } from "../StoreContext";
 import api from "../api/index";
-import SingleUserResult from "./SingleUserResult";
 
 function CheckResult() {
+  let [auth, setAuth] = useState(false);
+  let [user, setUser] = useState({});
   const history = useHistory();
   useEffect(() => {
     getResult();
@@ -15,7 +16,9 @@ function CheckResult() {
     if (password === "falcon@123") {
       let email = prompt("Enter candidate's email address");
       if (email) {
-        await api("get", `/result/${email}`);
+        setAuth(true);
+        let data = await api("get", `/results/${email}`);
+        setUser(data.user);
       } else {
         history.push("/");
       }
@@ -23,84 +26,54 @@ function CheckResult() {
       alert("Your password is incorrect");
     }
   };
-  const { singleUserResult } = Store();
 
   return (
     <>
-      <div style={{ height: "100vh" }}>
-        <table
-          style={{
-            backgroundColor: "white",
-            border: "1px solid black",
-            borderCollapse: "collapse",
-            textAlign: "center",
-            width: "50%",
-            margin: "auto",
-          }}
-        >
-          <thead>
-            <tr>
-              <th></th>
-              <th>Total Questions</th>
-              <th>Correct</th>
-              <th>Wrong</th>
-              <th>Percentage</th>
-              <th>Rank 0-10</th>
-            </tr>
-          </thead>
-          <tbody>
-            {SingleUserResult.map((r) => (
-              <tr key={r.id}>
-                <th>{r.technolgy}</th>
-                <td>{r.correct}</td>
-                <td>{r.wrong}</td>
-                <td>{r.percentage}</td>
-                <td>{r.rank}</td>
+      {auth && (
+        <div style={{ height: "100vh" }}>
+          <table
+            style={{
+              backgroundColor: "white",
+              border: "1px solid black",
+              borderCollapse: "collapse",
+              textAlign: "center",
+              width: "50%",
+              margin: "auto",
+            }}
+          >
+            <thead>
+              <tr>
+                <th>Technology</th>
+                <th>Total Questions</th>
+                <th>Correct</th>
+                <th>Wrong</th>
+                <th>Percentage</th>
+                <th>Rank 0-10</th>
               </tr>
-            ))}
-          </tbody>
-          {/* <tr>
-            <th>CSS</th>
-            <td>40</td>
-            <td>25</td>
-            <td>15</td>
-            <td>75%</td>
-            <td>7.5</td>
-          </tr>
-          <tr>
-            <th>JavaScript</th>
-            <td>40</td>
-            <td>25</td>
-            <td>15</td>
-            <td>75%</td>
-            <td>7.5</td>
-          </tr>
-          <tr>
-            <th>React</th>
-            <td>40</td>
-            <td>25</td>
-            <td>15</td>
-            <td>75%</td>
-            <td>7.5</td>
-          </tr>
-          <tr>
-            <th>Node</th>
-            <td>40</td>
-            <td>25</td>
-            <td>15</td>
-            <td>75%</td>
-            <td>7.5</td>
-          </tr>
-          <tr>
-            <th>Overall</th>
-            <td>40</td>
-            <td>25</td>
-            <td>15</td>
-            <td>75%</td>
-            <td>7.5</td>
-          </tr> */}
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {user?.result?.result_by_tech.map((tech) => (
+                <tr key={tech.id}>
+                  <th>{tech.technology}</th>
+                  <th>{tech.total}</th>
+                  <td>{tech.correct}</td>
+                  <td>{tech.wrong}</td>
+                  <td>{tech.percentage}</td>
+                  <td>{tech.rank}</td>
+                </tr>
+              ))}
+              <tr>
+                <th>Overall</th>
+                <th>{user?.result?.total}</th>
+                <td>{user?.result?.total_correct}</td>
+                <td>{user?.result?.total_wrong}</td>
+                <td>{user?.result?.overall_percentage}</td>
+                <td>{user?.result?.overall_rank}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
     </>
   );
 }
