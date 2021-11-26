@@ -19,7 +19,6 @@
   width: 830px;
   position: relative;
 }
-
 .qboximg {
   width: 100% !important;
   position: absolute;
@@ -41,6 +40,11 @@
 .answerGrid {
   padding: 1% 6% 0 12% !important;
   margin-top: 50px !important;
+}
+
+.questionNum {
+  text-align: right !important;
+  margin-right: 10%;
 }
 .selectedOption {
   width: 50% !important;

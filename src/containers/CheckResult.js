@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { Store, UpdateStore } from "../StoreContext";
 import api from "../api/index";
+import SingleUserResult from "./SingleUserResult";
 
 function CheckResult() {
   const history = useHistory();
-
   useEffect(() => {
     getResult();
   }, []);
@@ -22,6 +23,7 @@ function CheckResult() {
       alert("Your password is incorrect");
     }
   };
+  const { singleUserResult } = Store();
 
   return (
     <>
@@ -36,23 +38,28 @@ function CheckResult() {
             margin: "auto",
           }}
         >
-          <tr>
-            <th></th>
-            <th>Total Questions</th>
-            <th>Correct</th>
-            <th>Wrong</th>
-            <th>Percentage</th>
-            <th>Rank 0-10</th>
-          </tr>
-          <tr>
-            <th>HTML</th>
-            <td>40</td>
-            <td>25</td>
-            <td>15</td>
-            <td>75%</td>
-            <td>7.5</td>
-          </tr>
-          <tr>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Total Questions</th>
+              <th>Correct</th>
+              <th>Wrong</th>
+              <th>Percentage</th>
+              <th>Rank 0-10</th>
+            </tr>
+          </thead>
+          <tbody>
+            {SingleUserResult.map((r) => (
+              <tr key={r.id}>
+                <th>{r.technolgy}</th>
+                <td>{r.correct}</td>
+                <td>{r.wrong}</td>
+                <td>{r.percentage}</td>
+                <td>{r.rank}</td>
+              </tr>
+            ))}
+          </tbody>
+          {/* <tr>
             <th>CSS</th>
             <td>40</td>
             <td>25</td>
@@ -91,7 +98,7 @@ function CheckResult() {
             <td>15</td>
             <td>75%</td>
             <td>7.5</td>
-          </tr>
+          </tr> */}
         </table>
       </div>
     </>

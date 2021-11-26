@@ -94,8 +94,11 @@ const Questions = ({ step, setStep, setActiveStep }) => {
           <img src={Dummy} className="dummyimgQuestion forweb" />
           <img src={MainMobile} className="dummyimgforQuestion formobile" />
         </Grid>
-
         <Grid item xs={12} sm={8} className="questionGrid">
+          <p className="questionNum">
+            {nextQuestionNo + 1}/{lastQuestionIndex + 1}
+          </p>
+
           <div className="questionDiv">
             <div className="question-container">
               <img src={qarrow} className="qboximg" />
