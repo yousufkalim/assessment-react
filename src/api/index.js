@@ -8,13 +8,16 @@ const api = async (method = "get", uri, body) => {
   }
   // axios.defaults.baseURL = "http://localhost:5000/api/";
 
-  return axios[method](uri, body)
-    .then((res) => res.data)
-    .catch((err) => {
-      console.log("API Error --------> ", { ...err });
-      return toast.error(
-        err?.response?.data ? err.response.data.message : err?.message
-      );
-    });
+  return new Promise((resolve, reject) => {
+    axios[method](uri, body)
+      .then((res) => resolve(res.data))
+      .catch((err) => {
+        console.log("API Error --------> ", { ...err });
+        return toast.error(
+          err?.response?.data ? err.response.data.message : err?.message
+        );
+        reject(err);
+      });
+  });
 };
 export default api;

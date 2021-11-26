@@ -46,7 +46,7 @@ const Result = () => {
                 </p>
               ) : (
                 <h1 className="resultHeading" style={{ textAlign: "center" }}>
-                  Well done! You have completed your Assessment!
+                  You have completed your Assessment!
                 </h1>
               )}
             </div>
