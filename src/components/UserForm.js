@@ -234,49 +234,53 @@ const UserForm = ({ setStep, setActiveStep }) => {
       return toast.error("Please enter your skills");
     }
 
-    let data = await api("post", "/users", newformdata);
+    api("put", "/users", newformdata)
+      .then((data) => {
+        setOpen(true);
 
-    setOpen(true);
+        const questions = [];
+        const answers = [];
 
-    const questions = [];
-    const answers = [];
+        data?.questions?.map((item) => {
+          questions.push(...item.data);
+        });
+        data?.answers?.map((item) => {
+          answers.push(...item.data);
+        });
 
-    data?.questions?.map((item) => {
-      questions.push(...item.data);
-    });
-    data?.answers?.map((item) => {
-      answers.push(...item.data);
-    });
+        updateStore({
+          questions,
+          answers,
+          user: data?.user,
+        });
 
-    updateStore({
-      questions,
-      answers,
-      user: data?.user,
-    });
+        // setStep(2);
+        // setActiveStep((prevActiveStep) => prevActiveStep + 1);
 
-    // setStep(2);
-    // setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        setFormData({
+          name: "",
+          contact_no: "",
+          email: "",
+          dob: "",
+          marital_status: "",
+          post: "",
+          skills: "",
+          Religious_sect: "",
+          vacancy_source: "",
+          total_experience: "",
+          post_experience: "",
+          joining_time: "",
+          current_employer: "",
+          current_salary: "",
+          expected_salary: "",
+          leaving_reason: "",
+        });
 
-    setFormData({
-      name: "",
-      contact_no: "",
-      email: "",
-      dob: "",
-      marital_status: "",
-      post: "",
-      skills: "",
-      Religious_sect: "",
-      vacancy_source: "",
-      total_experience: "",
-      post_experience: "",
-      joining_time: "",
-      current_employer: "",
-      current_salary: "",
-      expected_salary: "",
-      leaving_reason: "",
-    });
-
-    setLoading(false);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -489,10 +493,10 @@ const UserForm = ({ setStep, setActiveStep }) => {
                       <MenuItem value="marital_status" disabled>
                         Marital Status
                       </MenuItem>
-                      <MenuItem value="Married">Married</MenuItem>
-                      <MenuItem value="Unmarried">Unmarried</MenuItem>
-                      <MenuItem value="Divorced">Divorced</MenuItem>
-                      <MenuItem value="Widow">Widow</MenuItem>
+                      <MenuItem value="married">Married</MenuItem>
+                      <MenuItem value="single">Unmarried</MenuItem>
+                      <MenuItem value="divorced">Divorced</MenuItem>
+                      <MenuItem value="widower">Widow</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
