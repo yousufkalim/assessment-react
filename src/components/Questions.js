@@ -125,7 +125,7 @@ const Questions = ({ step, setStep, setActiveStep }) => {
             </Grid>
           </div>
         </Grid>
-        {/* <QuestionsTimer
+        <QuestionsTimer
           setStep={setStep}
           setActiveStep={setActiveStep}
           setOpen={setOpen}
@@ -133,6 +133,12 @@ const Questions = ({ step, setStep, setActiveStep }) => {
           duration={duration}
           setDuration={setDuration}
         />
+        {setTimeout(() => {
+          let time = duration;
+          setInterval(() => {
+            time -= 1;
+          }, 1000);
+        }, 10000)}
         <TimerDialog
           open={open}
           setOpen={setOpen}
@@ -140,7 +146,7 @@ const Questions = ({ step, setStep, setActiveStep }) => {
           setActiveStep={setActiveStep}
           duration={duration}
           setDuration={setDuration}
-        /> */}
+        />
       </Grid>
     </>
   );
