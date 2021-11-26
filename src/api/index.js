@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 const api = async (method = "get", uri, body) => {
   if (window.location.hostname !== "localhost") {
-    axios.defaults.baseURL = "https://api.falconconsulting.fr/api";
+    axios.defaults.baseURL = "https://assessment.falconit.com.pk/api";
     axios.defaults.withCredentials = true;
   }
   // axios.defaults.baseURL = "http://localhost:5000/api/";
