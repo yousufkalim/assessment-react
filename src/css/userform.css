@@ -90,6 +90,7 @@
 }
 ::placeholder {
   color: #858b96;
+  opacity: 0.4;
 }
 /* for date picker */
 .react-datepicker {
@@ -148,6 +149,7 @@
 /* education level placeholder */
 .MuiInputLabel-outlined {
   color: #9198a5 !important;
+  opacity: 0.5;
   margin: -5px 0 0 0 !important;
 }
 .MuiOutlinedInput-notchedOutline {
@@ -155,12 +157,12 @@
 }
 /* education level icon */
 .MuiSelect-iconOutlined {
-  color: #9198a5 !important;
+  color: #727170 !important; /*arrow*/
 }
 /* education level on focus */
 .Mui-focused .MuiOutlinedInput-notchedOutline {
   border: 1px solid white !important;
-  color: #9198a5 !important;
+  color: #9198a5 !important; /*na*/
 }
 /* education level text color */
 .MuiSelect-outlined.MuiSelect-outlined {

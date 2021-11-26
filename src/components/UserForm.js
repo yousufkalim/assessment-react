@@ -481,9 +481,9 @@ const UserForm = ({ setStep, setActiveStep }) => {
                     name="marital_status"
                     value={marital_status}
                   >
+                    <InputLabel>Marital Status</InputLabel>
                     <Select
                       className="selectforeducation"
-                      defaultValue="marital_status"
                       onChange={onChangeMStatus}
                     >
                       <MenuItem value="marital_status" disabled>
@@ -577,7 +577,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
                           <CircularProgress size={20} className="" />
                         </div>
                       ) : (
-                        "Submit"
+                        "Proceed to Assessment"
                       )}
                     </b>
                   </button>
