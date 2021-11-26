@@ -12,9 +12,6 @@ const api = async (method = "get", uri, body) => {
     .then((res) => res.data)
     .catch((err) => {
       console.log("API Error --------> ", { ...err });
-      if (err.response?.status === 403) {
-        window.location = "/login";
-      }
       return toast.error(
         err?.response?.data ? err.response.data.message : err?.message
       );
