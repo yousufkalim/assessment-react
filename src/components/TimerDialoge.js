@@ -20,17 +20,18 @@ export default function TimerDialog({
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   //  console.log("durantion is ", duration)
 
-  const handleDuration = (open, setOpen, duration, setDuration) => {
+  const handleDuration = () => {
     setDuration((prevduration) => prevduration + 10);
     setOpen(false);
   };
-  const handleEndSection = (setStep, setActiveStep) => {
+  const handleEndSection = () => {
     setStep(3);
     setActiveStep(3);
   };
 
   return (
     <div>
+      {console.log(open)}
       <Dialog
         fullScreen={fullScreen}
         open={open}
@@ -43,16 +44,10 @@ export default function TimerDialog({
           <DialogContentText>Do you need more time?</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button
-            autoFocus
-            onClick={() => handleEndSection(setStep, setActiveStep)}
-          >
+          <Button autoFocus onClick={handleEndSection}>
             NO
           </Button>
-          <Button
-            onClick={() => handleDuration(open, setOpen, duration, setDuration)}
-            autoFocus
-          >
+          <Button onClick={handleDuration} autoFocus>
             YES
           </Button>
         </DialogActions>
