@@ -9,6 +9,18 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@mui/material/Button";
 import QuestionsTimer from "./QuestionsTimer";
 import TimerDialog from "./TimerDialoge";
+import NavigationBlocker from "./navBlocker";
+
+// const MyComponent = () => {
+//   const [shouldBlockNavigation, NshouldBlockNavigation] = React.useState(false);
+//   <>
+//     <Prompt
+//       when={NshouldBlockNavigation}
+//       message="You have unsaved changes, are you sure you want to leave?"
+//     />
+//     {/* Component JSX */}
+//   </>;
+// };
 
 const Questions = ({ step, setStep, setActiveStep }) => {
   // init context
@@ -89,6 +101,7 @@ const Questions = ({ step, setStep, setActiveStep }) => {
 
   return (
     <>
+      <NavigationBlocker />;
       <Grid container spacing={2} className="mainquestionscreen">
         <Grid item xs={12} sm={4} className="">
           <img src={Dummy} className="dummyimgQuestion forweb" />

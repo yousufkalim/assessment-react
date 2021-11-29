@@ -28,12 +28,14 @@ import moment from "moment";
 import api from "../api/index.js";
 import renderTime from "../components/CirclerTimer";
 import Questions from "./Questions";
+import NavigationBlocker from "./navBlocker";
 
 // import MenuItem from "@material-ui/core/MenuItem";
 // import Checkbox from '@mui/material/Checkbox';
 
 const UserForm = ({ setStep, setActiveStep }) => {
   // initialize ContextStore
+
   const updateStore = UpdateStore();
   const [formData, setFormData] = useState({
     name: "",
