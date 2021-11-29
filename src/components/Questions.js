@@ -103,7 +103,13 @@ const Questions = ({ step, setStep, setActiveStep }) => {
             <div className="question-container">
               <img src={qarrow} className="qboximg" />
               <div className="questionBox">
-                <h2 className="questiontext">
+                <h2
+                  className="questiontext"
+                  onCopy={(e) => {
+                    e.preventDefault();
+                    return false;
+                  }}
+                >
                   {questions[nextQuestionNo].question}
                 </h2>
               </div>
@@ -118,6 +124,10 @@ const Questions = ({ step, setStep, setActiveStep }) => {
                     sm={5}
                     className="option"
                     onClick={() => handleSelectOption(ans)}
+                    onCopy={(e) => {
+                      e.preventDefault();
+                      return false;
+                    }}
                   >
                     {ans?.answer}
                   </Grid>
