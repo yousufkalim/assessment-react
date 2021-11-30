@@ -26,14 +26,15 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import { styled } from "@mui/material/styles";
 import moment from "moment";
 import api from "../api/index.js";
-import renderTime from "../components/CirclerTimer";
-import Questions from "./Questions";
+import NavigationBlocker from "./navBlocker";
+import { Prompt } from "react-router";
 
 // import MenuItem from "@material-ui/core/MenuItem";
 // import Checkbox from '@mui/material/Checkbox';
 
 const UserForm = ({ setStep, setActiveStep }) => {
   // initialize ContextStore
+
   const updateStore = UpdateStore();
   const [formData, setFormData] = useState({
     name: "",

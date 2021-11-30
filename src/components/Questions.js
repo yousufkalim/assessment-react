@@ -6,9 +6,13 @@ import Dummy from "../assets/img/dummy.png";
 import MainMobile from "../assets/img/mobileform.png";
 import qarrow from "../assets/icons/qarrow.png";
 import Grid from "@material-ui/core/Grid";
-import Button from "@mui/material/Button";
 import QuestionsTimer from "./QuestionsTimer";
 import TimerDialog from "./TimerDialoge";
+
+window.addEventListener("beforeunload", (ev) => {
+  ev.preventDefault();
+  return (ev.returnValue = "Are you sure you want to close?");
+});
 
 const Questions = ({ step, setStep, setActiveStep }) => {
   // init context
@@ -103,7 +107,13 @@ const Questions = ({ step, setStep, setActiveStep }) => {
             <div className="question-container">
               <img src={qarrow} className="qboximg" />
               <div className="questionBox">
-                <h2 className="questiontext">
+                <h2
+                  className="questiontext"
+                  onCopy={(e) => {
+                    e.preventDefault();
+                    return false;
+                  }}
+                >
                   {questions[nextQuestionNo].question}
                 </h2>
               </div>
@@ -118,6 +128,10 @@ const Questions = ({ step, setStep, setActiveStep }) => {
                     sm={5}
                     className="option"
                     onClick={() => handleSelectOption(ans)}
+                    onCopy={(e) => {
+                      e.preventDefault();
+                      return false;
+                    }}
                   >
                     {ans?.answer}
                   </Grid>
