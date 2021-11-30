@@ -11,10 +11,11 @@ import SetAuthToken from "./utils/SetAuthToken";
 // Component
 function App() {
   if (localStorage.token) {
-    SetAuthToken(localStorage.token); 
+    SetAuthToken(localStorage.token);
   }
   return (
     <div className="App">
+      <td onClick={() => window.open("someLink", "_blank")}>text</td>
       {/* tostify Container for Notification */}
       <ToastContainer
         position="bottom-right"

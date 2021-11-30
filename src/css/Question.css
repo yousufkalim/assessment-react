@@ -45,6 +45,7 @@
 .questionNum {
   text-align: right !important;
   margin-right: 10%;
+  margin-bottom: -40px;
 }
 .selectedOption {
   width: 50% !important;

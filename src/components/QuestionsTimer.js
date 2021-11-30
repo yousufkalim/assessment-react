@@ -25,13 +25,9 @@ const renderTime = (
   console.log("open is", open);
 
   return (
-    <div className="timeer">
-      <div className="textt">Remaining</div>
-      <div className="valuee">
-        {hours}:{minutes}:{seconds}
-      </div>
-      <div className="textt">Time</div>
-    </div>
+    <p className="timeer">
+      Remaining Time: {hours}:{minutes}:{seconds}
+    </p>
   );
 };
 

@@ -15,7 +15,7 @@ const index = () => {
       <Route exact path="/addcandidate" component={AddCandidate} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/CGU" component={CGU} />
-      <Route exact path="/*" render={() => <Admin />} />
+      <Route exact path="/*" render={() => <Admin />} />ß
     </Switch>
   );
 };
