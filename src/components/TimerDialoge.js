@@ -7,21 +7,17 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import QuestionsTimer from "./QuestionsTimer";
 
-export default function TimerDialog({
-  open,
-  setOpen,
-  setStep,
-  setActiveStep,
-  duration,
-  setDuration,
-}) {
+export default function TimerDialog({ setStep, setActiveStep }) {
+  const [open, setOpen] = React.useState(false);
+  const [duration, setDuration] = useState(2400);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   //  console.log("durantion is ", duration)
 
   const handleDuration = () => {
-    setDuration((prevduration) => prevduration + 10);
+    setDuration(600);
     setOpen(false);
   };
   const handleEndSection = () => {
@@ -31,7 +27,16 @@ export default function TimerDialog({
 
   return (
     <div>
-      {console.log(open)}
+      {!open && (
+        <QuestionsTimer
+          setStep={setStep}
+          setActiveStep={setActiveStep}
+          setOpen={setOpen}
+          open={open}
+          duration={duration}
+          setDuration={setDuration}
+        />
+      )}
       <Dialog
         fullScreen={fullScreen}
         open={open}
@@ -44,12 +49,8 @@ export default function TimerDialog({
           <DialogContentText>Do you need more time?</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleEndSection}>
-            NO
-          </Button>
-          <Button onClick={handleDuration} autoFocus>
-            YES
-          </Button>
+          <Button onClick={handleEndSection}>NO</Button>
+          <Button onClick={handleDuration}>YES</Button>
         </DialogActions>
       </Dialog>
     </div>

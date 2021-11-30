@@ -44,7 +44,6 @@ function QuestionsTimer({
   duration,
   setDuration,
 }) {
-  console.log("duration is ", duration);
   return (
     <>
       <div className="App">

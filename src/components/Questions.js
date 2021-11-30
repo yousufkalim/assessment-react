@@ -19,7 +19,6 @@ const Questions = ({ step, setStep, setActiveStep }) => {
   const [lastQuestionIndex] = useState(questions.length - 1);
 
   const [open, setOpen] = React.useState(false);
-  const [duration, setDuration] = useState(2400);
 
   useEffect(() => {
     scrollToTop();
@@ -125,22 +124,7 @@ const Questions = ({ step, setStep, setActiveStep }) => {
             </Grid>
           </div>
         </Grid>
-        <QuestionsTimer
-          setStep={setStep}
-          setActiveStep={setActiveStep}
-          setOpen={setOpen}
-          open={open}
-          duration={duration}
-          setDuration={setDuration}
-        />
-        <TimerDialog
-          open={open}
-          setOpen={setOpen}
-          setStep={setStep}
-          setActiveStep={setActiveStep}
-          duration={duration}
-          setDuration={setDuration}
-        />
+        <TimerDialog setStep={setStep} setActiveStep={setActiveStep} />
       </Grid>
     </>
   );
