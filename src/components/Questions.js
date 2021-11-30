@@ -125,14 +125,16 @@ const Questions = ({ step, setStep, setActiveStep }) => {
             </Grid>
           </div>
         </Grid>
-        <QuestionsTimer
-          setStep={setStep}
-          setActiveStep={setActiveStep}
-          setOpen={setOpen}
-          open={open}
-          duration={duration}
-          setDuration={setDuration}
-        />
+        {!open && (
+          <QuestionsTimer
+            setStep={setStep}
+            setActiveStep={setActiveStep}
+            setOpen={setOpen}
+            open={open}
+            duration={duration}
+            setDuration={setDuration}
+          />
+        )}
         <TimerDialog
           open={open}
           setOpen={setOpen}

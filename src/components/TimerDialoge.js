@@ -21,7 +21,7 @@ export default function TimerDialog({
   //  console.log("durantion is ", duration)
 
   const handleDuration = () => {
-    setDuration((prevduration) => prevduration + 10);
+    setDuration(600);
     setOpen(false);
   };
   const handleEndSection = () => {
