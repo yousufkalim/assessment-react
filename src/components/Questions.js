@@ -101,7 +101,6 @@ const Questions = ({ step, setStep, setActiveStep }) => {
 
   return (
     <>
-      <NavigationBlocker />;
       <Grid container spacing={2} className="mainquestionscreen">
         <Grid item xs={12} sm={4} className="">
           <img src={Dummy} className="dummyimgQuestion forweb" />
