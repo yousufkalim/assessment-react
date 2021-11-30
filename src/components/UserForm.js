@@ -230,7 +230,7 @@ const UserForm = ({ setStep, setActiveStep }) => {
     }
     if (marital_status == "") {
       return toast.error("Please enter your marital status");
-    // }
+    }
     if (skills == "") {
       return toast.error("Please enter your skills");
     }
