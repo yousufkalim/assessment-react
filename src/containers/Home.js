@@ -8,10 +8,6 @@ import Header from "../components/Header";
 import Stepper from "../components/Stepper";
 import CustomizedDialogs from "../components/CirclerTimer";
 
-window.addEventListener("beforeunload", (ev) => {
-  ev.preventDefault();
-  return (ev.returnValue = "Are you sure you want to close?");
-});
 const Home = () => {
   const [activeStep, setActiveStep] = useState(1);
   const [step, setStep] = useState(0);

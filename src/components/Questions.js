@@ -6,21 +6,13 @@ import Dummy from "../assets/img/dummy.png";
 import MainMobile from "../assets/img/mobileform.png";
 import qarrow from "../assets/icons/qarrow.png";
 import Grid from "@material-ui/core/Grid";
-import Button from "@mui/material/Button";
 import QuestionsTimer from "./QuestionsTimer";
 import TimerDialog from "./TimerDialoge";
-import NavigationBlocker from "./navBlocker";
 
-// const MyComponent = () => {
-//   const [shouldBlockNavigation, NshouldBlockNavigation] = React.useState(false);
-//   <>
-//     <Prompt
-//       when={NshouldBlockNavigation}
-//       message="You have unsaved changes, are you sure you want to leave?"
-//     />
-//     {/* Component JSX */}
-//   </>;
-// };
+window.addEventListener("beforeunload", (ev) => {
+  ev.preventDefault();
+  return (ev.returnValue = "Are you sure you want to close?");
+});
 
 const Questions = ({ step, setStep, setActiveStep }) => {
   // init context
