@@ -22,10 +22,21 @@ const Result = () => {
   let getResult = async () => {
     setLoading(true);
 
-    await api("post", "/results", {
-      userId: user._id,
-      answerIds,
-    });
+    // If user is online then ok otherwise we have to add this task in local storage in order to perform this action later
+    if (navigator.onLine) {
+      await api("post", "/results", {
+        userId: user._id,
+        answerIds,
+      });
+    } else {
+      localStorage.setItem(
+        "pending_result",
+        JSON.stringify({
+          userId: user._id,
+          answerIds,
+        })
+      );
+    }
 
     setLoading(false);
   };
