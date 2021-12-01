@@ -1,13 +1,18 @@
 // Init
-import React, { useContext, useState, createContext } from "react";
+import React, { useContext, useState, useEffect, createContext } from "react";
 
 // Initializing Create Context Hook
 const storeContext = createContext();
 const storeUpdateContext = createContext();
+const onlineStatusContext = createContext(true);
 
 // We are also initializing useContexts here then we only call these functions where we need that data
 export function Store() {
   return useContext(storeContext);
+}
+
+export function OnlineStatus() {
+  return useContext(onlineStatusContext);
 }
 
 export function UpdateStore() {
@@ -17,6 +22,7 @@ export function UpdateStore() {
 // Initializing Store Provider
 export function StoreProvider({ children }) {
   // Initializing State
+  let [isConnected, setConnected] = useState(navigator.onLine);
   let [store, setStore] = useState({
     authorization: null,
     token: null,
@@ -36,6 +42,24 @@ export function StoreProvider({ children }) {
     result: {},
   });
 
+  useEffect(() => {
+    window.addEventListener("offline", () => {
+      setConnected(false);
+    });
+    window.addEventListener("online", () => {
+      setConnected(true);
+    });
+
+    return () => {
+      window.removeEventListener("offline", () => {
+        setConnected(false);
+      });
+      window.removeEventListener("online", () => {
+        setConnected(true);
+      });
+    };
+  }, []);
+
   const updateStore = (data) => {
     setStore((prev) => {
       return {
@@ -49,7 +73,9 @@ export function StoreProvider({ children }) {
   return (
     <storeContext.Provider value={store}>
       <storeUpdateContext.Provider value={updateStore}>
-        {children}
+        <onlineStatusContext.Provider value={isConnected}>
+          {children}
+        </onlineStatusContext.Provider>
       </storeUpdateContext.Provider>
     </storeContext.Provider>
   );

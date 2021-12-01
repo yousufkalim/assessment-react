@@ -5,11 +5,18 @@ import { ToastContainer, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Index from "./routes/index";
 import "./css/index.css";
+import { OnlineStatus } from "./StoreContext";
 
 import SetAuthToken from "./utils/SetAuthToken";
 
 // Component
 function App() {
+  const isConnected = OnlineStatus();
+
+  useEffect(() => {
+    console.log(isConnected);
+  }, [isConnected]);
+
   if (localStorage.token) {
     SetAuthToken(localStorage.token);
   }
