@@ -1,0 +1,42 @@
+/* Statistics */
+.result-statistics-table {
+  text-align: center;
+  background-color: rgb(164, 172, 179);
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 80%;
+  margin: 10px auto;
+}
+
+.result-statistics-table thead tr {
+  line-height: 35px;
+  font-weight: bold !important;
+}
+.result-statistics-table tbody tr th {
+  font-weight: bold !important;
+}
+
+.result-statistics-table tbody tr {
+  line-height: 25px;
+  font-weight: lighter;
+}
+
+/* Q&A */
+.result-answers-table {
+  border: 1px solid rgb(48, 54, 61);
+  border-collapse: separate;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 80%;
+  margin: 20px auto;
+  color: rgb(164, 172, 179);
+}
+
+.result-answers-table thead tr {
+  line-height: 35px;
+}
+
+.result-answers-table tbody tr {
+  line-height: 25px;
+}

@@ -10,8 +10,7 @@
 @import url("./cgu.css");
 @import url("./CircleTimer.css");
 @import url("./QuestionsTimer.css");
-
-
+@import url("./CheckResult.css");
 
 body {
   font-family: "lato", sans-serif !important;

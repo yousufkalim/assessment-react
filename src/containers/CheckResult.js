@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { Store, UpdateStore } from "../StoreContext";
 import api from "../api/index";
 
 function CheckResult() {
@@ -30,49 +29,67 @@ function CheckResult() {
   return (
     <>
       {auth && (
-        <div style={{ height: "100vh" }}>
-          <table
-            style={{
-              backgroundColor: "white",
-              border: "1px solid black",
-              borderCollapse: "collapse",
-              textAlign: "center",
-              width: "50%",
-              margin: "auto",
-            }}
-          >
-            <thead>
-              <tr>
-                <th>Technology</th>
-                <th>Total Questions</th>
-                <th>Correct</th>
-                <th>Wrong</th>
-                <th>Percentage</th>
-                <th>Rank 0-10</th>
-              </tr>
-            </thead>
-            <tbody>
-              {user?.result?.result_by_tech.map((tech) => (
-                <tr key={tech.id}>
-                  <th>{tech.technology}</th>
-                  <th>{tech.total}</th>
-                  <td>{tech.correct}</td>
-                  <td>{tech.wrong}</td>
-                  <td>{tech.percentage}</td>
-                  <td>{tech.rank}</td>
+        <>
+          <div style={{ height: "100vh" }}>
+            <table className="result-statistics-table">
+              <thead>
+                <tr>
+                  <th>Technology</th>
+                  <th>Total Questions</th>
+                  <th>Correct</th>
+                  <th>Wrong</th>
+                  <th>Percentage</th>
+                  <th>Rank 0-10</th>
                 </tr>
-              ))}
-              <tr>
-                <th>Overall</th>
-                <th>{user?.result?.total}</th>
-                <td>{user?.result?.total_correct}</td>
-                <td>{user?.result?.total_wrong}</td>
-                <td>{user?.result?.overall_percentage}</td>
-                <td>{user?.result?.overall_rank}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {user?.result?.result_by_tech.map((tech) => (
+                  <tr key={tech.id}>
+                    <th>{tech.technology}</th>
+                    <td>{tech.total}</td>
+                    <td>{tech.correct}</td>
+                    <td>{tech.wrong}</td>
+                    <td>{tech.percentage}</td>
+                    <td>{tech.rank}</td>
+                  </tr>
+                ))}
+                <tr>
+                  <th>Overall</th>
+                  <td>{user?.result?.total}</td>
+                  <td>{user?.result?.total_correct}</td>
+                  <td>{user?.result?.total_wrong}</td>
+                  <td>{user?.result?.overall_percentage}</td>
+                  <td>{user?.result?.overall_rank}</td>
+                </tr>
+              </tbody>
+            </table>
+            <table className="result-answers-table">
+              <thead>
+                <tr>
+                  <th>Technology</th>
+                  <th>Question</th>
+                  <th>Answer</th>
+                </tr>
+              </thead>
+              <tbody>
+                {user?.result?.questionnaire.map((data) => (
+                  <tr
+                    key={data.id}
+                    style={{
+                      backgroundColor: data.answer.correct
+                        ? "rgba(46, 160, 67, 0.15)"
+                        : "rgba(248, 81, 73, 0.15)",
+                    }}
+                  >
+                    <td>{data.technology}</td>
+                    <td>{data.question.question}</td>
+                    <td>{data.answer.answer}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
     </>
   );
